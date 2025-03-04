@@ -1,0 +1,105 @@
+.weapon-form {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 50vw;
+    border: black 3px solid;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: rgb(211, 192, 192);
+}
+
+.combat-style {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+}
+
+.grid-square {
+    border: black 3px solid;
+    padding: 20px;
+    margin: 20px;
+}
+
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.style-select {
+    display: flex;
+    margin-top: 4px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+select { 
+    width: 15vh;
+}
+
+.form-header {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+    flex-direction: column;
+    width: 30%;
+}
+
+.style-label {
+    display: flex;
+    font-size: x-large;
+    font-weight: bold;
+    justify-content: center;
+    width: 100%;
+}
+
+.item-stats {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 60%;
+    margin-top: 20px; 
+    margin-left: 10px;
+}
+
+.header-split {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 40%;
+}
+
+.stat-box{
+    display: flex;
+    height: auto;
+    width: auto;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px black solid;
+}
+
+.stat-input {
+    display: flex;
+    text-align: center;
+    width: 35%;
+    height: 50%;
+}
+
+.submit-square {
+    grid-row: 3;
+    grid-column: 2;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+  
+  /* Modal container */
+  .modal-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  }

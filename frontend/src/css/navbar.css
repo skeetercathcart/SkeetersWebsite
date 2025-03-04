@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and border do not affect element width and height */
+  }
+
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(205, 216, 216);
+    height: 10vh;
+}
+
+button {
+    display: flex;
+    width: 16vh;
+    height: 50px;
+    margin-left: 1vh;
+    margin-right: 1vh;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(33, 45, 59);
+    text-decoration: none;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
