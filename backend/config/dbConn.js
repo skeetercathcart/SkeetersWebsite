@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+
+dotenv.config();
 
 const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb+srv://skeetercathcart:WdLC0KSZdjhsuksz@osrs-data.jy6mh.mongodb.net/?retryWrites=true&w=majority&appName=OSRS-Data")
+        await mongoose.connect(process.env.MONGO_URI)
     } catch (err) {
         console.log(err)
     }

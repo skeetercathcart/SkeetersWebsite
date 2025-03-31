@@ -1,3 +1,9 @@
+.plain-container {
+  display: flex;
+  background-color: grey;
+  flex-direction: row;
+}
+
 .weapon-form {
     display: flex;
     flex-direction: column;
@@ -94,12 +100,157 @@ select {
     margin-top: 20px;
 }
 
-  
-  /* Modal container */
   .modal-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
+  }
+
+  /* Equipment Select */
+
+  .equip-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height: 50vh;
+    width: 30vw;
+    border: 2px black solid;
+  }
+
+  .item-display{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    
+  }
+
+  .item-square {
+    display: flex;
+    height: 70px;
+    width: 70px;
+    margin: 10px;
+    background-color: grey;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: brown 2px solid;
+  }
+
+  .head {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  .cape {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+  .neck {
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+
+  .ammunition {
+    grid-column: 3/4;
+    grid-row: 2/3;
+  }
+  
+  .weapon {
+    grid-column: 1/2;
+    grid-row: 3/4;
+  }
+
+  .body {
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
+
+  .shield {
+    grid-column: 3/4;
+    grid-row: 3/4;
+  }
+
+  .legs {
+    grid-column: 2/3;
+    grid-row: 4/5;
+  }
+
+  .hands {
+    grid-column: 1/2;
+    grid-row: 5/6;
+  }
+
+  .feet {
+    grid-column: 2/3;
+    grid-row: 5/6;
+  }
+
+  .ring {
+    grid-column: 3/4;
+    grid-row: 5/6;
+  }
+
+
+  /* Total Bonus Display */
+
+  .bonus-container {
+    display: grid;
+    background-color: rgb(194, 165, 165);
+    width: 30vw;;
+    height: 50%;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bonus-grid-square {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    border: black 1px solid;
+  }
+
+  .bonus-grid-image {
+    display: flex;
+    width: 20px;
+    height: 20px;
+  }
+
+  .bonus-display {
+    display: flex;
+    width: 40%;
+    height: 50%;
+    margin: 2px;
+    align-items: center;
+    justify-content: center;
+    border: 1px black solid;
+    background-color: orange;
+  }
+
+  .style-select-container {
+    display: grid;
+    width: 30vw;
+    height: 50%;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: bisque;
+    margin: 2px;
+  }
+
+  .style-option {
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    border: black 1px solid;
+  }
+
+  .active-style {
+    background-color: red;
   }

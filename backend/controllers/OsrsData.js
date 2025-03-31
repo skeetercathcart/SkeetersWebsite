@@ -1,98 +1,233 @@
 const Weapon = require('../models/osrsWeapon')
+const Gear = require('../models/osrsGear')
 
+
+// OSRS Weapon
 async function createOsrsWeapon (req, res) {
-    console.log('entered server side createOsrsWeapon');
-    const { name, weaponType, attackStyles, bonuses, isTwoHanded, imageUrl} = req.body;
 
-    console.log('made it past req.body')
-    console.log(name)
-    console.log(weaponType)
-    console.log(attackStyles)
+    const { name, attackStyles, bonuses, isTwoHanded, imageURL} = req.body;
 
     try {
 
-    
         const weapon = new Weapon({
             name: name,
-            weaponType: weaponType,  // Ensure this is `weaponType`, not `type`
-            attackStyles: {
-                style1: {
-                    combatStyle: attackStyles.style1.combatStyle,
-                    attackType: attackStyles.style1.attackStyle,  // Ensure this matches field name
-                    weaponStyle: attackStyles.style1.weaponStyle,
-                    attackSpeed: attackStyles.style1.attackSpeed,
-                    levelBoost: attackStyles.style1.levelBoost,
-                },
-                style2: {
-                    combatStyle: attackStyles.style2.combatStyle,
-                    attackType: attackStyles.style2.attackStyle,
-                    weaponStyle: attackStyles.style2.weaponStyle,
-                    attackSpeed: attackStyles.style2.attackSpeed,
-                    levelBoost: attackStyles.style2.levelBoost,
-                },
-                style3: {
-                    combatStyle: attackStyles.style3.combatStyle,
-                    attackType: attackStyles.style3.attackStyle,
-                    weaponStyle: attackStyles.style3.weaponStyle,
-                    attackSpeed: attackStyles.style3.attackSpeed,
-                    levelBoost: attackStyles.style3.levelBoost,
-                },
-                style4: {
-                    combatStyle: attackStyles.style4.combatStyle,
-                    attackType: attackStyles.style4.attackStyle,
-                    weaponStyle: attackStyles.style4.weaponStyle,
-                    attackSpeed: attackStyles.style4.attackSpeed,
-                    levelBoost: attackStyles.style4.levelBoost,
-                },
-                style5: {
-                    combatStyle: attackStyles.style5.combatStyle,
-                    attackType: attackStyles.style5.attackStyle,
-                    weaponStyle: attackStyles.style5.weaponStyle,
-                    attackSpeed: attackStyles.style5.attackSpeed,
-                    levelBoost: attackStyles.style5.levelBoost,
-                }
-            },
-
-            // Maybe reqs dont matter, also hard to scrape
-
-            /* attackRequirements: {
-                attack: attReqs.attack,
-                strength: attReqs.strength,
-                range: attReqs.range,
-                magic: attReqs.magic 
-            }, */ 
-
-            bonuses: {
-                attack: {
-                    slash: bonuses.attack.slash,
-                    stab: bonuses.attack.stab,
-                    crush: bonuses.attack.crush,
-                    range: bonuses.attack.range,
-                    magic: bonuses.attack.magic 
-                },
-                defense: {
-                    slash: bonuses.defense.slash,
-                    stab: bonuses.defense.stab,
-                    crush: bonuses.defense.crush,
-                    range: bonuses.defense.range,
-                    magic: bonuses.defense.magic 
-                },
-                strength: bonuses.strength ,
-                rangeStrength: bonuses.rangeStrength,
-                mageStrength: bonuses.mageStrength,
-                prayer: bonuses.prayer 
-            },
+            attackStyles: attackStyles,
+            bonuses: bonuses,
             isTwoHanded: isTwoHanded,
-            imageUrl: imageUrl,
+            imageURL: imageURL,
         });
 
         await weapon.save();
 
-        res.status(201).json({"Big Succi" : `New Weapon ${weaponName} Created`})
+        console.log(`New Weapon ${name} Created`)
+        res.status(201).json({"Great Success!" : `New Weapon ${name} Created`})
     } catch (error) {
-        console.log('get fucked idiot' + error.message)
+        console.log('Failed to create new weapon  ' + error.message)
         return res.status(500).json({error: "An error occurred while creating a new weapon"})
     }
 }
 
-module.exports = { createOsrsWeapon }
+async function getOsrsWeapon (req, res) {
+
+    console.log('Entering getOsrsWeapon')
+
+    try {
+        const weapon = await Weapon.findOne();
+        if(!weapon) {
+            return res.status(404).json({ message: "Weapon not found"})
+        }
+        console.log('Weapon Found. Returning: ' + JSON.stringify(weapon))
+        res.status(200).json(weapon)
+    } catch (error) {
+        res.status(500).json({message: "Server Error", error: error.message})
+    }
+
+}
+
+async function getOsrsWeaponNames (req, res) {
+    console.log('Entering getOsrsWeaponNames')
+
+    try {
+        const weaponNames = await Weapon.find({}, {name: 1});
+        if(!weaponNames) {
+            return res.status(404).json({message: "No Weapon names found"})
+        }
+        console.log("Weapon names found");
+        res.status(200).json(weaponNames);
+    } catch (error) {
+        res.status(500).json({message: "Server Error", error: error.message})
+    }
+}
+
+async function getOsrsWeaponById (req, res) {
+    console.log('Entering getOsrsWeaponById')
+
+    try {
+        const { id } = req.params
+        const weaponData = await Weapon.findById(id);
+        if(!weaponData) {
+            return res.status(404).json({message: "Weapon Data Not Found"})
+        }
+        console.log("Weapon Data Found");
+        res.status(200).json(weaponData);
+    } catch (error) {
+        res.status(500).json({message: "Server Error", error: error.message})
+    }
+}
+
+// OSRS Gear
+
+async function createOsrsGear (req, res) {
+    
+    const { name, bonuses, imageURL, slot} = req.body;
+
+    try {
+
+        const gear = new Gear({
+            name: name,
+            bonuses: bonuses,
+            imageURL: imageURL,
+            slot: slot
+        });
+
+        await gear.save();
+
+        console.log(`New Gear ${name} Created`)
+        res.status(201).json({"Great Success!" : `New Gear ${name} Created`})
+    } catch (error) {
+        console.log('Failed to create new gear  ' + error.message)
+        return res.status(500).json({error: "An error occurred while creating a new gear"})
+    }
+}
+
+async function getOsrsGearById (req, res) {
+    console.log('Entering getOsrsGearById')
+
+    try {
+        const { id } = req.params
+        const weaponData = await Gear.findById(id);
+        if(!weaponData) {
+            return res.status(404).json({message: "Gear Data Not Found"})
+        }
+        console.log("Gear Data Found");
+        res.status(200).json(weaponData);
+    } catch (error) {
+        res.status(500).json({message: "Server Error", error: error.message})
+    }
+}
+
+
+async function deleteOsrsItem (req, res) {
+    console.log('Entering deleteOsrsItem');
+
+    try {
+        const { id } = req.params;
+
+        const weaponCheck = await Weapon.findByIdAndDelete(id);
+        if(weaponCheck) { 
+            return res.status(200).json({message: 'Weapon Deleted'})
+        } else if (!weaponCheck) {
+            const gearCheck = await Gear.findByIdAndDelete(id)
+            if (gearCheck) {
+                return res.status(200).json({message: 'Gear Deleted'})
+            }
+        }
+
+        return res.status(404).json({message: "Item not found to be deleted"})
+
+    } catch (error) {
+        console.log("Failed to delete OsrsItem " + error.message)
+        return res.status(500).json({error: "An error occured while deleting osrs item"})
+    }
+    
+}
+
+
+async function getPaginatedOsrsItems (req, res) {
+    console.log('Entering getPaginatedOsrsItems')
+
+    try{
+        const { page = 1, limit = 5 } = req.query;
+        const skip = (page - 1) * limit;
+
+        const items = await Weapon.aggregate([
+            { $unionWith: {coll: "osrsgears"} },
+            { $sort: {name: 1} },
+            { $skip: skip },
+            { $limit: Number(limit)}
+        ])
+
+        const total = (await Weapon.countDocuments()) + (await Gear.countDocuments());
+
+        return res.status(200).json({ total, page: Number(page), limit: Number(limit), items})
+
+
+
+    } catch (error) {
+        return res.status(500).json({message: "Error trying to fetch osrs items paginated"})
+    }
+
+}
+
+async function getAllOsrsItems (req, res) {
+    console.log('Entering getAllOsrsItems')
+
+    try {
+        const allItems = await Gear.aggregate([
+            { $unionWith: { coll: "osrsweapons" } },
+            { $project: { _id: 1, name: 1, slot: 1 } }
+        ]);
+        return res.status(200).json(allItems)
+
+
+    } catch (error) {
+        console.log('Error fetching all osrs items: ' + error.message)
+        return res.status(500).json({message: "Error trying to fetch all items"})
+    }
+}
+
+async function updateOsrsItemName (req, res) {
+    console.log ('Entering updateOsrsItemName')
+
+    try { 
+        const { id } = req.params;
+        const { name } = req.body;
+        let osrsItem;
+
+        console.log("Item ID: " + id)
+        console.log("Item Name: " + name)
+
+        osrsItem = await Weapon.findByIdAndUpdate(
+            id, { name: name }, { new: true }
+        ) 
+
+        if (osrsItem) {
+            console.log("weapon found")
+        }
+        
+
+        if (!osrsItem) {
+            console.log('weapon not found. looking for gear')
+            osrsItem = await Gear.findByIdAndUpdate(
+                id, { name: name }, { new: true }
+            )
+        }
+
+        if (!osrsItem) {
+            console.log('unable to find weapon or gear')
+            return res.status(404).json({message: "unable to find osrs item with id: " + id})
+        } else {
+            console.log("Successfully updated item with id: " + id)
+            return res.status(200).json({message: "Successfully updated item with id: " + id})
+        }
+
+    } catch (error) {
+        console.log('Error updating osrs item name: ' + error.message)
+        return res.status(500).json({message: "Error updating osrs item name"})
+    }
+}
+
+
+
+module.exports = { createOsrsWeapon, getOsrsWeapon, getOsrsWeaponNames, getOsrsWeaponById, createOsrsGear, 
+                   deleteOsrsItem, getPaginatedOsrsItems, getAllOsrsItems, getOsrsGearById, updateOsrsItemName }
