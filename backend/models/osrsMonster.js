@@ -7,9 +7,9 @@ const osrsMonsterSchema = new Schema({
 
     name: { type: String, required: true, unique: true },
     imageURL: { type: String, required: true, },
-    size: { type: String, required: true, },
-    attackStyle: { type: String, required: true },
-    attackSpeed: { type: String, required: true, },
+    size: { type: String, default: '1x1', },
+    attackStyle: { type: String, default: '' },
+    attackSpeed: { type: String, default: '', },
     attribute: { type: String, default: ''},
     combatStats: {
         attack: { type: String },
