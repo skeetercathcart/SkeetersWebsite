@@ -308,8 +308,86 @@ async function gearTestScrape(url) {
 // function that takes a bestiary page url, scrapes all individual monster pages from the list, then adds monster to database
 async function monsterFullScrape(url) {
 
+    console.log('url: ' + url);
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setUserAgent('Practice Scraper for Making Personal OSRS Tool (Coding Adventure)')
+    await page.goto(url, {timeout: 90000}); 
+
+    // Gets all info from each row
+    const tableData = await page.$$eval(".wikitable", tables => {
+        return tables.map(table => Array.from(table.querySelectorAll("tr")).map(row => 
+            Array.from(row.querySelectorAll("td")).slice(0,14).map(td => td.innerText.trim()).filter(item => item !== "")
+        ).filter(row => row.length > 0)); // Remove empty rows
+    });
+
+    // Gets href for each monster in an array
+    const hrefData = await page.$$eval(".wikitable tr td a", tables => {
+        return tables.map(table => table.href)
+    });
+  
+    
+    await page.close();
+    console.log('page closed');
+    await browser.close();
+    console.log('browser closed');
+    return ( "complete" )
+
 }
 
+
+// Function to scrape an individual monster page to return size, attack style, attack speed, and attribute(s)
+async function monsterPageScrape(url, page) {
+
+    page.goto(url, {timeout: 90000})
+
+    // To find Attack Speed
+    const attackSpeedHeader = await page.$('a[title ="Monster attack speed"]'); // Find the <a> with the corresponding title
+    
+    const attackSpeed = await page.evaluate(el => {
+    const attackSpeedParent = el.parentElement; // Find the <th> containing the <a> above
+            return attackSpeedParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
+        }, attackSpeedHeader);
+    
+    console.log("Attack Speed: " + attackSpeed)
+
+    // To find Monster Size
+    const monsterSizeHeader = await page.$('a[title ="Size"]'); // Find the <a> with the corresponding title
+    
+    const monsterSize = await page.evaluate(el => {
+    const monsterSizeParent = el.parentElement; // Find the <th> containing the <a> above
+            return monsterSizeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
+        }, monsterSizeHeader);
+    
+    console.log("Monster Size: " + monsterSize)
+
+    // To find attack style
+
+    const attackStyleHeader = await page.$('a[title ="Combat Options"]'); // Find the <a> with the corresponding title
+    
+    const attackStyle = await page.evaluate(el => {
+    const attackStyleParent = el.parentElement; // Find the <th> containing the <a> above
+            return attackStyleParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
+        }, attackStyleHeader);
+    
+    console.log("Attack Style: " + attackStyle)
+
+    // To find monster attribute
+
+    const monsterAttributeHeader = await page.$('a[title ="Monster attribute"]'); // Find the <a> with the corresponding title
+    
+    const monsterAttribute = await page.evaluate(el => {
+    const monsterAttributeParent = el.parentElement; // Find the <th> containing the <a> above
+            return monsterAttributeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
+        }, monsterAttributeHeader);
+    
+    console.log("Monster Attribute: " + monsterAttribute)
+
+
+    return {attackStyle: attackStyle, attackSpeed: attackSpeed, size: monsterSize, attribute: monsterAttribute}
+
+
+}
 
 async function monsterTestScrape(url) {
 
@@ -319,13 +397,19 @@ async function monsterTestScrape(url) {
     await page.setUserAgent('Practice Scraper for Making Personal OSRS Tool (Coding Adventure)')
     await page.goto(url, {timeout: 90000}); 
 
+    // To find monster attribute
+
+    const monsterAttributeHeader = await page.$('a[title ="Monster attribute"]'); // Find the <a> with the corresponding title
     
-    const tableData = await page.$$eval(".wikitable", tables => {
-        return tables.map(table => Array.from(table.querySelectorAll("tr")).map(row => 
-            Array.from(row.querySelectorAll("td")).slice(0,14).map(td => td.innerText.trim()).filter(item => item !== "")
-        ).filter(row => row.length > 0)); // Remove empty rows
-    });
-  
+    const monsterAttribute = await page.evaluate(el => {
+    const monsterAttributeParent = el.parentElement; // Find the <th> containing the <a> above
+            return monsterAttributeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
+        }, monsterAttributeHeader);
+    
+    console.log("Monster Attribute: " + monsterAttribute)
+
+    
+
     await page.close();
     console.log('page closed');
     await browser.close();
@@ -335,4 +419,5 @@ async function monsterTestScrape(url) {
     
 }
 
-monsterTestScrape("https://oldschool.runescape.wiki/w/Bestiary/Slayer_assignments_(A_to_B)")
+
+monsterTestScrape("https://oldschool.runescape.wiki/w/Abhorrent_spectre")
