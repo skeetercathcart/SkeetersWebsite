@@ -339,49 +339,68 @@ async function monsterFullScrape(url) {
 // Function to scrape an individual monster page to return size, attack style, attack speed, and attribute(s)
 async function monsterPageScrape(url, page) {
 
-    page.goto(url, {timeout: 90000})
+    await page.goto(url, {timeout: 90000})
 
     // To find Attack Speed
+    let attackSpeed = ''
     const attackSpeedHeader = await page.$('a[title ="Monster attack speed"]'); // Find the <a> with the corresponding title
     
-    const attackSpeed = await page.evaluate(el => {
-    const attackSpeedParent = el.parentElement; // Find the <th> containing the <a> above
-            return attackSpeedParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
-        }, attackSpeedHeader);
-    
-    console.log("Attack Speed: " + attackSpeed)
+    if (attackSpeedHeader) {
+        attackSpeed = await page.evaluate(el => {
+        const attackSpeedParent = el.parentElement; // Find the <th> containing the <a> above
+                return attackSpeedParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
+            }, attackSpeedHeader);
+        
+        console.log("Attack Speed: " + attackSpeed)
+    } else {
+        console.log("Attack Speed not found")
+    }
 
     // To find Monster Size
+    let monsterSize = ''
     const monsterSizeHeader = await page.$('a[title ="Size"]'); // Find the <a> with the corresponding title
     
-    const monsterSize = await page.evaluate(el => {
-    const monsterSizeParent = el.parentElement; // Find the <th> containing the <a> above
-            return monsterSizeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
-        }, monsterSizeHeader);
-    
-    console.log("Monster Size: " + monsterSize)
+    if (monsterSizeHeader) {
+        monsterSize = await page.evaluate(el => {
+        const monsterSizeParent = el.parentElement; // Find the <th> containing the <a> above
+                return monsterSizeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
+            }, monsterSizeHeader);
+        
+        console.log("Monster Size: " + monsterSize)
+    } else {
+        console.log("Monster Size not found")
+    }
 
     // To find attack style
-
+    let attackStyle = ''
     const attackStyleHeader = await page.$('a[title ="Combat Options"]'); // Find the <a> with the corresponding title
     
-    const attackStyle = await page.evaluate(el => {
-    const attackStyleParent = el.parentElement; // Find the <th> containing the <a> above
+    if (attackStyleHeader) { 
+        attackStyle = await page.evaluate(el => {
+        const attackStyleParent = el.parentElement; // Find the <th> containing the <a> above
             return attackStyleParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
-        }, attackStyleHeader);
+            }, attackStyleHeader);
+            
+            console.log("Attack Style: " + attackStyle)
+        
+    } else {
+        console.log("Monster Attack Style not found")
+    }
     
-    console.log("Attack Style: " + attackStyle)
-
     // To find monster attribute
-
+    let monsterAttribute = ''
     const monsterAttributeHeader = await page.$('a[title ="Monster attribute"]'); // Find the <a> with the corresponding title
     
-    const monsterAttribute = await page.evaluate(el => {
-    const monsterAttributeParent = el.parentElement; // Find the <th> containing the <a> above
-            return monsterAttributeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
-        }, monsterAttributeHeader);
-    
-    console.log("Monster Attribute: " + monsterAttribute)
+    if ( monsterAttributeHeader ) {
+        monsterAttribute = await page.evaluate(el => {
+        const monsterAttributeParent = el.parentElement; // Find the <th> containing the <a> above
+                return monsterAttributeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
+            }, monsterAttributeHeader);
+        
+        console.log("Monster Attribute: " + monsterAttribute)
+    } else {
+        console.log("Monster Attribute not found")
+    }
 
 
     return {attackStyle: attackStyle, attackSpeed: attackSpeed, size: monsterSize, attribute: monsterAttribute}
@@ -397,18 +416,12 @@ async function monsterTestScrape(url) {
     await page.setUserAgent('Practice Scraper for Making Personal OSRS Tool (Coding Adventure)')
     await page.goto(url, {timeout: 90000}); 
 
-    // To find monster attribute
+    
+    const images = await page.$$eval('table tbody tr td span img', src => {
+        return src.map(image => image.src)
+    })
 
-    const monsterAttributeHeader = await page.$('a[title ="Monster attribute"]'); // Find the <a> with the corresponding title
-    
-    const monsterAttribute = await page.evaluate(el => {
-    const monsterAttributeParent = el.parentElement; // Find the <th> containing the <a> above
-            return monsterAttributeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
-        }, monsterAttributeHeader);
-    
-    console.log("Monster Attribute: " + monsterAttribute)
-
-    
+    console.log(JSON.stringify(images))
 
     await page.close();
     console.log('page closed');
@@ -420,4 +433,5 @@ async function monsterTestScrape(url) {
 }
 
 
-monsterTestScrape("https://oldschool.runescape.wiki/w/Abhorrent_spectre")
+monsterTestScrape("https://oldschool.runescape.wiki/w/Bestiary/Slayer_assignments_(A_to_B)")
+//.filter(item => item !== 'https://oldschool.runescape.wiki/images/Member_icon.png?1de0c')
