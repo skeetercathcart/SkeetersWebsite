@@ -1,5 +1,6 @@
 const Weapon = require('../models/osrsWeapon')
 const Gear = require('../models/osrsGear')
+const OsrsMonster = require('../models/osrsMonster')
 
 
 // OSRS Weapon
@@ -100,6 +101,8 @@ async function createOsrsGear (req, res) {
     }
 }
 
+// Get a non-weapon item
+
 async function getOsrsGearById (req, res) {
     console.log('Entering getOsrsGearById')
 
@@ -116,6 +119,7 @@ async function getOsrsGearById (req, res) {
     }
 }
 
+// Deletes both weapons and non-weapons
 
 async function deleteOsrsItem (req, res) {
     console.log('Entering deleteOsrsItem');
@@ -142,6 +146,7 @@ async function deleteOsrsItem (req, res) {
     
 }
 
+// Returns paginated results for viewing both weapons and non-weapons
 
 async function getPaginatedOsrsItems (req, res) {
     console.log('Entering getPaginatedOsrsItems')
@@ -169,6 +174,7 @@ async function getPaginatedOsrsItems (req, res) {
 
 }
 
+// Gets all weapons and non-weapons in non-paginated form
 async function getAllOsrsItems (req, res) {
     console.log('Entering getAllOsrsItems')
 
@@ -185,6 +191,8 @@ async function getAllOsrsItems (req, res) {
         return res.status(500).json({message: "Error trying to fetch all items"})
     }
 }
+
+// Updates the name of an existing weapon or non-weapon
 
 async function updateOsrsItemName (req, res) {
     console.log ('Entering updateOsrsItemName')
@@ -228,6 +236,42 @@ async function updateOsrsItemName (req, res) {
 }
 
 
+// OSRS Monsters
+
+async function createOsrsMonster (req, res) {
+    console.log('Entering createOsrsMonster');
+
+    const { name, imageURL, size, attackStyle, attackSpeed, attribute, combatStats, attackBonuses, defenceBonuses } = req.body;
+
+    try {
+
+        const newMonster = new OsrsMonster({
+            name: name,
+            imageURL: imageURL,
+            size: size,
+            attackStyle: attackStyle,
+            attackSpeed: attackSpeed,
+            attribute: attribute,
+            combatStats: combatStats,
+            attackBonuses: attackBonuses,
+            defenceBonuses: defenceBonuses
+        });
+
+        await newMonster.save();
+
+        console.log(`New Monster ${name} Created`)
+        res.status(201).json({"Great Success!" : `New Monster ${name} Created`})
+    } catch (error) {
+        console.log('Failed to create new OSRS Monster  ' + error.message)
+        return res.status(500).json({error: "An error occurred while creating a new OSRS Weapon"})
+    }
+
+
+
+
+}
+
 
 module.exports = { createOsrsWeapon, getOsrsWeapon, getOsrsWeaponNames, getOsrsWeaponById, createOsrsGear, 
-                   deleteOsrsItem, getPaginatedOsrsItems, getAllOsrsItems, getOsrsGearById, updateOsrsItemName }
+                   deleteOsrsItem, getPaginatedOsrsItems, getAllOsrsItems, getOsrsGearById, updateOsrsItemName,
+                   createOsrsMonster }
