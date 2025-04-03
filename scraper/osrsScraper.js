@@ -325,6 +325,11 @@ async function monsterFullScrape(url) {
     const hrefData = await page.$$eval(".wikitable tr td a", tables => {
         return tables.map(table => table.href)
     });
+
+    // Get image url for each monster in an array
+    const images = await page.$$eval('table tbody tr td span img', src => {
+        return src.map(image => image.src)
+    })
   
     
     await page.close();
@@ -417,9 +422,7 @@ async function monsterTestScrape(url) {
     await page.goto(url, {timeout: 90000}); 
 
     
-    const images = await page.$$eval('table tbody tr td span img', src => {
-        return src.map(image => image.src)
-    })
+    
 
     console.log(JSON.stringify(images))
 

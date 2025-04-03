@@ -14,6 +14,7 @@ router.get('/getOsrsGear/:id', osrsController.getOsrsGearById)
 
 router.post('/addWeapon', osrsController.createOsrsWeapon)
 router.post('/addGear', osrsController.createOsrsGear)
+router.post('/addMonster', osrsController.createOsrsMonster)
 
 router.put('/updateOsrsItemName/:id', osrsController.updateOsrsItemName)
 

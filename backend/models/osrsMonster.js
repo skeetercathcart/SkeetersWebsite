@@ -42,4 +42,4 @@ const osrsMonsterSchema = new Schema({
 
 const osrsMonster = mongoose.model('osrsMonster', osrsMonsterSchema);
 
-module.export = osrsMonster;
+module.exports = osrsMonster;
