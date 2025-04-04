@@ -211,7 +211,7 @@ async function tableScrape(table) {
                 }
             try {
                 const response = await fetch('http://localhost:3500/api/addGear', {
-                     method: 'POST',
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -314,24 +314,19 @@ async function monsterFullScrape(url) {
     await page.setUserAgent('Practice Scraper for Making Personal OSRS Tool (Coding Adventure)')
     await page.goto(url, {timeout: 90000}); 
 
-    // Gets all info from each row
+    /* Gets all info from each row
     const tableData = await page.$$eval(".wikitable", tables => {
         return tables.map(table => Array.from(table.querySelectorAll("tr")).map(row => 
             Array.from(row.querySelectorAll("td")).slice(0,14).map(td => td.innerText.trim()).filter(item => item !== "")
         ).filter(row => row.length > 0)); // Remove empty rows
-    });
+    }); */
 
     // Gets href for each monster in an array
     const hrefData = await page.$$eval(".wikitable tr td a", tables => {
         return tables.map(table => table.href)
     });
 
-    // Get image url for each monster in an array
-    const images = await page.$$eval('table tbody tr td span img', src => {
-        return src.map(image => image.src)
-    })
   
-    
     await page.close();
     console.log('page closed');
     await browser.close();
@@ -344,6 +339,8 @@ async function monsterFullScrape(url) {
 // Function to scrape an individual monster page to return size, attack style, attack speed, and attribute(s)
 async function monsterPageScrape(url, page) {
 
+    console.log("Entering monsterPageScrape with URL: " + url)
+
     await page.goto(url, {timeout: 90000})
 
     // To find Attack Speed
@@ -355,10 +352,21 @@ async function monsterPageScrape(url, page) {
         const attackSpeedParent = el.parentElement; // Find the <th> containing the <a> above
                 return attackSpeedParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
             }, attackSpeedHeader);
-        
-        console.log("Attack Speed: " + attackSpeed)
     } else {
         console.log("Attack Speed not found")
+    }
+
+    // To find Combat Level
+    let combatLevel = ''
+    const combatLevelHeader = await page.$('a[title ="Combat level"]'); // Find the <a> with the corresponding title
+    
+    if (combatLevelHeader) {
+        combatLevel = await page.evaluate(el => {
+        const combatLevelParent = el.parentElement; // Find the <th> containing the <a> above
+                return combatLevelParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
+            }, combatLevelHeader);
+    } else {
+        console.log("Combat level not found")
     }
 
     // To find Monster Size
@@ -370,8 +378,6 @@ async function monsterPageScrape(url, page) {
         const monsterSizeParent = el.parentElement; // Find the <th> containing the <a> above
                 return monsterSizeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
             }, monsterSizeHeader);
-        
-        console.log("Monster Size: " + monsterSize)
     } else {
         console.log("Monster Size not found")
     }
@@ -385,8 +391,6 @@ async function monsterPageScrape(url, page) {
         const attackStyleParent = el.parentElement; // Find the <th> containing the <a> above
             return attackStyleParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
             }, attackStyleHeader);
-            
-            console.log("Attack Style: " + attackStyle)
         
     } else {
         console.log("Monster Attack Style not found")
@@ -401,17 +405,59 @@ async function monsterPageScrape(url, page) {
         const monsterAttributeParent = el.parentElement; // Find the <th> containing the <a> above
                 return monsterAttributeParent?.nextElementSibling?.innerText.trim() || null; // Get the sibling element of the <th> that contains the text 
             }, monsterAttributeHeader);
-        
-        console.log("Monster Attribute: " + monsterAttribute)
     } else {
         console.log("Monster Attribute not found")
     }
 
+    // To find the image URL
+    const imageURL = await page.$eval(".infobox-image img", images => {
+        return images.src 
+    })
+    console.log('image found: ' + imageURL)
 
-    return {attackStyle: attackStyle, attackSpeed: attackSpeed, size: monsterSize, attribute: monsterAttribute}
+    const combatInfo = await page.$$eval(".infobox-nested", header => {
+        
+        const infoboxArray = header.map(el => el.innerText).filter(item => item !== '')
+        const combatJSON = {
+            combatStats: {
+                hitpoints: infoboxArray[0],
+                attack: infoboxArray[1],
+                strength: infoboxArray[2], 
+                defense: infoboxArray[3],
+                magic: infoboxArray[4],
+                ranged: infoboxArray[5],
+            },
+            attackBonuses: {
+                attack: infoboxArray[6],
+                strength: infoboxArray[7],
+                magic: infoboxArray[8],
+                magicStrength: infoboxArray[9],
+                ranged: infoboxArray[10],
+                rangedStrength: infoboxArray[11], 
+            },
+            defenceBonuses: {
+                stab: infoboxArray[12],
+                slash: infoboxArray[13],
+                crush: infoboxArray[14],
+                magic: infoboxArray[15],
+                elemental: infoboxArray[16],
+                lightRanged: infoboxArray[17],
+                mediumRanged: infoboxArray[18],
+                heavyRanged: infoboxArray[19],
+            }
+        }
+        return combatJSON
+    })
+
+    const monster = { imageURL: imageURL, combatLevel: combatLevel, attackStyle: attackStyle, attackSpeed: attackSpeed, size: monsterSize, attribute: monsterAttribute, 
+                      combatStats: combatInfo.combatStats, attackBonuses: combatInfo.attackBonuses, defenceBonuses: combatInfo.defenceBonuses }
+
+
+    return { monster }
 
 
 }
+
 
 async function monsterTestScrape(url) {
 
@@ -421,11 +467,39 @@ async function monsterTestScrape(url) {
     await page.setUserAgent('Practice Scraper for Making Personal OSRS Tool (Coding Adventure)')
     await page.goto(url, {timeout: 90000}); 
 
-    
-    
+    // Gets href for each monster in an array
+    const hrefData = await page.$$eval(".wikitable tr td a", tables => {
+        return tables.map(table => table.href).filter(item => item !== "https://oldschool.runescape.wiki/w/Members").filter(f2p => f2p !== "https://oldschool.runescape.wiki/w/Free-to-play")
+    });
 
-    console.log(JSON.stringify(images))
+    for(let index = 174; index < hrefData.length; index++) {
 
+        let monsterData = await monsterPageScrape(hrefData[index], page)
+        let reqBody = {}
+        try {
+            reqBody = {
+                name: hrefData[index].replace("https://oldschool.runescape.wiki/w/", "").replace(/_/g, " "),
+                ...monsterData.monster
+            }
+    
+            console.log("reqBody: " + JSON.stringify(reqBody))
+            const response = await fetch('http://localhost:3500/api/addMonster', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reqBody),
+            });
+            if (!response.ok) {
+                throw new Error('API Had An Oopsie')
+            }
+            } catch (error) {
+                console.error('Error:', error.message);
+            } 
+
+    }
+    
+ 
     await page.close();
     console.log('page closed');
     await browser.close();
@@ -437,4 +511,3 @@ async function monsterTestScrape(url) {
 
 
 monsterTestScrape("https://oldschool.runescape.wiki/w/Bestiary/Slayer_assignments_(A_to_B)")
-//.filter(item => item !== 'https://oldschool.runescape.wiki/images/Member_icon.png?1de0c')
