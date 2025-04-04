@@ -241,12 +241,13 @@ async function updateOsrsItemName (req, res) {
 async function createOsrsMonster (req, res) {
     console.log('Entering createOsrsMonster');
 
-    const { name, imageURL, size, attackStyle, attackSpeed, attribute, combatStats, attackBonuses, defenceBonuses } = req.body;
+    const { name, combatLevel, imageURL, size, attackStyle, attackSpeed, attribute, combatStats, attackBonuses, defenceBonuses } = req.body;
 
     try {
 
         const newMonster = new OsrsMonster({
             name: name,
+            combatLevel: combatLevel,
             imageURL: imageURL,
             size: size,
             attackStyle: attackStyle,
@@ -263,7 +264,7 @@ async function createOsrsMonster (req, res) {
         res.status(201).json({"Great Success!" : `New Monster ${name} Created`})
     } catch (error) {
         console.log('Failed to create new OSRS Monster  ' + error.message)
-        return res.status(500).json({error: "An error occurred while creating a new OSRS Weapon"})
+        return res.status(500).json({error: "An error occurred while creating a new OSRS monster"})
     }
 
 
