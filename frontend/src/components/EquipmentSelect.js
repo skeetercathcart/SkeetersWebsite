@@ -223,9 +223,7 @@ const EquipmentSelect = () => {
         }
     
     return (
-
-        <div className = "plain-container">
-
+        <div className = "player-container">
             <div className = "equip-select"> 
                 <div className = "item-display">
                 <div className = "item-square head" id = "Head">

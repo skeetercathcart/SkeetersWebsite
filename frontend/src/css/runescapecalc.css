@@ -1,7 +1,23 @@
-.plain-container {
+/* "Global" Calc Page */
+
+.calc-container {
   display: flex;
-  background-color: grey;
-  flex-direction: row;
+  height: 90vh;
+  background: aliceblue;
+}
+
+/* Monster Select */
+
+
+
+/* Equipment Select */ 
+.player-container {
+  
+  background-color: rgb(117, 86, 86);
+  flex-direction: column;
+  justify-content: space-evenly ;
+  width: 30vw;
+  height: 90vh;
 }
 
 .weapon-form {
@@ -117,7 +133,7 @@ select {
     justify-content: center;
     background-color: white;
     height: 50vh;
-    width: 30vw;
+    width: 24vw;
     border: 2px black solid;
   }
 
@@ -130,8 +146,8 @@ select {
 
   .item-square {
     display: flex;
-    height: 70px;
-    width: 70px;
+    height: 60px;
+    width: 60px;
     margin: 10px;
     background-color: grey;
     align-items: center;
@@ -201,7 +217,7 @@ select {
   .bonus-container {
     display: grid;
     background-color: rgb(194, 165, 165);
-    width: 30vw;;
+    width: 24vw;;
     height: 50%;
     grid-template-rows: repeat(6, 1fr);
     grid-template-columns: repeat(3, 1fr);
@@ -213,7 +229,7 @@ select {
     justify-content: center;
     align-items: center;
     margin: 2px;
-    border: black 1px solid;
+   
   }
 
   .bonus-grid-image {
@@ -235,7 +251,7 @@ select {
 
   .style-select-container {
     display: grid;
-    width: 30vw;
+    width: 24vw;
     height: 50%;
     grid-template-columns: repeat(2, 1fr);
     background-color: bisque;

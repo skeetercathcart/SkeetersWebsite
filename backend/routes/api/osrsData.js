@@ -10,6 +10,7 @@ router.get('/getWeaponNames', osrsController.getOsrsWeaponNames)
 router.get('/getPaginatedItems', osrsController.getPaginatedOsrsItems)
 router.get('/getAllOsrsItems', osrsController.getAllOsrsItems)
 router.get('/getOsrsGear/:id', osrsController.getOsrsGearById)
+router.get('/getAllOsrsMonsters', osrsController.getAllOsrsMonsters)
 
 
 router.post('/addWeapon', osrsController.createOsrsWeapon)

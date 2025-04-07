@@ -184,3 +184,15 @@ table{
 .edit-btns-container {
     display: flex;
 }
+
+
+/* DevToolsSidebar */
+
+.sidebar-container {
+    display: flex;
+    position: absolute;
+    background-color: rgb(121, 109, 109);
+    height: 80%;
+    width: 10%;
+    color: white;
+}
