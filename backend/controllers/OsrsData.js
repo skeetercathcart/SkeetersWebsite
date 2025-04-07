@@ -272,7 +272,24 @@ async function createOsrsMonster (req, res) {
 
 }
 
+async function getAllOsrsMonsters (req, res) {
+
+    console.log('Entering getAllOsrsMonsters')
+
+    try {
+        const allMonsters = await OsrsMonster.find().sort({ name: 1 })
+        return res.status(200).json(allMonsters)
+
+
+    } catch (error) {
+        console.log('Error fetching all OSRS monsters: ' + error.message)
+        return res.status(500).json({message: "Error trying to fetch all OSRS monsters"})
+    }
+
+
+}
+
 
 module.exports = { createOsrsWeapon, getOsrsWeapon, getOsrsWeaponNames, getOsrsWeaponById, createOsrsGear, 
                    deleteOsrsItem, getPaginatedOsrsItems, getAllOsrsItems, getOsrsGearById, updateOsrsItemName,
-                   createOsrsMonster }
+                   createOsrsMonster, getAllOsrsMonsters }
