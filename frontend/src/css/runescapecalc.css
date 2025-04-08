@@ -8,6 +8,21 @@
 
 /* Monster Select */
 
+.monster-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  border: black 1px solid;
+}
+
+.monster-img {
+  border: black 1px solid;
+  height: 150px;
+  width: 150px;
+}
+
 
 
 /* Equipment Select */ 

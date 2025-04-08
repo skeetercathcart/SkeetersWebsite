@@ -328,7 +328,6 @@ const EquipmentSelect = () => {
             </div>
         
             <div>
-            {/* Search Input */}
             <input
                 type="text"
                 placeholder="Search for an item..."
