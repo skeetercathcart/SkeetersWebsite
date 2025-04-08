@@ -1,7 +1,7 @@
 import '../css/runescapecalc.css'
 import OsrsWeaponForm from './OsrsWeaponForm';
 import EquipmentSelect from './EquipmentSelect'
-import MonsterSelect from './MonsterSelect';
+import MonsterSelect from './OsrsMonsterSelect';
 
 
 
