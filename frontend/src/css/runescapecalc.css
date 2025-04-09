@@ -10,6 +10,7 @@
 
 .monster-container {
   display: flex;
+  margin-left: 6vw;
   flex-direction: column;
   width: 16vw;
   align-items: center;
@@ -325,3 +326,46 @@ select {
   .active-style {
     background-color: red;
   }
+
+  /* DPS Results */
+
+  .results-container {
+    display: flex;
+    margin-left: 6vw;
+    width: 24vw;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+  }
+
+  .results-table {
+    height: 20vh;
+  }
+
+  .results-row {
+ 
+  }
+  
+  .results-cat-cell {
+    width: 100px;
+    height: 40px;
+    padding-left: 2px
+  
+  }
+
+  .results-cell {
+    border: black 1px solid;
+    width: 40px;
+    text-align: center;
+    
+  }
+  
+  .results-header {
+    text-align: left;
+    vertical-align: bottom;
+    border-bottom: black 3px solid;
+    height: 40px;
+  }
+  
+
+
