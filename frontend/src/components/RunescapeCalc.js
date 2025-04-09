@@ -1,7 +1,7 @@
 import '../css/runescapecalc.css'
-import OsrsWeaponForm from './OsrsWeaponForm';
 import EquipmentSelect from './EquipmentSelect'
 import MonsterSelect from './OsrsMonsterSelect';
+import OsrsDpsResults from './OsrsDpsResults';
 
 
 
@@ -12,6 +12,7 @@ const RunescapeCalc = () => {
         <div className = "calc-container">
             <EquipmentSelect/>
             <MonsterSelect/>
+            <OsrsDpsResults/>
         </div>
         
     )
