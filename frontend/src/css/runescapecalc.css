@@ -3,34 +3,75 @@
 .calc-container {
   display: flex;
   height: 90vh;
-  background: aliceblue;
+  background: rgb(202, 200, 200);
 }
 
 /* Monster Select */
+
+.monster-container {
+  display: flex;
+  flex-direction: column;
+  width: 16vw;
+  align-items: center;
+  justify-content: center;
+}
 
 .monster-img-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  width: 200px;
+  height: 225px;
+  width: 225px;
   border: black 1px solid;
 }
 
 .monster-img {
   border: black 1px solid;
+  padding: 5px;
   height: 150px;
   width: 150px;
+  box-shadow: 10px 10px 5px black, -10px -10px 5px black;
 }
 
+.monster-stats-table {
+  height: 500px;
+  width: 225px;
+  border: black 1px dashed;
+}
 
+.monster-stats-row {
+ 
+}
+
+.monster-stats-cell {
+  width: 75px;
+  height: 40px;
+  text-align: center;
+
+}
+
+.monster-stats-header {
+  height: 40px;
+}
+
+.monster-stat {
+  display: flex;
+  height: 40px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.table-img {
+  background-color: green;
+}
 
 /* Equipment Select */ 
 .player-container {
-  
-  background-color: rgb(117, 86, 86);
+  display: flex;
+  background-color: rgb(202, 200, 200);
   flex-direction: column;
-  justify-content: space-evenly ;
+  justify-content: center;
+  align-items: center;
   width: 30vw;
   height: 90vh;
 }
@@ -43,7 +84,7 @@
     border: black 3px solid;
     border-radius: 5px;
     margin: 5px;
-    background-color: rgb(211, 192, 192);
+    background-color: rgb(202, 200, 200);
 }
 
 .combat-style {
@@ -146,7 +187,7 @@ select {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color:rgb(245, 241, 241);
     height: 50vh;
     width: 24vw;
     border: 2px black solid;
@@ -156,7 +197,6 @@ select {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    
   }
 
   .item-square {
@@ -164,7 +204,7 @@ select {
     height: 60px;
     width: 60px;
     margin: 10px;
-    background-color: grey;
+    background-color: rgb(202, 200, 200);
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -231,9 +271,9 @@ select {
 
   .bonus-container {
     display: grid;
-    background-color: rgb(194, 165, 165);
-    width: 24vw;;
-    height: 50%;
+    background-color: rgb(202, 200, 200);
+    width: 24vw;
+    height: 24vh;
     grid-template-rows: repeat(6, 1fr);
     grid-template-columns: repeat(3, 1fr);
   }
@@ -261,15 +301,15 @@ select {
     align-items: center;
     justify-content: center;
     border: 1px black solid;
-    background-color: orange;
+    background-color: rgb(182, 120, 6);
   }
 
   .style-select-container {
     display: grid;
     width: 24vw;
-    height: 50%;
+    height: auto;
     grid-template-columns: repeat(2, 1fr);
-    background-color: bisque;
+    background-color: rgb(241, 174, 86);
     margin: 2px;
   }
 
