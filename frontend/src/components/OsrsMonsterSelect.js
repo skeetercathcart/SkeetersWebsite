@@ -2,11 +2,11 @@ import '../css/runescapecalc.css'
 import { useState, useEffect } from "react"
 
 
-const MonsterSelect = () => {
+const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
 
     const [searchTerm, setSearchTerm] = useState('')
     const [monsterList, setMonsterList] = useState([]);
-    const [selectedMonster, setSelectedMonster] = useState(null)
+    
 
     useEffect(() => { 
         

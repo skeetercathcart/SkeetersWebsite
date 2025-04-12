@@ -2,7 +2,7 @@ import '../css/devtools.css'
 import { useState, useEffect } from 'react';
 
 
-const DevToolsTable = () => {
+const DevToolsTable = ( { filter, setFilter }) => {
 
     const [itemList, setItemList] = useState([])
     const [totalPages, setTotalPages] = useState(1)
@@ -12,13 +12,22 @@ const DevToolsTable = () => {
     const [editNameId, setEditNameId] = useState(null)
     const [nameEditInput, setNameEditInput] = useState('')
 
+    console.log("table filter: " + filter)
+
     const fetchItems = async () => {
-        try {
-            const response = await fetch(`http://localhost:3500/api/getPaginatedItems?page=${page}&limit=${limit}`);
+        try { 
+            const response = await fetch(`http://localhost:3500/api/getPaginatedOsrsCollection?page=${page}&limit=${limit}`, {
+                method: "POST",
+                headers: { "Content-Type" : "application/json" },
+                body: JSON.stringify({ Collection: filter })
+            }
+
+            );
             if (!response.ok) {
                 throw new Error("Failed to fetch items");
-            }
+            } 
             const data = await response.json();
+            console.log("response: " + JSON.stringify(data))
             setItemList(data.items);
             setTotalPages(Math.ceil(data.total / limit))
         } catch (err) {
@@ -29,7 +38,7 @@ const DevToolsTable = () => {
 
     useEffect(() => {
         fetchItems();
-    }, [page]);
+    }, [filter, page]);
 
 
     const handleNameEditChange = (e) => {

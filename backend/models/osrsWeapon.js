@@ -39,15 +39,15 @@ const osrsWeaponSchema = new Schema({
     },
     bonuses: {
         attack: {
-            slash: { type: String, default: '0' },
             stab: { type: String, default: '0' },
+            slash: { type: String, default: '0' },
             crush: { type: String, default: '0' },
             range: { type: String, default: '0' },
             magic: { type: String, default: '0' },
         },
         defense: {
-            slash: { type: String, default: '0' },
             stab: { type: String, default: '0' },
+            slash: { type: String, default: '0' },
             crush: { type: String, default: '0' },
             range: { type: String, default: '0' },
             magic: { type: String, default: '0' },

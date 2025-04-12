@@ -1,5 +1,5 @@
 import '../css/devtools.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import DevToolsOsrsItems from './DevToolsOsrsItems';
 import DevToolsTable from './DevToolsTable';
 import DevToolsSidebar from './DevToolsSidebar'
@@ -7,10 +7,13 @@ import DevToolsSidebar from './DevToolsSidebar'
 
 const DevTools = () => {
 
+    const [filter, setFilter] = useState('osrsWeapon')
+
+
     return (
         <>
-        <DevToolsSidebar/>
-        <DevToolsTable/>
+        <DevToolsSidebar filter = {filter} setFilter = {setFilter}/>
+        <DevToolsTable filter = {filter}/>
         </>
     )
     

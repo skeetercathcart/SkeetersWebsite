@@ -4,7 +4,11 @@ const puppeteer = require('puppeteer');
 async function weaponPageScrape(url, page) {
 
     console.log('Going to url: ' + url);
-    await page.goto(url); 
+    try {
+        await page.goto(url, { timeout: 90000 });
+    } catch (err) {
+        throw new Error(`Timeout or navigation failed for ${url}`);
+    }
 
     console.log('finding styles')
 
@@ -54,15 +58,15 @@ async function weaponPageScrape(url, page) {
 
     const bonuses = {
         attack: {
-            slash: cleanBonus[0],
-            stab: cleanBonus[1],
+            stab: cleanBonus[0],
+            slash: cleanBonus[1],
             crush: cleanBonus[2],
             range: cleanBonus[3],
             magic: cleanBonus[4] 
         },
         defense: {
-            slash: cleanBonus[5],
-            stab: cleanBonus[6],
+            stab: cleanBonus[5],
+            slash: cleanBonus[6],
             crush: cleanBonus[7],
             range: cleanBonus[8],
             magic: cleanBonus[9] 
@@ -96,7 +100,7 @@ async function weaponPageScrape(url, page) {
 async function gearPageScrape(url, page) {
 
     console.log('Going to URL: ' + url);
-    await page.goto(url, {timeout: 90000}); 
+    await page.goto(url, {timeout: 120000}); 
     
 
 
@@ -174,30 +178,42 @@ async function tableScrape(table) {
  
     if(table === 'Weapon') {
 
-        for (const index of cleanData) {
+        for (const index of cleanData.slice(350)) {
             let wepUrl = 'https://oldschool.runescape.wiki/w/' + index;
-            let wepData = await weaponPageScrape(wepUrl, page);
-            if(wepData === 'Skip') {
-                continue
-            }else {
-                let reqBody = {
-                    name: index,
-                    ...wepData
+        
+            let wepData;
+            try {
+                wepData = await weaponPageScrape(wepUrl, page);
+            } catch (err) {
+                console.error(`Failed to scrape ${index} — ${err.message}`);
+                continue; 
+            }
+        
+            if (wepData === 'Skip') {
+                continue;
+            }
+        
+            const reqBody = {
+                name: index,
+                ...wepData
+            };
+        
+            try {
+                const response = await fetch('http://localhost:3500/api/addWeapon', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(reqBody),
+                });
+        
+                if (!response.ok) {
+                    throw new Error(`API response not OK for ${index}`);
                 }
-                try {
-                    const response = await fetch('http://localhost:3500/api/addWeapon', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(reqBody),
-                    });
-                    if (!response.ok) {
-                    throw new Error('API Had An Oopsie')
-                    }
-                    } catch (error) {
-                        console.error('Error:', error.message);
-                    }
+        
+                console.log(`Added new item: ${index}`);
+            } catch (error) {
+                console.error(`Error saving ${index}: ${error.message}`);
             }
         }       
     } else {
@@ -234,6 +250,8 @@ async function tableScrape(table) {
 
     
 }
+
+tableScrape('Weapon')
 
 async function gearTestScrape(url) {
 
@@ -510,4 +528,4 @@ async function monsterTestScrape(url) {
 }
 
 
-monsterTestScrape("https://oldschool.runescape.wiki/w/Bestiary/Slayer_assignments_(A_to_B)")
+// monsterTestScrape("https://oldschool.runescape.wiki/w/Bestiary/Slayer_assignments_(A_to_B)")
