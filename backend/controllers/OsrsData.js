@@ -1,6 +1,10 @@
+const mongoose = require('mongoose')
 const Weapon = require('../models/osrsWeapon')
 const Gear = require('../models/osrsGear')
 const OsrsMonster = require('../models/osrsMonster')
+require('../models/osrsWeapon');
+require('../models/osrsGear');
+require('../models/osrsMonster');
 
 
 // OSRS Weapon
@@ -74,6 +78,37 @@ async function getOsrsWeaponById (req, res) {
     } catch (error) {
         res.status(500).json({message: "Server Error", error: error.message})
     }
+}
+
+// Returns paginated results for viewing OSRS items based on provided filter. Will only look for one collection at a time, no "U word" allowed #Amazon
+
+async function getPaginatedOsrsCollection (req, res) {
+    console.log('Entering getPaginatedOsrsCollection')
+    const { Collection } = req.body
+    console.log("Collection: " + Collection)
+
+    const collModel = mongoose.model(Collection)
+
+    try{
+        const { page = 1, limit = 5 } = req.query;
+        const skip = (page - 1) * limit;
+
+        const items = await collModel.aggregate([
+            { $sort: {name: 1} },
+            { $skip: skip },
+            { $limit: Number(limit)}
+        ])
+
+        const total = (await collModel.countDocuments())
+
+        return res.status(200).json({ total, page: Number(page), limit: Number(limit), items})
+
+
+
+    } catch (error) {
+        return res.status(500).json({message: "Error trying to fetch osrs paginated collection"})
+    }
+
 }
 
 // OSRS Gear
@@ -290,6 +325,6 @@ async function getAllOsrsMonsters (req, res) {
 }
 
 
-module.exports = { createOsrsWeapon, getOsrsWeapon, getOsrsWeaponNames, getOsrsWeaponById, createOsrsGear, 
+module.exports = { createOsrsWeapon, getOsrsWeapon, getOsrsWeaponNames, getOsrsWeaponById, getPaginatedOsrsCollection, createOsrsGear, 
                    deleteOsrsItem, getPaginatedOsrsItems, getAllOsrsItems, getOsrsGearById, updateOsrsItemName,
                    createOsrsMonster, getAllOsrsMonsters }

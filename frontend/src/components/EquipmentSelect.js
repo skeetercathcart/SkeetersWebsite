@@ -3,7 +3,7 @@ import OsrsTotalBonus from './OsrsTotalBonus'
 import OsrsStyleSelect from './OsrsStyleSelect';
 import { useState, useEffect } from 'react'
 
-const EquipmentSelect = () => {
+const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle }) => {
 
     const [head, setHead] = useState()
     const [searchTerm, setSearchTerm] = useState('')
@@ -18,60 +18,7 @@ const EquipmentSelect = () => {
     const [feet, setFeet] = useState()
     const [ring, setRing] = useState()
     const [itemList, setItemList] = useState([]);
-    const [activeStyle, setActiveStyle] = useState('style1')
-    const [styles, setStyles] = useState({
-            style1: {
-                combatStyle: '',
-                attackStyle: '',
-                weaponStyle: '',
-            },
-            style2: {
-                combatStyle: '',
-                attackStyle: '',
-                weaponStyle: '',
-            },
-            style3: {
-                combatStyle: '',
-                attackStyle: '',
-                weaponStyle: '',
-            },
-            style4: {
-                combatStyle: '',
-                attackStyle: '',
-                weaponStyle: '',
-            },
-            style5: {
-                combatStyle: '',
-                attackStyle: '',
-                weaponStyle: '',
-            }
-        });
-
-    const [totalBonuses, setTotalBonuses] = useState({
-            attack: {
-                stab: '1',
-                slash: '2',
-                crush: '3',
-                magic: '4',
-                range: '5',
-                
-            },
-            defense: {
-                stab: '6',
-                slash: '7',
-                crush: '8',
-                magic: '9',
-                range: '10',
-            },
-            other: {
-                strength: '11',
-                mageStrength: '12',
-                rangeStrength: '13',
-                prayer: '14'
-            },
-        }); 
-
-        
+    
 
         useEffect(() => { 
             updateTotalBonuses()
@@ -204,7 +151,7 @@ const EquipmentSelect = () => {
                     case 'Shield': setShield(itemData); break;
                     case 'Legs': setLegs(itemData); break;
                     case 'Hands': setHands(itemData); break;
-                    case 'feet': setFeet(itemData); break;
+                    case 'Feet': setFeet(itemData); break;
                     case 'Ring': setRing(itemData); break;
                     default: console.warn('Unknown slot:',itemData.slot);
                 }
@@ -250,7 +197,7 @@ const EquipmentSelect = () => {
                             <img alt = "neck image" src = {neck.imageURL}></img>
                         </div> )
                 : (
-                    <p>no necks selected</p>
+                    <p>no neck selected</p>
                 )} 
                 </div>
                 <div className = "item-square ammunition" id = "Ammunition">

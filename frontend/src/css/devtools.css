@@ -190,6 +190,7 @@ table{
 
 .sidebar-container {
     display: flex;
+    flex-direction: column;
     position: absolute;
     background-color: rgb(121, 109, 109);
     height: 80%;

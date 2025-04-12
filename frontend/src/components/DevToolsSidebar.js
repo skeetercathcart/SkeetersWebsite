@@ -1,12 +1,22 @@
 import '../css/devtools.css'
 import {useState} from 'react'
 
-const DevToolsSidebar = () => {
+const DevToolsSidebar = ( { filter, setFilter } ) => {
+
+    const collectionOptions = [ "osrsWeapon", "osrsGear", "osrsMonster" ]
+
+    const handleFilterChange = (event) => {
+        setFilter(event.target.value)
+    }
 
     return (
         <div className = "sidebar-container">
-             <button>Button 1</button>
-             <button>Button 2</button>
+             <select value = {filter || ""} placeholder = "Select a Filter" onChange = {handleFilterChange}>
+                <option value = "">Select a Filter</option>
+                {collectionOptions.map((item) => <option key = { item } value = {item}>{item}</option>)}
+            </select>
+             
+            
         </div>
     )
 
