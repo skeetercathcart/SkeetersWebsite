@@ -5,7 +5,7 @@ import '../css/devtools.css'
 const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle}) => {
 
     const handleStyleChange = (event) => {
-        setActiveStyle(event.target.value)
+        setActiveStyle(event.currentTarget.value)
     }
 
     return (

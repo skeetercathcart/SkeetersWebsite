@@ -64,8 +64,8 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
 
 
     return (
-        <div class = 'results-container'> 
-            <table class = 'results-table'>
+        <div className = 'results-container'> 
+            <table className = 'results-table'>
                 <th colspan = '2' className = "results-header">
                     Results
                 </th>

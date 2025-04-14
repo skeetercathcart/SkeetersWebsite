@@ -133,10 +133,10 @@
     cursor: pointer;
 }
 
-table{
+/* table{
     background-color: aliceblue;
     border: black 2px solid;
-}
+} */
 
 .item-name-table {
     height: 26px;

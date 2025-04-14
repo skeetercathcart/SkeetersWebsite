@@ -22,7 +22,7 @@
   align-items: center;
   height: 225px;
   width: 225px;
-  border: black 1px solid;
+  border: black 2px solid;
 }
 
 .monster-img {
@@ -58,7 +58,7 @@
   width: 75px;
   height: 40px;
   text-align: center;
-
+  font-weight: bold;
 }
 
 .monster-stats-header {
@@ -373,6 +373,8 @@ select {
   }
 
   .results-table {
+   background-color: aliceblue;
+   border: black 2px solid;
     height: 20vh;
     width: 15vw;
   }
@@ -392,7 +394,10 @@ select {
     border: black 1px solid;
     width: 40px;
     text-align: center;
-    
+  }
+
+  .results-cell:hover {
+    border: 2px black solid;
   }
   
   .results-header {
