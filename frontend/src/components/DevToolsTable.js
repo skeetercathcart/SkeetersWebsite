@@ -12,8 +12,6 @@ const DevToolsTable = ( { filter, setFilter }) => {
     const [editNameId, setEditNameId] = useState(null)
     const [nameEditInput, setNameEditInput] = useState('')
 
-    console.log("table filter: " + filter)
-
     const fetchItems = async () => {
         try { 
             const response = await fetch(`http://localhost:3500/api/getPaginatedOsrsCollection?page=${page}&limit=${limit}`, {

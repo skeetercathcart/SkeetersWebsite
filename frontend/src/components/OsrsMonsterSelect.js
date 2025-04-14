@@ -22,6 +22,7 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                 const monsterData = await allMonsters.json();
                 console.log('monsterData: ' + JSON.stringify(monsterData));
                 setMonsterList(monsterData)
+                setSelectedMonster(monsterData[0])
             }
             getMonsterList();
     }, []);

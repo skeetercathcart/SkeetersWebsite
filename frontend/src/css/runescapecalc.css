@@ -212,6 +212,10 @@ select {
     border: brown 2px solid;
   }
 
+  .active-item {
+    cursor: pointer;
+  }
+
   .head {
     grid-column: 2/3;
     grid-row: 1/2;
