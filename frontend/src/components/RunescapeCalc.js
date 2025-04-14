@@ -8,41 +8,41 @@ import { useState } from 'react'
 
 
 const RunescapeCalc = () => {
-
+    
     const [selectedMonster, setSelectedMonster] = useState(null)
     const [activeStyle, setActiveStyle] = useState('style1')
     const [styles, setStyles] = useState({
-                style1: {
-                    combatStyle: 'Punch',
-                    attackType: 'Crush',
-                    weaponStyle: 'Accurate',
-                    attackSpeed: "4",
-                },
-                style2: {
-                    combatStyle: 'Kick',
-                    attackType: 'Crush',
-                    weaponStyle: 'Aggressive',
-                    attackSpeed: "4",
-                },
-                style3: {
-                    combatStyle: 'Block',
-                    attackType: 'Crush',
-                    weaponStyle: 'Defensive',
-                    attackSpeed: "4",
-                },
-                style4: {
-                    combatStyle: '',
-                    attackType: '',
-                    weaponStyle: '',
-                    attackSpeed: '',
-                },
-                style5: {
-                    combatStyle: '',
-                    attackType: '',
-                    weaponStyle: '',
-                    attackSpeed: '',
-                }
-            });
+        style1: {
+            combatStyle: 'Punch',
+            attackType: 'Crush',
+            weaponStyle: 'Accurate',
+            attackSpeed: "4",
+        },
+        style2: {
+            combatStyle: 'Kick',
+            attackType: 'Crush',
+            weaponStyle: 'Aggressive',
+            attackSpeed: "4",
+        },
+        style3: {
+            combatStyle: 'Block',
+            attackType: 'Crush',
+            weaponStyle: 'Defensive',
+            attackSpeed: "4",
+        },
+        style4: {
+            combatStyle: '',
+            attackType: '',
+            weaponStyle: '',
+            attackSpeed: '',
+        },
+        style5: {
+            combatStyle: '',
+            attackType: '',
+            weaponStyle: '',
+            attackSpeed: '',
+        }
+    });
     const [totalBonuses, setTotalBonuses] = useState({
                 attack: {
                     stab: '0',

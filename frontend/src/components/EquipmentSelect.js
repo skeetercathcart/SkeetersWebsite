@@ -5,12 +5,57 @@ import { useState, useEffect } from 'react'
 
 const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle }) => {
 
+    const unarmed = {
+        name: "unarmed",
+        bonuses: {
+            attack: { stab: 0, slash: 0, crush: 0, magic: 0, range: 0 },
+            defense: { stab: 0, slash: 0, crush: 0, magic: 0, range: 0 },
+            strength: 0, 
+            mageStrength: 0, 
+            rangeStrength: 0, 
+            prayer: 0
+        },
+        isTwoHanded: false,
+        imageURL: 'https://oldschool.runescape.wiki/images/Weapon_slot.png?ffed1',
+        attackStyles: {
+            style1: {
+                combatStyle: 'Punch',
+                attackType: 'Crush',
+                weaponStyle: 'Accurate',
+                attackSpeed: "4",
+            },
+            style2: {
+                combatStyle: 'Kick',
+                attackType: 'Crush',
+                weaponStyle: 'Aggressive',
+                attackSpeed: "4",
+            },
+            style3: {
+                combatStyle: 'Block',
+                attackType: 'Crush',
+                weaponStyle: 'Defensive',
+                attackSpeed: "4",
+            },
+            style4: {
+                combatStyle: '',
+                attackType: '',
+                weaponStyle: '',
+                attackSpeed: '',
+            },
+            style5: {
+                combatStyle: '',
+                attackType: '',
+                weaponStyle: '',
+                attackSpeed: '',
+            }
+        }
+    }
     const [head, setHead] = useState(null)
     const [searchTerm, setSearchTerm] = useState('')
     const [cape, setCape] = useState(null)
     const [neck, setNeck] = useState(null)
     const [ammunition, setAmmunition] = useState(null)
-    const [weapon, setWeapon] = useState(null)
+    const [weapon, setWeapon] = useState(unarmed)
     const [body, setBody] = useState(null)
     const [shield, setShield] = useState(null)
     const [legs, setLegs] = useState(null)
@@ -168,6 +213,8 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
             return
         }
         }
+
+        console.log("weapon: " + JSON.stringify(weapon))
     
     return (
         <div className = "player-container">
@@ -219,7 +266,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 </div>
                 <div className = "item-square weapon" id = "Weapon">
                     { weapon ? (
-                        <div className = "active-item" onClick={() => setWeapon(null)}>
+                        <div className = "active-item" onClick={() => {setWeapon(unarmed); setStyles(unarmed.attackStyles)}}>
                             <img alt = "weapon image" src = {weapon.imageURL}></img>
                         </div> )
                 : (
