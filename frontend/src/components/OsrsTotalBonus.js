@@ -6,9 +6,9 @@ const OsrsTotalBonus = ({ bonuses }) => {
 
     return (
         <div className = "bonus-container"> 
-            <div className = "bonus-grid-square">Attack</div>
-            <div className = "bonus-grid-square">Defense</div>
-            <div className = "bonus-grid-square">Other</div>
+            <div className = "bonus-grid-header">Attack</div>
+            <div className = "bonus-grid-header">Defense</div>
+            <div className = "bonus-grid-header">Other</div>
             <div className = "bonus-grid-square">
                 <img className = "bonus-grid-image" id = "total-stab-attack-bonus" alt = "stab bonus icon" src = "https://oldschool.runescape.wiki/images/White_dagger.png?db3e5"></img>
                 <div className = "bonus-display">{bonuses.attack.stab}</div>

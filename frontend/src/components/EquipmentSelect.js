@@ -266,7 +266,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 </div>
                 <div className = "item-square weapon" id = "Weapon">
                     { weapon ? (
-                        <div className = "active-item" onClick={() => {setWeapon(unarmed); setStyles(unarmed.attackStyles)}}>
+                        <div className = "active-item" onClick={() => {setWeapon(unarmed); setStyles(unarmed.attackStyles); setActiveStyle('style1')}}>
                             <img alt = "weapon image" src = {weapon.imageURL}></img>
                         </div> )
                 : (
@@ -344,7 +344,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
             </div>
         
             <div>
-            <input
+            <input className = "item-search"
                 type="text"
                 placeholder="Search for an item..."
                 list = "items"
