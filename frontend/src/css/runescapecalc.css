@@ -3,7 +3,6 @@
 .calc-container {
   display: flex;
   height: 90vh;
-  background: rgb(202, 200, 200);
 }
 
 /* Monster Select */
@@ -34,10 +33,21 @@
   box-shadow: 10px 10px 5px black, -10px -10px 5px black;
 }
 
+.monster-search-input {
+  height: 30px;
+  padding: 2px;
+  margin: 2px;
+}
+
+.monster-search-input:focus{
+  outline:2px brown solid;
+  border-radius: 2px;
+  border: none;
+}
 .monster-stats-table {
   height: 500px;
-  width: 225px;
-  border: black 1px dashed;
+  width: 275px;
+  border: black 2px solid;
 }
 
 .monster-stats-row {
@@ -63,13 +73,12 @@
 }
 
 .table-img {
-  background-color: green;
+
 }
 
 /* Equipment Select */ 
 .player-container {
   display: flex;
-  background-color: rgb(202, 200, 200);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -92,7 +101,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
-
 }
 
 .grid-square {
@@ -188,7 +196,6 @@ select {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color:rgb(245, 241, 241);
     height: 50vh;
     width: 24vw;
     border: 2px black solid;
@@ -205,7 +212,6 @@ select {
     height: 60px;
     width: 60px;
     margin: 10px;
-    background-color: rgb(202, 200, 200);
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -271,16 +277,39 @@ select {
     grid-row: 5/6;
   }
 
+  .item-search {
+    height: 30px;
+    padding: 2px;
+  }
+
+  .item-search:focus{
+    outline:2px brown solid;
+    border-radius: 2px;
+    border: none;
+  }
+
 
   /* Total Bonus Display */
 
   .bonus-container {
     display: grid;
-    background-color: rgb(202, 200, 200);
+    border: black 2px solid; 
+    margin: 2px;
     width: 24vw;
-    height: 24vh;
+    height: 26vh;
     grid-template-rows: repeat(6, 1fr);
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bonus-grid-header {
+    display: flex;
+    font-weight: 900;
+    font-size: large;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+   
   }
 
   .bonus-grid-square {
@@ -305,16 +334,14 @@ select {
     margin: 2px;
     align-items: center;
     justify-content: center;
-    border: 1px black solid;
-    background-color: rgb(182, 120, 6);
+    font-weight: bold;
   }
 
   .style-select-container {
     display: grid;
     width: 24vw;
-    height: auto;
     grid-template-columns: repeat(2, 1fr);
-    background-color: rgb(241, 174, 86);
+    grid-template-rows: repeat(3, 1fr);
     margin: 2px;
   }
 
@@ -325,10 +352,14 @@ select {
     justify-content: center;
     align-items: baseline;
     border: black 1px solid;
+    margin: 1px;
+    padding: 1px;
   }
 
   .active-style {
-    background-color: red;
+    font-weight: bold;
+    border: none;
+    outline: black 2px solid;
   }
 
   /* DPS Results */
@@ -339,15 +370,15 @@ select {
     width: 24vw;
     align-items: center;
     justify-content: center;
-    background-color: blue;
   }
 
   .results-table {
     height: 20vh;
+    width: 15vw;
   }
 
   .results-row {
- 
+
   }
   
   .results-cat-cell {

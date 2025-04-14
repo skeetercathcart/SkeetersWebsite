@@ -77,7 +77,7 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
                     <td className = "results-cat-cell"> Expected Hit </td>
                     <td className = "results-cell"> {expectedHit} </td>
                 </tr>
-                <tr>
+                <tr className = "results-row">
                     <td className = "results-cat-cell"> DPS </td>
                     <td className = "results-cell"> {damPerSec} </td>
                 </tr>

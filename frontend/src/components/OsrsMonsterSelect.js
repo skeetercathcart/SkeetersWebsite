@@ -63,6 +63,7 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
             
             <div>
             <input
+                className = "monster-search-input"
                 type="text"
                 placeholder="Search for a monster..."
                 list = "monsters"
@@ -84,25 +85,25 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                     </th>
                 </tr>
                 <tr className = 'monster-stats-row'>
-                    <td className = 'monster-stats-cell'>Stats</td>
-                    <td className = 'monster-stats-cell'>Attack</td>
-                    <td className = 'monster-stats-cell'>Defense</td>
+                    <th className = 'monster-stats-cell'>Stats</th>
+                    <th className = 'monster-stats-cell'>Attack</th>
+                    <th className = 'monster-stats-cell'>Defense</th>
                 </tr>
                 <tr className = 'monster-stats-row'>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "hitpoints icon" src = "https://oldschool.runescape.wiki/images/Hitpoints_icon.png"></img>
+                            <img className = "bonus-grid-image" alt = "hitpoints icon" src = "https://oldschool.runescape.wiki/images/Hitpoints_icon.png"></img>
                             {selectedMonster.combatStats.hitpoints}
                         </div>
                     </td>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "attack icon" src = "https://oldschool.runescape.wiki/images/Attack_icon.png?b4bce"></img>
+                            <img className = "bonus-grid-image" alt = "attack icon" src = "https://oldschool.runescape.wiki/images/Attack_icon.png?b4bce"></img>
                             {selectedMonster.attackBonuses.attack}</div>
                         </td>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "stab bonus icon" src = "https://oldschool.runescape.wiki/images/White_dagger.png?db3e5"></img>
+                            <img className = "bonus-grid-image" alt = "stab bonus icon" src = "https://oldschool.runescape.wiki/images/White_dagger.png?db3e5"></img>
                             {selectedMonster.defenceBonuses.stab}
                         </div>
                     </td>
@@ -110,19 +111,19 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                 <tr className = 'monster-stats-row'>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "attack icon" src = "https://oldschool.runescape.wiki/images/Attack_icon.png?b4bce"></img>
+                            <img className = "bonus-grid-image" alt = "attack icon" src = "https://oldschool.runescape.wiki/images/Attack_icon.png?b4bce"></img>
                             {selectedMonster.combatStats.attack}
                             </div>
                         </td>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "strength icon" src = "https://oldschool.runescape.wiki/images/Strength_icon.png?e6e0c"></img>
+                            <img className = "bonus-grid-image" alt = "strength icon" src = "https://oldschool.runescape.wiki/images/Strength_icon.png?e6e0c"></img>
                             {selectedMonster.attackBonuses.strength}
                             </div>
                         </td>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "slash bonus icon" src = "https://oldschool.runescape.wiki/images/White_scimitar.png?2dc8c"></img>
+                            <img className = "bonus-grid-image" alt = "slash bonus icon" src = "https://oldschool.runescape.wiki/images/White_scimitar.png?2dc8c"></img>
                             {selectedMonster.defenceBonuses.slash}
                             </div>
                         </td>
@@ -130,19 +131,19 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                 <tr className = 'monster-stats-row'>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "strength icon" src = "https://oldschool.runescape.wiki/images/Strength_icon.png?e6e0c"></img>
+                            <img className = "bonus-grid-image" alt = "strength icon" src = "https://oldschool.runescape.wiki/images/Strength_icon.png?e6e0c"></img>
                             {selectedMonster.combatStats.strength}
                         </div>
                     </td>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "magic icon" src = "https://oldschool.runescape.wiki/images/Magic_icon.png?334cf"></img>
+                            <img className = "bonus-grid-image" alt = "magic icon" src = "https://oldschool.runescape.wiki/images/Magic_icon.png?334cf"></img>
                             {selectedMonster.attackBonuses.magic}
                         </div>
                     </td>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "crush icon" src = "https://oldschool.runescape.wiki/images/White_warhammer.png?2ff77"></img>
+                            <img className = "bonus-grid-image" alt = "crush icon" src = "https://oldschool.runescape.wiki/images/White_warhammer.png?2ff77"></img>
                             {selectedMonster.defenceBonuses.crush}
                         </div>
                     </td>
@@ -150,7 +151,7 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                 <tr className = 'monster-stats-row'>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "defense icon" src = "https://oldschool.runescape.wiki/images/Defence_icon.png?ca0cd"></img>
+                            <img className = "bonus-grid-image" alt = "defense icon" src = "https://oldschool.runescape.wiki/images/Defence_icon.png?ca0cd"></img>
                             {selectedMonster.combatStats.defense}
                         </div>
                     </td>
@@ -170,13 +171,13 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                 <tr className = 'monster-stats-row'>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "magic bonus icon" src = "https://oldschool.runescape.wiki/images/Magic_icon.png?334cf"></img>
+                            <img className = "bonus-grid-image" alt = "magic bonus icon" src = "https://oldschool.runescape.wiki/images/Magic_icon.png?334cf"></img>
                             {selectedMonster.combatStats.magic}
                         </div>
                     </td>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "ranged bonus icon" src = "https://oldschool.runescape.wiki/images/Ranged_icon.png?01b0e"></img>
+                            <img className = "bonus-grid-image" alt = "ranged bonus icon" src = "https://oldschool.runescape.wiki/images/Ranged_icon.png?01b0e"></img>
                             {selectedMonster.attackBonuses.ranged}
                         </div>
                     </td>
@@ -190,20 +191,20 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                 <tr className = 'monster-stats-row'>
                     <td className = 'monster-stats-cell'>
                         <div className = 'monster-stat'>
-                            <img alt = "ranged bonus icon" src = "https://oldschool.runescape.wiki/images/Ranged_icon.png?01b0e"></img>
+                            <img className = "bonus-grid-image" alt = "ranged bonus icon" src = "https://oldschool.runescape.wiki/images/Ranged_icon.png?01b0e"></img>
                             {selectedMonster.combatStats.ranged}
                         </div>
                     </td>
                     <td className = 'monster-stats-cell'> 
                         <div className = "monster-stat">
-                            <img alt = "ranged light icon" src = "https://oldschool.runescape.wiki/images/Ranged_Strength_icon.png?79763"></img>
+                            <img className = "bonus-grid-image" alt = "ranged light icon" src = "https://oldschool.runescape.wiki/images/Ranged_Strength_icon.png?79763"></img>
                             {selectedMonster.attackBonuses.rangedStrength}
                         </div>
                     </td>
 
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                        <img alt = "ranged standard icon" src = "https://oldschool.runescape.wiki/images/Steel_arrow_5.png?2c4a2"></img>
+                        <img className = "bonus-grid-image" alt = "ranged standard icon" src = "https://oldschool.runescape.wiki/images/Steel_arrow_5.png?2c4a2"></img>
                             {selectedMonster.defenceBonuses.mediumRanged}
                         </div>
                     </td>
@@ -213,7 +214,7 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                     <td className = 'monster-stats-cell'></td>
                     <td className = 'monster-stats-cell'>
                         <div className = "monster-stat">
-                            <img alt = "ranged heavy icon" src = "https://oldschool.runescape.wiki/images/Steel_bolts_5.png?f1c11"></img>
+                            <img className = "bonus-grid-image" alt = "ranged heavy icon" src = "https://oldschool.runescape.wiki/images/Steel_bolts_5.png?f1c11"></img>
                             {selectedMonster.defenceBonuses.heavyRanged}
                         </div>
                     </td>
