@@ -5,7 +5,7 @@ async function weaponPageScrape(url, page) {
 
     console.log('Going to url: ' + url);
     try {
-        await page.goto(url, { timeout: 90000 });
+        await page.goto(url, { timeout: 9000000 });
     } catch (err) {
         throw new Error(`Timeout or navigation failed for ${url}`);
     }
@@ -100,7 +100,7 @@ async function weaponPageScrape(url, page) {
 async function gearPageScrape(url, page) {
 
     console.log('Going to URL: ' + url);
-    await page.goto(url, {timeout: 120000}); 
+    await page.goto(url, {timeout: 1200000}); 
     
 
 
@@ -178,7 +178,7 @@ async function tableScrape(table) {
  
     if(table === 'Weapon') {
 
-        for (const index of cleanData.slice(350)) {
+        for (const index of cleanData) {
             let wepUrl = 'https://oldschool.runescape.wiki/w/' + index;
         
             let wepData;
@@ -218,7 +218,7 @@ async function tableScrape(table) {
         }       
     } else {
         console.log('scraping gear');
-        for (const index of cleanData) {
+        for (const index of cleanData.slice(500)) {
             let gearUrl = 'https://oldschool.runescape.wiki/w/' + index;
             let gearData = await gearPageScrape(gearUrl, page);
             let reqBody = {
@@ -251,7 +251,7 @@ async function tableScrape(table) {
     
 }
 
-tableScrape('Weapon')
+tableScrape('Head')
 
 async function gearTestScrape(url) {
 

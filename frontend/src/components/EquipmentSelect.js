@@ -5,18 +5,18 @@ import { useState, useEffect } from 'react'
 
 const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle }) => {
 
-    const [head, setHead] = useState()
+    const [head, setHead] = useState(null)
     const [searchTerm, setSearchTerm] = useState('')
-    const [cape, setCape] = useState()
-    const [neck, setNeck] = useState()
-    const [ammunition, setAmmunition] = useState()
-    const [weapon, setWeapon] = useState()
-    const [body, setBody] = useState()
-    const [shield, setShield] = useState()
-    const [legs, setLegs] = useState()
-    const [hands, setHands] = useState()
-    const [feet, setFeet] = useState()
-    const [ring, setRing] = useState()
+    const [cape, setCape] = useState(null)
+    const [neck, setNeck] = useState(null)
+    const [ammunition, setAmmunition] = useState(null)
+    const [weapon, setWeapon] = useState(null)
+    const [body, setBody] = useState(null)
+    const [shield, setShield] = useState(null)
+    const [legs, setLegs] = useState(null)
+    const [hands, setHands] = useState(null)
+    const [feet, setFeet] = useState(null)
+    const [ring, setRing] = useState(null)
     const [itemList, setItemList] = useState([]);
     
 
@@ -78,10 +78,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
             });
         
             setTotalBonuses(newBonuses);
-            
-            
-
         }
+
+
         const handleItemSelect = async (event) => {
 
             let itemData = null;
@@ -159,6 +158,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
 
             if (itemData) {
                 updateTotalBonuses(itemData);
+                setSearchTerm('');
             }
 
             } catch (error) {
@@ -175,101 +175,123 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 <div className = "item-display">
                 <div className = "item-square head" id = "Head">
                     { head ? (
-                        <div>
-                            <img alt = "head image" src = ''></img>
+                        <div className = "active-item" onClick={() => setHead(null)}>
+                            <img alt = "head image" src = {head.imageURL}></img>
                         </div> )
                 : (
-                    <p>no head selected</p>
+                    <div>
+                        <img alt = "head slot image" src = 'https://oldschool.runescape.wiki/images/Head_slot.png?b0c39'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square cape" id = "Cape">
                     { cape ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setCape(null)}>
                             <img alt = "cape image" src = {cape.imageURL}></img>
                         </div> )
                 : (
-                    <p>no cape selected</p>
+                    <div>
+                        <img alt = "cape slot image" src = 'https://oldschool.runescape.wiki/images/Cape_slot.png?2cf1e'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square neck" id = "Neck">
                     { neck ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setNeck(null)}>
                             <img alt = "neck image" src = {neck.imageURL}></img>
                         </div> )
                 : (
-                    <p>no neck selected</p>
+                    <div>
+                        <img alt = "neck slot image" src = 'https://oldschool.runescape.wiki/images/Neck_slot.png?5b85d'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square ammunition" id = "Ammunition">
                     { ammunition ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setAmmunition(null)}>
                             <img alt = "ammunition image" src = {ammunition.imageURL}></img>
                         </div> )
                 : (
-                    <p>no ammunition selected</p>
+                    <div>
+                        <img alt = "neck slot image" src = 'https://oldschool.runescape.wiki/images/Ammo_slot.png?95ab9'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square weapon" id = "Weapon">
                     { weapon ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setWeapon(null)}>
                             <img alt = "weapon image" src = {weapon.imageURL}></img>
                         </div> )
                 : (
-                    <p>no weapon selected</p>
+                    <div>
+                        <img alt = "weapon slot image" src = 'https://oldschool.runescape.wiki/images/Weapon_slot.png?ffed1'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square body" id = "Body">
                     { body ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setBody(null)}>
                             <img alt = "body image" src = {body.imageURL}></img>
                         </div> )
                 : (
-                    <p>no body selected</p>
+                    <div>
+                        <img alt = "body slot image" src = 'https://oldschool.runescape.wiki/images/Body_slot.png?5e649'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square shield" id = "Shield">
                     { shield ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setShield(null)}>
                             <img alt = "shield image" src = {shield.imageURL}></img>
                         </div> )
                 : (
-                    <p>no shield selected</p>
+                    <div>
+                        <img alt = "shield slot image" src = 'https://oldschool.runescape.wiki/images/Shield_slot.png?595b4'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square legs" id = "Legs">
                     { legs ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setLegs(null)}>
                             <img alt = "legs image" src = {legs.imageURL}></img>
                         </div> )
                 : (
-                    <p>no legs selected</p>
+                    <div>
+                        <img alt = "legs slot image" src = 'https://oldschool.runescape.wiki/images/Legs_slot.png?d132b'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square hands" id = "Hands">
                     { hands ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setHands(null)}>
                             <img alt = "Hands image" src = {hands.imageURL}></img>
                         </div> )
                 : (
-                    <p>no Hands selected</p>
+                    <div>
+                        <img alt = "hands slot image" src = 'https://oldschool.runescape.wiki/images/Hands_slot.png?7e1b5'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square feet" id = "Feet">
                     { feet ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setFeet(null)}>
                             <img alt = "feet image" src = {feet.imageURL}></img>
                         </div> )
                 : (
-                    <p>no feet selected</p>
+                    <div>
+                        <img alt = "feet slot image" src = 'https://oldschool.runescape.wiki/images/Feet_slot.png?93de2'></img>
+                    </div>
                 )} 
                 </div>
                 <div className = "item-square ring" id = "Ring">
                     { ring ? (
-                        <div>
+                        <div className = "active-item" onClick={() => setRing(null)}>
                             <img alt = "ring image" src = {ring.imageURL}></img>
                         </div> )
                 : (
-                    <p>no ring selected</p>
+                    <div>
+                        <img alt = "ring slot image" src = 'https://oldschool.runescape.wiki/images/Ring_slot.png?37dd8'></img>
+                    </div>
                 )} 
                 </div>
             </div>

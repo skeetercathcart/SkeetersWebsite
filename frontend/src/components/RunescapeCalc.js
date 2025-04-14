@@ -13,29 +13,34 @@ const RunescapeCalc = () => {
     const [activeStyle, setActiveStyle] = useState('style1')
     const [styles, setStyles] = useState({
                 style1: {
-                    combatStyle: 'Slash',
-                    attackType: 'Controlled',
-                    weaponStyle: 'Crush',
+                    combatStyle: 'Punch',
+                    attackType: 'Crush',
+                    weaponStyle: 'Accurate',
+                    attackSpeed: "4",
                 },
                 style2: {
-                    combatStyle: 'Slash',
-                    attackType: 'Controlled',
-                    weaponStyle: 'Crush',
+                    combatStyle: 'Kick',
+                    attackType: 'Crush',
+                    weaponStyle: 'Aggressive',
+                    attackSpeed: "4",
                 },
                 style3: {
-                    combatStyle: 'Slash',
-                    attackType: 'Controlled',
-                    weaponStyle: 'Crush',
+                    combatStyle: 'Block',
+                    attackType: 'Crush',
+                    weaponStyle: 'Defensive',
+                    attackSpeed: "4",
                 },
                 style4: {
                     combatStyle: '',
                     attackType: '',
                     weaponStyle: '',
+                    attackSpeed: '',
                 },
                 style5: {
                     combatStyle: '',
                     attackType: '',
                     weaponStyle: '',
+                    attackSpeed: '',
                 }
             });
     const [totalBonuses, setTotalBonuses] = useState({

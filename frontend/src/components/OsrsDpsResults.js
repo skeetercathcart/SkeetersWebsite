@@ -56,11 +56,15 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
     // Calculation for expected hit
     const expectedHit = (0 * (1 - hitChance / 100)) + Math.round(Math.round(((hitChance / 100) * playerMaxHit) * 100, 3) / 10 / 2, 3) / 10
 
+    // Calculation for DPS (probably dogshit idk)
+    const damPerSec = Math.round((1 / (parseInt(styles[activeStyle].attackSpeed) * 0.6) * expectedHit) * 1000, 4) / 1000
+
+    // Calulation for TTK
+    const avgTimeToKill = selectedMonster ? Math.round((parseInt(selectedMonster.combatStats.hitpoints) / damPerSec) * 100 , 4) / 100 : '0'
+
 
     return (
         <div class = 'results-container'> 
-        { activeStyle && styles ? 
-        (<div>* {monsterMaxDef} *</div>) : (<div>no style selected</div>)}
             <table class = 'results-table'>
                 <th colspan = '2' className = "results-header">
                     Results
@@ -75,11 +79,11 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
                 </tr>
                 <tr>
                     <td className = "results-cat-cell"> DPS </td>
-                    <td className = "results-cell"> 44 </td>
+                    <td className = "results-cell"> {damPerSec} </td>
                 </tr>
                 <tr className = "results-row"> 
                     <td className = "results-cat-cell"> Avg. TTK </td>
-                    <td className = "results-cell"> 44 </td>
+                    <td className = "results-cell"> {avgTimeToKill} </td>
                 </tr>
                 <tr className = "results-row">
                     <td className = "results-cat-cell"> Accuracy </td>

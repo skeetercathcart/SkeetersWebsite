@@ -1,7 +1,7 @@
 import '../css/runescapecalc.css'
 import { useState, useEffect } from 'react'
 
-const OsrsTotalBonus = ({bonuses}) => {
+const OsrsTotalBonus = ({ bonuses }) => {
 
 
     return (
