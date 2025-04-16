@@ -9,9 +9,8 @@
 
 .monster-container {
   display: flex;
-  margin-left: 6vw;
   flex-direction: column;
-  width: 16vw;
+  width: 33vw;
   align-items: center;
   justify-content: center;
 }
@@ -22,14 +21,13 @@
   align-items: center;
   height: 225px;
   width: 225px;
-  border: black 2px solid;
 }
 
 .monster-img {
   border: black 1px solid;
   padding: 5px;
-  height: 150px;
-  width: 150px;
+  height: 175px;
+  width: 175px;
   box-shadow: 10px 10px 5px black, -10px -10px 5px black;
 }
 
@@ -63,6 +61,7 @@
 
 .monster-stats-header {
   height: 40px;
+  border-bottom: 2px black solid;
 }
 
 .monster-stat {
@@ -70,6 +69,7 @@
   height: 40px;
   flex-direction: row;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .table-img {
@@ -82,7 +82,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30vw;
+  width: 33vw;
   height: 90vh;
 }
 
@@ -323,8 +323,8 @@ select {
 
   .bonus-grid-image {
     display: flex;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 
   .bonus-display {
@@ -366,10 +366,9 @@ select {
 
   .results-container {
     display: flex;
-    margin-left: 6vw;
-    width: 24vw;
+    width: 33vw;
     align-items: center;
-    justify-content: center;
+    
   }
 
   .results-table {

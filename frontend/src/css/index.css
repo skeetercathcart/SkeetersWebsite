@@ -42,13 +42,17 @@ body {
   font-size: x-large;
 }
 
-img {
+/* img {
   margin: 10px;
-}
+} */
 
 .socials-container {
   width: 70%;
   margin-top: auto;
   margin-left: 10px;
   border-bottom: 5px black solid;
+}
+
+.socials-link {
+  margin-right: 20px;
 }

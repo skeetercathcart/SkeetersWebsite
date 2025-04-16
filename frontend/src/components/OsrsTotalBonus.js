@@ -1,7 +1,6 @@
 import '../css/runescapecalc.css'
-import { useState, useEffect } from 'react'
 
-const OsrsTotalBonus = ({ bonuses }) => {
+const OsrsTotalBonus = ({ bonuses, attackSpeed }) => {
 
 
     return (
@@ -67,7 +66,7 @@ const OsrsTotalBonus = ({ bonuses }) => {
             </div>
             <div className = "bonus-grid-square">
                 <img className = "bonus-grid-image" id = "weapon-attack-speed" alt = "attack speed icon" src = "https://oldschool.runescape.wiki/images/Watch.png?f0e76"></img>
-                <div className = "bonus-display">tbd</div>
+                <div className = "bonus-display">{attackSpeed} ticks</div>
             </div>
             
         </div>
