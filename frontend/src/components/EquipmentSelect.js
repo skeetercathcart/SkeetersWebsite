@@ -63,6 +63,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
     const [feet, setFeet] = useState(null)
     const [ring, setRing] = useState(null)
     const [itemList, setItemList] = useState([]);
+    const attackSpeed = styles[activeStyle].attackSpeed || 0;
     
 
         useEffect(() => { 
@@ -360,7 +361,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
             </div>
             </div>
             <div>
-                <OsrsTotalBonus bonuses = {totalBonuses}/>
+                <OsrsTotalBonus bonuses = {totalBonuses} attackSpeed = {attackSpeed}/>
                 <OsrsStyleSelect styles = {styles} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle}/>
             </div>
         </div>  
