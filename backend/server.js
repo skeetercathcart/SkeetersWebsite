@@ -18,7 +18,7 @@ connectDB()
 
 app.use(logger)
 
-app.use(cors())
+app.use(cors(corsOptions))
 
 app.use(express.json())
 
@@ -28,7 +28,6 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./routes/root'))
 app.use('/api', require('./routes/api/osrsData'))
-//app.use('/auth', require('./routes/authRoutes'))
 
 
 app.all('*', (req, res) => {
