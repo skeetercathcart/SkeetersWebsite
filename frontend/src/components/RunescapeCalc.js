@@ -1,5 +1,7 @@
 import '../css/runescapecalc.css'
 import OsrsWeaponForm from './OsrsWeaponForm';
+import EquipmentSelect from './EquipmentSelect'
+
 
 
 const RunescapeCalc = () => {
@@ -7,6 +9,7 @@ const RunescapeCalc = () => {
     return (
         
         <div>
+            <EquipmentSelect/>
             <OsrsWeaponForm/>
         </div>
         

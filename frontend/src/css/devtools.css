@@ -1,0 +1,186 @@
+.center {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px black solid;
+    width: 70vw;
+    height: 88vh;
+    background-color: antiquewhite;
+}
+
+.search-bar {
+    height: 40px;
+}
+
+.result {
+    display: flex;
+    padding: 2px;
+    height: 30px;
+    border-bottom: 1px black solid;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(170, 170, 170);
+    font-size: large;
+    font-weight: bold;
+}
+
+.result:hover {
+    background-color: rgb(150, 195, 235);
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    border-left: 1px black solid;
+    border-left: 1px black solid;
+}
+
+.item-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+    font-size: small;
+}
+
+.delete-btn {
+    display: flex;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: black 1px solid;
+    border-radius: 3px;
+    background-color: red;
+    width: 24px;
+    height: 24px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.delete-btn:hover {
+    cursor: pointer
+}
+
+.edit-btn {
+    margin-right: 4px;
+    margin-left: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: black 1px solid;
+}
+
+.edit-btn:hover {
+    cursor: pointer;
+}
+
+.pagination-bar {
+    display: flex;
+    margin-top: auto;
+    background-color: orangered;
+    height: 25px;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.dev-tool-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 4%;
+    background-color: orangered;
+    border-radius: 0px;
+    border: black 2px solid;
+}
+
+.dev-tool-btn:hover {
+    cursor: pointer;
+}
+
+.edit-name {
+    display: flex;
+    background-color: rgb(227, 247, 233);
+    border: 1dvh black solid; 
+    padding-left: 2px;
+    width: 80%;
+}
+
+.confirm-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: black 1px solid;
+}
+
+.confirm-btn:hover {
+    cursor: pointer;
+}
+
+table{
+    background-color: aliceblue;
+    border: black 2px solid;
+}
+
+.item-name-table {
+    height: 26px;
+    font-size: medium;
+    border: black 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 4px;
+    width: 300px;
+}
+
+.header-column {
+    height: 26px;
+    font-size: medium;
+    border: black 1px solid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 50px;
+}
+
+
+.osrs-item-table-row:hover {
+    background-color: rgb(113, 113, 138);
+}
+
+.osrs-items-table-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-stat-td {
+    height: 26px;
+    font-size: medium;
+    border: black 1px solid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 50px;
+}
+
+.edit-btns-container {
+    display: flex;
+}

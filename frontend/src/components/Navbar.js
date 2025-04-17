@@ -7,10 +7,10 @@ const Navbar = () => {
         <div>
             <div className = 'background'>
                 <Link to="/">
-                    <button>Home</button>
+                    <button className = 'navbar-btn'>Home</button>
                 </Link>
                 <Link to="/runescapecalc">
-                    <button>Runescape Calc</button>
+                    <button className = 'navbar-btn'>Runescape Calc</button>
                 </Link>
             </div>
         </div>
