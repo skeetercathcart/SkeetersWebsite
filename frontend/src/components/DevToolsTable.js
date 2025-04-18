@@ -14,7 +14,7 @@ const DevToolsTable = ( { filter, setFilter }) => {
 
     const fetchItems = async () => {
         try { 
-            const response = await fetch(`http://localhost:3500/api/getPaginatedOsrsCollection?page=${page}&limit=${limit}`, {
+            const response = await fetch(`https://skeeter-api.onrender/api/getPaginatedOsrsCollection?page=${page}&limit=${limit}`, {
                 method: "POST",
                 headers: { "Content-Type" : "application/json" },
                 body: JSON.stringify({ Collection: filter })
@@ -52,7 +52,7 @@ const DevToolsTable = ( { filter, setFilter }) => {
 
             console.log("Attempting to fetch with body of: " + JSON.stringify(reqBody))
 
-            const response = await fetch(`http://localhost:3500/api/updateOsrsItemName/${itemId}`, {
+            const response = await fetch(`https://skeeter-api.onrender/api/updateOsrsItemName/${itemId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -74,7 +74,7 @@ const DevToolsTable = ( { filter, setFilter }) => {
     const handleDeleteItem = async(itemId) => {
         try {
             
-            const response = await fetch(`http://localhost:3500/api/delOsrsItem/${itemId}`, {
+            const response = await fetch(`https://skeeter-api.onrender/api/delOsrsItem/${itemId}`, {
                 method: "DELETE",
             });
 

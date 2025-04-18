@@ -69,7 +69,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
         useEffect(() => { 
             updateTotalBonuses()
             const getWeaponList = async() => {
-                    const allItems = await fetch('http://localhost:3500/api/getAllOsrsItems', 
+                    const allItems = await fetch('https://skeeter-api.onrender/api/getAllOsrsItems', 
                         {
                             method: 'GET',
                             headers: {'Content-Type': 'application/json',},
@@ -157,7 +157,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
 
                 console.log('Fetching a weapon')
                 
-                const weaponSelect = await fetch(`http://localhost:3500/api/getWeapon/${itemId}`, 
+                const weaponSelect = await fetch(`https://skeeter-api.onrender/api/getWeapon/${itemId}`, 
                     {
                         method: 'GET',
                         headers: {'Content-Type': 'application/json',},
@@ -175,7 +175,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
 
                     console.log('Fetching non-weapon')
 
-                    const gearSelect = await fetch(`http://localhost:3500/api/getOsrsGear/${itemId}`, 
+                    const gearSelect = await fetch(`https://skeeter-api.onrender/api/getOsrsGear/${itemId}`, 
                         {
                             method: 'GET',
                             headers: {'Content-Type': 'application/json',},

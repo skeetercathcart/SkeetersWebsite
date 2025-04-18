@@ -102,7 +102,7 @@ const OsrsWeaponForm = () => {
         console.log("REEEEEEEEEEEEEE" + JSON.stringify(reqBody))
 
         try {
-            const response = await fetch('http://localhost:3500/api/addWeapon', {
+            const response = await fetch('https://skeeter-api.onrender/api/addWeapon', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

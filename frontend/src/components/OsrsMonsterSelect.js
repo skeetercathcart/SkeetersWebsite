@@ -11,7 +11,7 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
     useEffect(() => { 
         
         const getMonsterList = async() => {
-                const allMonsters = await fetch('http://localhost:3500/api/getAllOsrsMonsters', 
+                const allMonsters = await fetch('https://skeeter-api.onrender/api/getAllOsrsMonsters', 
                     {
                         method: 'GET',
                         headers: {'Content-Type': 'application/json',},
