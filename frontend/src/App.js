@@ -6,7 +6,7 @@ import RunescapeCalc from './components/RunescapeCalc';
 import DevTools from './components/DevTools';
 
 function App() {
-  useTitle('Dan D. Repairs')
+  useTitle('Skeeter Cathcart')
 
   return (
     <Routes>

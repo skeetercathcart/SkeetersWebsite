@@ -3,8 +3,6 @@ require('express-async-errors')
 const express = require('express')
 const app = express()
 const path = require('path')
-const { logger, logEvents } = require('./middleware/logger')
-const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
@@ -12,13 +10,9 @@ const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3500
 
-console.log(process.env.NODE_ENV)
-
 connectDB()
 
-app.use(logger)
-
-app.use(cors())
+app.use(cors(corsOptions))
 
 app.use(express.json())
 
@@ -28,7 +22,6 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./routes/root'))
 app.use('/api', require('./routes/api/osrsData'))
-//app.use('/auth', require('./routes/authRoutes'))
 
 
 app.all('*', (req, res) => {
@@ -42,7 +35,11 @@ app.all('*', (req, res) => {
     }
 })
 
-app.use(errorHandler)
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    console.log('Request Origin:', origin);
+    next();
+  });
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB')
@@ -51,5 +48,4 @@ mongoose.connection.once('open', () => {
 
 mongoose.connection.on('error', err => {
     console.log(err)
-    logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log')
 })

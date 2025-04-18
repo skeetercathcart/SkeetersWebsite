@@ -1,7 +1,7 @@
 {
-  "name": "lesson_13-be",
+  "name": "skeeters_website_server",
   "version": "1.0.0",
-  "description": "techNotes MERN Project",
+  "description": "personal profile site for skeeter",
   "main": "server.js",
   "scripts": {
     "start": "node server",
@@ -11,7 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "date-fns": "^2.29.1",
@@ -21,8 +20,7 @@
     "express-rate-limit": "^6.5.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.0",
-    "mongoose-sequence": "^5.3.1",
-    "uuid": "^8.3.2"
+    "mongoose-sequence": "^5.3.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
