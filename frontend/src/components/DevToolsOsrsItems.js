@@ -16,7 +16,7 @@ const DevToolsOsrsItems = () => {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await fetch(`https://skeeter-api.onrender/api/getPaginatedItems?page=${page}&limit=${limit}`);
+                const response = await fetch(`https://skeeterswebsite.onrender/api/getPaginatedItems?page=${page}&limit=${limit}`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch items");
                 }
@@ -33,7 +33,7 @@ const DevToolsOsrsItems = () => {
 
     const handleDeleteItem = async(itemId) => {
         try {
-            const response = await fetch(`https://skeeter-api.onrender/api/delOsrsItem/${itemId}`, {
+            const response = await fetch(`https://skeeterswebsite.onrender/api/delOsrsItem/${itemId}`, {
                 method: "DELETE",
             });
 
