@@ -35,6 +35,12 @@ app.all('*', (req, res) => {
     }
 })
 
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    console.log('Request Origin:', origin);
+    next();
+  });
+
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB')
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
