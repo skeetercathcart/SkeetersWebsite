@@ -18,6 +18,11 @@ app.use(express.json())
 
 app.use(cookieParser())
 
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.path}`);
+    next();
+  });
+
 app.use('/', express.static(path.join(__dirname, '..', 'frontend', 'build')))
 
 
