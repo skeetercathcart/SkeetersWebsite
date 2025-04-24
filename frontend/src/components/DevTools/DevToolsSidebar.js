@@ -1,4 +1,4 @@
-import '../css/devtools.css'
+import '../../css/devtools.css'
 import {useState} from 'react'
 
 const DevToolsSidebar = ( { filter, setFilter } ) => {

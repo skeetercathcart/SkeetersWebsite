@@ -1,4 +1,4 @@
-import '../css/runescapecalc.css'
+import '../../css/runescapecalc.css'
 
 const OsrsTotalBonus = ({ bonuses, attackSpeed }) => {
 

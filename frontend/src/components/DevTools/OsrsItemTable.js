@@ -1,42 +1,11 @@
-import '../css/devtools.css'
-import { useState, useEffect } from 'react';
+import '../../css/devtools.css'
+import { useState } from 'react';
 
+const OsrsItemTable = ({ itemList, fetchItems}) => {
 
-const DevToolsTable = ( { filter, setFilter }) => {
-
-    const [itemList, setItemList] = useState([])
-    const [totalPages, setTotalPages] = useState(1)
-    const [page, setPage] = useState(1)
-    const [limit, setLimit] = useState(25)
     const [editToggle, setEditToggle] = useState(false)
     const [editNameId, setEditNameId] = useState(null)
     const [nameEditInput, setNameEditInput] = useState('')
-
-    const fetchItems = async () => {
-        try { 
-            const response = await fetch(`http://localhost:3500/api/getPaginatedOsrsCollection?page=${page}&limit=${limit}`, {
-                method: "POST",
-                headers: { "Content-Type" : "application/json" },
-                body: JSON.stringify({ Collection: filter })
-            }
-
-            );
-            if (!response.ok) {
-                throw new Error("Failed to fetch items");
-            } 
-            const data = await response.json();
-            console.log("response: " + JSON.stringify(data))
-            setItemList(data.items);
-            setTotalPages(Math.ceil(data.total / limit))
-        } catch (err) {
-            console.log(err.message);
-        } 
-    };
-
-
-    useEffect(() => {
-        fetchItems();
-    }, [filter, page]);
 
 
     const handleNameEditChange = (e) => {
@@ -95,13 +64,7 @@ const DevToolsTable = ( { filter, setFilter }) => {
         setNameEditInput(itemName);
     }
 
-    const nextPage = () => {
-        setPage((prevPage) => prevPage + 1);
-    };
-
-    const prevPage = () => {
-        setPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 1));
-    };
+    
 
     return (
 
@@ -158,20 +121,13 @@ const DevToolsTable = ( { filter, setFilter }) => {
                     </tr>)
                     }
                 </table>
-                <div className = "pagination-bar">
-                        <button className = "dev-tool-btn" id = 'prev-btn' onClick = {prevPage}>prev</button>
-                        <div id = 'current-page'>{page}</div>
-                        <div id = 'slash'> / </div>
-                        <div id = 'page-total'>{totalPages}</div>
-                        <button className = "dev-tool-btn" id = 'next-btn' onClick = {nextPage}>next</button>
-                </div>
             </div>
         </div>
 
 
     )
 
-
 }
 
-export default DevToolsTable;
+export default OsrsItemTable;
+

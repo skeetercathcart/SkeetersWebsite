@@ -1,4 +1,4 @@
-import '../css/devtools.css'
+import '../../css/devtools.css'
 import { useState } from 'react';
 import DevToolsOsrsItems from './DevToolsOsrsItems';
 import DevToolsTable from './DevToolsTable';
@@ -12,7 +12,7 @@ const DevTools = () => {
 
     return (
         <>
-        <DevToolsSidebar filter = {filter} setFilter = {setFilter}/>
+        <DevToolsSidebar filter = {filter} setFilter = {setFilter}/> 
         <DevToolsTable filter = {filter}/>
         </>
     )

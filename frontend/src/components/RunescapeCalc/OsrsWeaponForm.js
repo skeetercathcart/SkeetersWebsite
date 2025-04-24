@@ -1,4 +1,4 @@
-import '../css/runescapecalc.css'
+import '../../css/runescapecalc.css'
 import { useState } from 'react';
 import OsrsWeaponTypeSelect from './OsrsWeaponTypeSelect';
 import OsrsCombatStyleSelect from './RunescapeWeaponStyle';

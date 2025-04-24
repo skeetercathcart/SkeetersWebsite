@@ -1,4 +1,4 @@
-import '../css/runescapecalc.css'
+import '../../css/runescapecalc.css'
 import { useState, useEffect } from "react"
 
 

@@ -1,4 +1,4 @@
-import '../css/devtools.css'
+import '../../css/devtools.css'
 import { useState, useEffect } from 'react';
 
 

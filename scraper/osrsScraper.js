@@ -251,7 +251,7 @@ async function tableScrape(table) {
     
 }
 
-tableScrape('Head')
+//tableScrape('Ammunition')
 
 async function gearTestScrape(url) {
 
@@ -490,7 +490,7 @@ async function monsterTestScrape(url) {
         return tables.map(table => table.href).filter(item => item !== "https://oldschool.runescape.wiki/w/Members").filter(f2p => f2p !== "https://oldschool.runescape.wiki/w/Free-to-play")
     });
 
-    for(let index = 174; index < hrefData.length; index++) {
+    for(index in hrefData) {
 
         let monsterData = await monsterPageScrape(hrefData[index], page)
         let reqBody = {}
@@ -528,4 +528,4 @@ async function monsterTestScrape(url) {
 }
 
 
-// monsterTestScrape("https://oldschool.runescape.wiki/w/Bestiary/Slayer_assignments_(A_to_B)")
+monsterTestScrape("https://oldschool.runescape.wiki/w/Bestiary/Slayer_assignments_(T_to_Z)")
