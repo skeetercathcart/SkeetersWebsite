@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import GlobalLayout from './components/GlobalLayout';
 import LandingPage from './components/LandingPage';
 import RunescapeCalc from './components/RunescapeCalc';
-import DevTools from './components/DevTools';
+import NotFound from './components/NotFound';
 
 function App() {
   useTitle('Skeeter Cathcart')
@@ -13,6 +13,7 @@ function App() {
       <Route path = "/" element={<GlobalLayout/>}>
         <Route index element={<LandingPage/>}></Route>
         <Route path="runescapecalc" element={<RunescapeCalc/>}/>
+        <Route path="*" element={<NotFound/>}/>
       </Route>
     </Routes>
     
