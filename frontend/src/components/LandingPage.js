@@ -23,7 +23,7 @@ const LandingPage = () => {
             </div>
         
             <div className = "photo-container">
-                <img style ={{border: '2px white solid', borderRadius: '100%'}} alt = "profile picture" src = "https://media.licdn.com/dms/image/v2/D4D03AQHjCemyUXor9A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1714409943345?e=1745452800&v=beta&t=mWbTj0ZQg2ex8YqpH43ywxxyGH5AmVwwZUYj61GMK7U"></img>
+                <img style ={{border: '2px white solid', borderRadius: '100%'}} alt = "profile picture" src = "https://avatars.githubusercontent.com/u/101567663?v=4"></img>
             </div>
             
         </div>

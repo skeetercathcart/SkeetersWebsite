@@ -4,6 +4,7 @@ import GlobalLayout from './components/GlobalLayout';
 import LandingPage from './components/LandingPage';
 import RunescapeCalc from './components/RunescapeCalc/RunescapeCalc';
 import DevTools from './components/DevTools/DevTools'
+import NotFound from './components/NotFound'
 
 function App() {
   useTitle('Skeeter Cathcart')
@@ -14,6 +15,7 @@ function App() {
         <Route index element={<LandingPage/>}></Route>
         <Route path="runescapecalc" element={<RunescapeCalc/>}/>
         <Route path="devtools" element = {<DevTools/>}/>
+        <Route path = '*' element = {<NotFound/>}/>
       </Route>
     </Routes>
     
