@@ -18,7 +18,7 @@ app.use(express.json())
 
 app.use(cookieParser())
 
-app.use('/', express.static(path.join(__dirname, 'frontend', 'build')))
+app.use('/', express.static(path.join(__dirname, '..', 'frontend', 'build')))
 
 
 app.use('/api', require('./routes/api/osrsData'))
