@@ -13,7 +13,6 @@ function App() {
       <Route path = "/" element={<GlobalLayout/>}>
         <Route index element={<LandingPage/>}></Route>
         <Route path="runescapecalc" element={<RunescapeCalc/>}/>
-        <Route path="devtools" element = {<DevTools/>}/>
       </Route>
     </Routes>
     
