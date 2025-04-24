@@ -9,15 +9,15 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(205, 216, 216);
-    height: 10vh;
+    height: 80px;
 }
 
 .navbar-btn {
     display: flex;
-    width: 16vh;
+    width: 16vw;
     height: 50px;
-    margin-left: 1vh;
-    margin-right: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
     justify-content: center;
     align-items: center;
     border: 2px solid black;

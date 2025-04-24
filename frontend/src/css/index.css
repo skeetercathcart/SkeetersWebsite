@@ -1,6 +1,6 @@
 body {
-  height: 100vh;
-  background: linear-gradient(to bottom right, white, rgb(202, 200, 200));
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, white, rgb(205, 216, 216));
 }
 
 .title {
@@ -8,11 +8,13 @@ body {
 }
 
 .full-container {
+  height: 50vh;
+  min-height: 220px;
+  min-width: 200px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 50vh;
 }
 
 .about-text-container {
@@ -20,6 +22,7 @@ body {
   flex-direction: column;
   height: 100%;
   width: 50%;
+  min-width: 460px;
   margin-right: 10px;
   align-items: center;
   justify-content: center;
