@@ -1,5 +1,6 @@
 import '../../css/devtools.css'
 import OsrsItemTable from './OsrsItemTable';
+import OsrsMonsterTable from './OsrsMonsterTable';
 import { useState, useEffect } from 'react';
 
 
@@ -50,6 +51,8 @@ const DevToolsTable = ( { filter, setFilter }) => {
         <div>
             { (filter === "osrsWeapon" || filter === "osrsGear") && 
             <OsrsItemTable itemList = {itemList} fetchItems = {fetchItems} /> }
+            { (filter === "osrsMonster") && 
+            <OsrsMonsterTable itemList = {itemList} fetchItems = {fetchItems} /> }
             <div className = "pagination-bar">
                 <button className = "dev-tool-btn" id = 'prev-btn' onClick = {prevPage}>prev</button>
                 <div id = 'current-page'>{page}</div>

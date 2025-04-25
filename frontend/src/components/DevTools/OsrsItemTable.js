@@ -57,14 +57,11 @@ const OsrsItemTable = ({ itemList, fetchItems}) => {
         }
     }
 
-   
 
     const handleEditToggle = (itemId, itemName) => {
         setEditNameId(prevId => (prevId === itemId ? null : itemId))
         setNameEditInput(itemName);
     }
-
-    
 
     return (
 
@@ -103,20 +100,20 @@ const OsrsItemTable = ({ itemList, fetchItems}) => {
                             : 
                             (<td className = "item-name-table">{item.name} <button className = "edit-btn" id = 'edit-btn' onClick = {() => handleEditToggle(item._id, item.name)}>✏️</button></td>)
                         } 
-                        <td className = "item-stat-td">{item.bonuses.attack.slash}</td>
-                        <td className = "item-stat-td">{item.bonuses.attack.crush}</td>
-                        <td className = "item-stat-td">{item.bonuses.attack.stab}</td>
-                        <td className = "item-stat-td">{item.bonuses.attack.range}</td>
-                        <td className = "item-stat-td">{item.bonuses.attack.magic}</td>
-                        <td className = "item-stat-td">{item.bonuses.defense.slash}</td>
-                        <td className = "item-stat-td">{item.bonuses.defense.crush}</td>
-                        <td className = "item-stat-td">{item.bonuses.defense.stab}</td>
-                        <td className = "item-stat-td">{item.bonuses.defense.range}</td>
-                        <td className = "item-stat-td">{item.bonuses.defense.magic}</td>
-                        <td className = "item-stat-td">{item.bonuses.strength}</td>
-                        <td className = "item-stat-td">{item.bonuses.rangeStrength}</td>
-                        <td className = "item-stat-td">{item.bonuses.mageStrength}</td>
-                        <td className = "item-stat-td">{item.bonuses.prayer}</td>
+                        <td className = "item-stat-td">{item.bonuses?.attack?.slash ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.attack?.crush ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.attack?.stab ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.attack?.range ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.attack?.magic ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.defense?.slash ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.defense?.crush ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.defense?.stab ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.defense?.range ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.defense?.magic ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.strength ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.rangeStrength ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.mageStrength ?? '-'}</td>
+                        <td className = "item-stat-td">{item.bonuses?.prayer ?? '-'}</td>
                         <td className = "delete-btn-td"><button className = "delete-btn" id = 'delete-btn'  onClick = {() => handleDeleteItem(item._id)}>X</button></td>
                     </tr>)
                     }
