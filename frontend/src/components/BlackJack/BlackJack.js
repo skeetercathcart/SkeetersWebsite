@@ -152,6 +152,7 @@ const BlackJack = () => {
         setDealerStay(false);
         setPlayerBust(false);
         setDealerBust(false);
+        setPush(false)
         setDealerWin(false);
         setPlayerWin(false);
         shuffleDeck(deck);
