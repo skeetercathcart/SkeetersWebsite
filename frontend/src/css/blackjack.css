@@ -1,6 +1,109 @@
-.card-back {}
+.casino-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height:90vh;
+
+}
+
+.player {
+    position: relative;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    max-width: 1020px;
+    margin-top: auto;
+}
+
+.dealer {
+    position: relative;
+}
+
+.card-back {
+}
 
 
 .card-back:hover {
-    scale: 1.05;
+    transform: scale(1.05);
+}
+
+.score-card {
+display: flex;
+flex-direction: column;
+border: black 2px solid;
+margin: auto;
+width: 20vw;
+justify-content: center;
+align-items: center;
+}
+
+.score {
+    background-color: white;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: larger;
+}
+
+.hit-btn {
+    height: 40px;
+    width: 50%;
+}
+
+.bust {
+    position: absolute;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: yellow;
+    background-color: rgba(255, 0, 0, 0.6);
+    bottom: 30%;
+    left: 30%; 
+    transform: rotate(-30deg);
+    align-content: center;
+    width: 40%;
+    height: 40%;
+    border: red 8px solid;
+    z-index: 10;
+}
+
+.bust:hover {
+    cursor: pointer;
+}
+
+.win {
+    position: absolute;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: yellow;
+    background-color: rgba(77, 255, 115, 0.6);
+    bottom: 30%;
+    left: 30%; 
+    transform: rotate(-30deg);
+    align-content: center;
+    width: 40%;
+    height: 40%;
+    border: green 8px solid;
+    z-index: 10;
+
+}
+
+.push {
+    position: absolute;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: yellow;
+    background-color: rgba(117, 77, 25, 0.6);
+    bottom: 30%;
+    left: 30%; 
+    transform: rotate(-30deg);
+    align-content: center;
+    width: 40%;
+    height: 40%;
+    border: rgb(173, 172, 87) 8px solid;
+    z-index: 10;
 }

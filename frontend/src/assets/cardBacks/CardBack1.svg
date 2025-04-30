@@ -1,92 +1,76 @@
-<svg width="258" height="358" viewBox="0 0 258 358" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_4_448)" filter="url(#filter0_d_4_448)">
-<rect x="4.5" y="0.5" width="249" height="349" rx="7.5" fill="white" stroke="white"/>
-<rect x="10.5" y="6.5" width="237" height="337" rx="7.5" fill="#FF0000" stroke="white"/>
-<mask id="mask0_4_448" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="10" y="6" width="238" height="338">
-<rect x="10.5" y="6.5" width="237" height="337" rx="7.5" fill="#FF0000" stroke="white"/>
+<svg width="252" height="352" viewBox="0 0 252 352" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="250" height="350" transform="translate(1 1)" fill="white"/>
+<rect x="1" y="1" width="250" height="350" rx="8" fill="white" stroke="#A8A8A8" stroke-opacity="0.5"/>
+<rect x="7.5" y="7.5" width="237" height="337" rx="7.5" fill="#FF0000" stroke="white"/>
+<mask id="mask0_5_3" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="7" y="7" width="238" height="338">
+<rect x="7.5" y="7.5" width="237" height="337" rx="7.5" fill="#FF0000" stroke="white"/>
 </mask>
-<g mask="url(#mask0_4_448)">
-<path d="M-64 137.627L321.673 -322" stroke="white"/>
-<line x1="-64.383" y1="118.305" x2="321.29" y2="-341.321" stroke="white"/>
-<line x1="-64.383" y1="98.3053" x2="321.29" y2="-361.321" stroke="white"/>
-<path d="M-64 217.627L321.673 -242" stroke="white"/>
-<line x1="-64.383" y1="177.305" x2="321.29" y2="-282.321" stroke="white"/>
-<line x1="-64.383" y1="158.305" x2="321.29" y2="-301.321" stroke="white"/>
-<line x1="-64.383" y1="237.305" x2="321.29" y2="-222.321" stroke="white"/>
-<line x1="-64.383" y1="197.305" x2="321.29" y2="-262.321" stroke="white"/>
-<line x1="-64.383" y1="297.305" x2="321.29" y2="-162.321" stroke="white"/>
-<line x1="-64.383" y1="257.305" x2="321.29" y2="-202.321" stroke="white"/>
-<path d="M-64 277.627L321.673 -182" stroke="white"/>
-<line x1="-64.383" y1="357.305" x2="321.29" y2="-102.321" stroke="white"/>
-<path d="M-64 337.627L321.673 -122" stroke="white"/>
-<line x1="-64.383" y1="317.305" x2="321.29" y2="-142.321" stroke="white"/>
-<line x1="-64.383" y1="77.3053" x2="321.29" y2="-382.321" stroke="white"/>
-<path d="M-64 556.627L321.673 97" stroke="white"/>
-<line x1="-64.383" y1="537.305" x2="321.29" y2="77.6786" stroke="white"/>
-<line x1="-64.383" y1="517.305" x2="321.29" y2="57.6786" stroke="white"/>
-<path d="M-64 636.627L321.673 177" stroke="white"/>
-<line x1="-64.383" y1="596.305" x2="321.29" y2="136.679" stroke="white"/>
-<line x1="-64.383" y1="577.305" x2="321.29" y2="117.679" stroke="white"/>
-<line x1="-64.383" y1="656.305" x2="321.29" y2="196.679" stroke="white"/>
-<line x1="-64.383" y1="616.305" x2="321.29" y2="156.679" stroke="white"/>
-<line x1="-64.383" y1="716.305" x2="321.29" y2="256.679" stroke="white"/>
-<line x1="-64.383" y1="676.305" x2="321.29" y2="216.679" stroke="white"/>
-<path d="M-64 696.627L321.673 237" stroke="white"/>
-<line x1="-64.383" y1="496.305" x2="321.29" y2="36.6785" stroke="white"/>
-<path d="M-64 476.627L321.673 16.9999" stroke="white"/>
-<line x1="-64.383" y1="456.305" x2="321.29" y2="-3.32147" stroke="white"/>
-<line x1="-64.383" y1="436.305" x2="321.29" y2="-23.3215" stroke="white"/>
-<path d="M-64 416.627L321.673 -43.0001" stroke="white"/>
-<line x1="-64.383" y1="397.305" x2="321.29" y2="-62.3215" stroke="white"/>
-<line x1="-64.383" y1="377.305" x2="321.29" y2="-82.3215" stroke="white"/>
-<path d="M321.673 137.627L-64 -322" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 118.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 98.6266)" stroke="white"/>
-<path d="M321.673 217.627L-64 -242" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 177.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 158.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 237.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 197.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 297.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 257.627)" stroke="white"/>
-<path d="M321.673 277.627L-64 -182" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 357.627)" stroke="white"/>
-<path d="M321.673 337.627L-64 -122" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 317.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 77.6266)" stroke="white"/>
-<path d="M321.673 556.627L-64 97" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 537.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 517.627)" stroke="white"/>
-<path d="M321.673 636.627L-64 177" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 596.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 577.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 656.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 616.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 716.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 676.627)" stroke="white"/>
-<path d="M321.673 696.627L-64 237" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 496.627)" stroke="white"/>
-<path d="M321.673 476.627L-64 16.9999" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 456.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 436.627)" stroke="white"/>
-<path d="M321.673 416.627L-64 -43.0001" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 397.627)" stroke="white"/>
-<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 321.673 377.627)" stroke="white"/>
+<g mask="url(#mask0_5_3)">
+<path d="M-67 138.627L318.673 -321" stroke="white"/>
+<line x1="-67.383" y1="119.305" x2="318.29" y2="-340.321" stroke="white"/>
+<line x1="-67.383" y1="99.3053" x2="318.29" y2="-360.321" stroke="white"/>
+<path d="M-67 218.627L318.673 -241" stroke="white"/>
+<line x1="-67.383" y1="178.305" x2="318.29" y2="-281.321" stroke="white"/>
+<line x1="-67.383" y1="159.305" x2="318.29" y2="-300.321" stroke="white"/>
+<line x1="-67.383" y1="238.305" x2="318.29" y2="-221.321" stroke="white"/>
+<line x1="-67.383" y1="198.305" x2="318.29" y2="-261.321" stroke="white"/>
+<line x1="-67.383" y1="298.305" x2="318.29" y2="-161.321" stroke="white"/>
+<line x1="-67.383" y1="258.305" x2="318.29" y2="-201.321" stroke="white"/>
+<path d="M-67 278.627L318.673 -181" stroke="white"/>
+<line x1="-67.383" y1="358.305" x2="318.29" y2="-101.321" stroke="white"/>
+<path d="M-67 338.627L318.673 -121" stroke="white"/>
+<line x1="-67.383" y1="318.305" x2="318.29" y2="-141.321" stroke="white"/>
+<line x1="-67.383" y1="78.3053" x2="318.29" y2="-381.321" stroke="white"/>
+<path d="M-67 557.627L318.673 98" stroke="white"/>
+<line x1="-67.383" y1="538.305" x2="318.29" y2="78.6786" stroke="white"/>
+<line x1="-67.383" y1="518.305" x2="318.29" y2="58.6786" stroke="white"/>
+<path d="M-67 637.627L318.673 178" stroke="white"/>
+<line x1="-67.383" y1="597.305" x2="318.29" y2="137.679" stroke="white"/>
+<line x1="-67.383" y1="578.305" x2="318.29" y2="118.679" stroke="white"/>
+<line x1="-67.383" y1="657.305" x2="318.29" y2="197.679" stroke="white"/>
+<line x1="-67.383" y1="617.305" x2="318.29" y2="157.679" stroke="white"/>
+<line x1="-67.383" y1="717.305" x2="318.29" y2="257.679" stroke="white"/>
+<line x1="-67.383" y1="677.305" x2="318.29" y2="217.679" stroke="white"/>
+<path d="M-67 697.627L318.673 238" stroke="white"/>
+<line x1="-67.383" y1="497.305" x2="318.29" y2="37.6785" stroke="white"/>
+<path d="M-67 477.627L318.673 17.9999" stroke="white"/>
+<line x1="-67.383" y1="457.305" x2="318.29" y2="-2.32147" stroke="white"/>
+<line x1="-67.383" y1="437.305" x2="318.29" y2="-22.3215" stroke="white"/>
+<path d="M-67 417.627L318.673 -42.0001" stroke="white"/>
+<line x1="-67.383" y1="398.305" x2="318.29" y2="-61.3215" stroke="white"/>
+<line x1="-67.383" y1="378.305" x2="318.29" y2="-81.3215" stroke="white"/>
+<path d="M318.673 138.627L-67 -321" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 119.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 99.6266)" stroke="white"/>
+<path d="M318.673 218.627L-67 -241" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 178.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 159.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 238.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 198.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 298.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 258.627)" stroke="white"/>
+<path d="M318.673 278.627L-67 -181" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 358.627)" stroke="white"/>
+<path d="M318.673 338.627L-67 -121" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 318.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 78.6266)" stroke="white"/>
+<path d="M318.673 557.627L-67 98" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 538.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 518.627)" stroke="white"/>
+<path d="M318.673 637.627L-67 178" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 597.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 578.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 657.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 617.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 717.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 677.627)" stroke="white"/>
+<path d="M318.673 697.627L-67 238" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 497.627)" stroke="white"/>
+<path d="M318.673 477.627L-67 17.9999" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 457.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 437.627)" stroke="white"/>
+<path d="M318.673 417.627L-67 -42.0001" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 398.627)" stroke="white"/>
+<line y1="-0.5" x2="600" y2="-0.5" transform="matrix(-0.642788 -0.766044 -0.766044 0.642788 318.673 378.627)" stroke="white"/>
 </g>
-</g>
-<defs>
-<filter id="filter0_d_4_448" x="0" y="0" width="258" height="358" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="2"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4_448"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4_448" result="shape"/>
-</filter>
-<clipPath id="clip0_4_448">
-<rect width="250" height="350" fill="white" transform="translate(4)"/>
-</clipPath>
-</defs>
 </svg>

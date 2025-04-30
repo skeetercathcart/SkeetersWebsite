@@ -1,5 +1,7 @@
 import '../../css/blackjack.css'
+// Card Backs
 import CardBack1 from '../../assets/cardBacks/CardBack1.svg'
+import CardBack2 from '../../assets/cardBacks/CardBack2.svg'
 // Ace cards
 import sA from '../../assets/cardImages/Spades_A.svg'
 import s2 from '../../assets/cardImages/Spades_2.svg'
@@ -58,9 +60,33 @@ import dQ from '../../assets/cardImages/Diamonds_Q.svg'
 import dK from '../../assets/cardImages/Diamonds_K.svg'
 import { useState, useEffect } from 'react'
 
+
+
+
+
+
+
+
 const BlackJack = () => {
 
-    const [deck, setDeck] = useState(Array.from({ length: 52 }, (_, i) => i + 1))
+    //const [deck, setDeck] = useState(Array.from({ length: 52 }, (_, i) => i + 1))
+    const [deck, setDeck] = useState([sA, s2, s3, s4, s5, s6, s7, s8, s9, s10, sJ, sQ, sK,
+                                      cA, c2, c3, c4, c5, c6, c7, c8, c9, c10, cJ, cQ, cK,
+                                      dA, d2, d3, d4, d5, d6, d7, d8, d9, d10, dJ, dQ, dK,
+                                      hA, h2, h3, h4, h5, h6, h7, h8, h9, h10, hJ, hQ, hK,
+    ])
+    const [gameDeck, setGameDeck] = useState([])
+    const [stay, setStay] = useState(false)
+    const [push, setPush] = useState(false)
+    const [dealerWin, setDealerWin] = useState(false)
+    const [playerWin, setPlayerWin] = useState(false)
+    const [dealerStay, setDealerStay] = useState(false)
+    const [playerScore, setPlayerScore] = useState(0)
+    const [dealerScore, setDealerScore] = useState(0)
+    const [playerCards, setPlayerCards] = useState([])
+    const [dealerCards, setDealerCards] = useState([])
+    const [playerBust, setPlayerBust] = useState(false)
+    const [dealerBust, setDealerBust] = useState(false)
 
     // Accepts a deck of cards as an array. Returns a randomized copy of that array. 
     const shuffleDeck = (deck) => {
@@ -77,70 +103,177 @@ const BlackJack = () => {
              
         }
 
-        setDeck(shuffledDeck)
+        setGameDeck(shuffledDeck)
+        const newDealerCards = [shuffledDeck[0]]
+        const newPlayerCards = [shuffledDeck[1], shuffledDeck[2]]
+        setDealerCards(newDealerCards)
+        setPlayerCards(newPlayerCards)
+        const freshPlayerScore = calculateScore(playerCards)
+        setPlayerScore(freshPlayerScore)
+        const freshDealerScore = calculateScore(dealerCards)
+        setDealerScore(freshDealerScore)
+    }
+
+    const calculateScore = (hand) => {
+        let tempScore = 0;
+        let aceCount = 0;
+
+        hand.forEach(card => {
+            const cardValue = getCardValue(card);
+            tempScore += cardValue
+            if (card.includes('A')) {
+                aceCount += 1
+            }
+        })
+
+        return ( tempScore )
+
+    }
+
+    const getCardValue = (card) => {
+        // Elements in the array are url links, they are not string of the variable names (i.e. s2, s3, s4 etc...)
+        // Extract the part like "Diamonds_9" or "Spades_K"
+        const match = card.match(/\/([A-Za-z]+)_(\d+|A|J|Q|K)\./);
+        const rank = match ? match[2] : '';
+
+        if (rank === 'A') return 11;
+        if (['K', 'Q', 'J', '10'].includes(rank)) return 10;
+        return parseInt(rank); // numbers 2-9
+    }
+
+    
+    const handlePlayerBustClick = () => {
+        shuffleDeck(deck)
+    }
+
+    // Cleanup and reset
+    const resetGame = () => {
+        setStay(false);
+        setDealerStay(false);
+        setPlayerBust(false);
+        setDealerBust(false);
+        setDealerWin(false);
+        setPlayerWin(false);
+        shuffleDeck(deck);
+    };
+
+    const handlePlayerHitButton = () => {
+        // Use a hit counter to properly deal new cards
+        const nextCard = gameDeck[playerCards.length + dealerCards.length]
+        setPlayerCards([...playerCards, nextCard])
+        setPlayerScore(calculateScore(playerCards))
+    }
+
+    const hitDealer = () => {
+        const nextCard = gameDeck[playerCards.length + dealerCards.length];
+        setDealerCards((prev) => [...prev, nextCard]);
+    };
+
+    const handlePlayerStayButton = () => {
+        setStay(true)
     }
 
     useEffect(() => {
             shuffleDeck(deck)
     }, [])
 
+    useEffect(() => {
+        if (stay && dealerScore < 17) {
+            hitDealer();
+        }
+    }, [stay, dealerScore]);
+    
+
+    useEffect(() => {
+        if (dealerCards.length > 0) {
+            const score = calculateScore(dealerCards);
+            setDealerScore(score);
+        }
+    }, [dealerCards]);
+
+    useEffect(() => {
+        if (stay) {
+            if (dealerScore < 17) {
+                // Delay dealer hit to look natural
+                const timer = setTimeout(() => {
+                    hitDealer();
+                }, 1000); // 1 second delay for realism
+                return () => clearTimeout(timer);
+            } else if (dealerScore > 21) {
+                setDealerBust(true);
+            } else {
+                // Dealer stays automatically if 17-21
+                if (dealerScore > playerScore) {
+                    console.log("Dealer wins");
+                    setDealerWin(true)
+                }  else if (playerScore > dealerScore) { 
+                    console.log("Player wins")
+                    setPlayerWin(true)
+                } else if (playerScore === dealerScore) {
+                    setPush(true)
+                }
+            }
+        }
+    }, [dealerScore, stay]);
+
+    useEffect(() => {
+        if(playerCards){
+            setPlayerScore(calculateScore(playerCards));
+        }
+    }, [playerCards]);
+
+    useEffect(() => {
+        if(playerScore > 21) {
+            setPlayerBust(true)
+        }
+    }, [playerScore])
+
+
+
     return (
-        <div> 
-            <img className = "card-back" src = {CardBack1} alt="Playing Card"></img>
-            <img className = "card-back" src = {sA} alt="Playing Card"></img>
-            <img className = "card-back" src = {s2} alt="Playing Card"></img>
-            <img className = "card-back" src = {s3} alt="Playing Card"></img>
-            <img className = "card-back" src = {s4} alt="Playing Card"></img>
-            <img className = "card-back" src = {s5} alt="Playing Card"></img>
-            <img className = "card-back" src = {s6} alt="Playing Card"></img>
-            <img className = "card-back" src = {s7} alt="Playing Card"></img>
-            <img className = "card-back" src = {s8} alt="Playing Card"></img>
-            <img className = "card-back" src = {s9} alt="Playing Card"></img>
-            <img className = "card-back" src = {s10} alt="Playing Card"></img>
-            <img className = "card-back" src = {sJ} alt="Playing Card"></img>
-            <img className = "card-back" src = {sQ} alt="Playing Card"></img>
-            <img className = "card-back" src = {sK} alt="Playing Card"></img>
-            <img className = "card-back" src = {cA} alt="Playing Card"></img>
-            <img className = "card-back" src = {c2} alt="Playing Card"></img>
-            <img className = "card-back" src = {c3} alt="Playing Card"></img>
-            <img className = "card-back" src = {c4} alt="Playing Card"></img>
-            <img className = "card-back" src = {c5} alt="Playing Card"></img>
-            <img className = "card-back" src = {c6} alt="Playing Card"></img>
-            <img className = "card-back" src = {c7} alt="Playing Card"></img>
-            <img className = "card-back" src = {c8} alt="Playing Card"></img>
-            <img className = "card-back" src = {c9} alt="Playing Card"></img>
-            <img className = "card-back" src = {c10} alt="Playing Card"></img>
-            <img className = "card-back" src = {cJ} alt="Playing Card"></img>
-            <img className = "card-back" src = {cQ} alt="Playing Card"></img>
-            <img className = "card-back" src = {cK} alt="Playing Card"></img>
-            <img className = "card-back" src = {hA} alt="Playing Card"></img>
-            <img className = "card-back" src = {dA} alt="Playing Card"></img>
-            <img className = "card-back" src = {h2} alt="Playing Card"></img>
-            <img className = "card-back" src = {h3} alt="Playing Card"></img>
-            <img className = "card-back" src = {h4} alt="Playing Card"></img>
-            <img className = "card-back" src = {h5} alt="Playing Card"></img>
-            <img className = "card-back" src = {h6} alt="Playing Card"></img>
-            <img className = "card-back" src = {h7} alt="Playing Card"></img>
-            <img className = "card-back" src = {h8} alt="Playing Card"></img>
-            <img className = "card-back" src = {h9} alt="Playing Card"></img>
-            <img className = "card-back" src = {h10} alt="Playing Card"></img>
-            <img className = "card-back" src = {hJ} alt="Playing Card"></img>
-            <img className = "card-back" src = {hQ} alt="Playing Card"></img>
-            <img className = "card-back" src = {hK} alt="Playing Card"></img>
-            <img className = "card-back" src = {hA} alt="Playing Card"></img>
-            <img className = "card-back" src = {dA} alt="Playing Card"></img>
-            <img className = "card-back" src = {d2} alt="Playing Card"></img>
-            <img className = "card-back" src = {d3} alt="Playing Card"></img>
-            <img className = "card-back" src = {d4} alt="Playing Card"></img>
-            <img className = "card-back" src = {d5} alt="Playing Card"></img>
-            <img className = "card-back" src = {d6} alt="Playing Card"></img>
-            <img className = "card-back" src = {d7} alt="Playing Card"></img>
-            <img className = "card-back" src = {d8} alt="Playing Card"></img>
-            <img className = "card-back" src = {d9} alt="Playing Card"></img>
-            <img className = "card-back" src = {d10} alt="Playing Card"></img>
-            <img className = "card-back" src = {dJ} alt="Playing Card"></img>
-            <img className = "card-back" src = {dQ} alt="Playing Card"></img>
-            <img className = "card-back" src = {dK} alt="Playing Card"></img>
+        <div className = "casino-container"> 
+            <div className = "dealer">
+                {dealerBust === true && 
+                <button className = "bust" onClick = {resetGame}>BUST</button>}
+                {dealerWin ===  true && 
+                <div className = "win">WIN</div>}
+                {push ===  true && 
+                <div className = "push">PUSH</div>}
+                <img className = "card-back" src = {dealerCards[0]} alt="Playing Card"></img>
+                {(stay === false) ? 
+                (<img className = "card-back" src = {CardBack1} alt="Playing Card"></img>) :
+                (dealerCards.slice(1).map((card, index) => (
+                    <img key={index} className = "card-back" src = {card} alt = "Playing Card"/>
+                )))
+                }
+            </div>
+            <div className = "score-card">
+                <div className = "score"> {dealerScore} </div>
+                <button className = "hit-btn" onClick = {handlePlayerHitButton}>Hit</button> 
+                {(playerBust === false) && (stay === false) ? 
+                (<button className = "hit-btn" onClick = {handlePlayerStayButton}>Stay</button>) : 
+                (<button className = "hit-btn" onClick = {resetGame}>Reset</button>)
+                } 
+                <div className = "score">{playerScore}</div>
+            </div>
+            <div className = "player">
+                {playerBust === true && 
+                <div className = "bust">BUST</div>}
+                {playerWin ===  true && 
+                <div className = "win">WIN</div>}
+                {push ===  true && 
+                <div className = "push">PUSH</div>}
+                {playerCards &&
+                    playerCards.map((_, index) => (
+                    <img 
+                        key={index} 
+                        className="card-back" 
+                        src={playerCards[index]} 
+                        alt="Playing Card" 
+                    />
+                    ))
+                }
+            </div>
         </div>
     )
 }
