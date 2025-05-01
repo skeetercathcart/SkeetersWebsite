@@ -1,80 +1,16 @@
 import '../../css/blackjack.css'
+import { deck1, deck2 } from '../../assets/decks'
+import { useState, useEffect } from 'react'
 // Card Backs
 import CardBack1 from '../../assets/cardBacks/CardBack1.svg'
 import CardBack2 from '../../assets/cardBacks/CardBack2.svg'
-// Ace cards
-import sA from '../../assets/cardImages/Spades_A.svg'
-import s2 from '../../assets/cardImages/Spades_2.svg'
-import s3 from '../../assets/cardImages/Spades_3.svg'
-import s4 from '../../assets/cardImages/Spades_4.svg'
-import s5 from '../../assets/cardImages/Spades_5.svg'
-import s6 from '../../assets/cardImages/Spades_6.svg'
-import s7 from '../../assets/cardImages/Spades_7.svg'
-import s8 from '../../assets/cardImages/Spades_8.svg'
-import s9 from '../../assets/cardImages/Spades_9.svg'
-import s10 from '../../assets/cardImages/Spades_10.svg'
-import sJ from '../../assets/cardImages/Spades_J.svg'
-import sQ from '../../assets/cardImages/Spades_Q.svg'
-import sK from '../../assets/cardImages/Spades_K.svg'
-// Club cards
-import cA from '../../assets/cardImages/Clubs_A.svg'
-import c2 from '../../assets/cardImages/Clubs_2.svg'
-import c3 from '../../assets/cardImages/Clubs_3.svg'
-import c4 from '../../assets/cardImages/Clubs_4.svg'
-import c5 from '../../assets/cardImages/Clubs_5.svg'
-import c6 from '../../assets/cardImages/Clubs_6.svg'
-import c7 from '../../assets/cardImages/Clubs_7.svg'
-import c8 from '../../assets/cardImages/Clubs_8.svg'
-import c9 from '../../assets/cardImages/Clubs_9.svg'
-import c10 from '../../assets/cardImages/Clubs_10.svg'
-import cJ from '../../assets/cardImages/Clubs_J.svg'
-import cQ from '../../assets/cardImages/Clubs_Q.svg'
-import cK from '../../assets/cardImages/Clubs_K.svg'
-// Heart (of the) cards
-import hA from '../../assets/cardImages/Hearts_A.svg'
-import h2 from '../../assets/cardImages/Hearts_2.svg'
-import h3 from '../../assets/cardImages/Hearts_3.svg'
-import h4 from '../../assets/cardImages/Hearts_4.svg'
-import h5 from '../../assets/cardImages/Hearts_5.svg'
-import h6 from '../../assets/cardImages/Hearts_6.svg'
-import h7 from '../../assets/cardImages/Hearts_7.svg'
-import h8 from '../../assets/cardImages/Hearts_8.svg'
-import h9 from '../../assets/cardImages/Hearts_9.svg'
-import h10 from '../../assets/cardImages/Hearts_10.svg'
-import hJ from '../../assets/cardImages/Hearts_J.svg'
-import hQ from '../../assets/cardImages/Hearts_Q.svg'
-import hK from '../../assets/cardImages/Hearts_K.svg'
-// Diamond cards
-import dA from '../../assets/cardImages/Diamonds_A.svg'
-import d2 from '../../assets/cardImages/Diamonds_2.svg'
-import d3 from '../../assets/cardImages/Diamonds_3.svg'
-import d4 from '../../assets/cardImages/Diamonds_4.svg'
-import d5 from '../../assets/cardImages/Diamonds_5.svg'
-import d6 from '../../assets/cardImages/Diamonds_6.svg'
-import d7 from '../../assets/cardImages/Diamonds_7.svg'
-import d8 from '../../assets/cardImages/Diamonds_8.svg'
-import d9 from '../../assets/cardImages/Diamonds_9.svg'
-import d10 from '../../assets/cardImages/Diamonds_10.svg'
-import dJ from '../../assets/cardImages/Diamonds_J.svg'
-import dQ from '../../assets/cardImages/Diamonds_Q.svg'
-import dK from '../../assets/cardImages/Diamonds_K.svg'
-import { useState, useEffect } from 'react'
-
-
-
-
-
-
 
 
 const BlackJack = () => {
 
-    //const [deck, setDeck] = useState(Array.from({ length: 52 }, (_, i) => i + 1))
-    const [deck, setDeck] = useState([sA, s2, s3, s4, s5, s6, s7, s8, s9, s10, sJ, sQ, sK,
-                                      cA, c2, c3, c4, c5, c6, c7, c8, c9, c10, cJ, cQ, cK,
-                                      dA, d2, d3, d4, d5, d6, d7, d8, d9, d10, dJ, dQ, dK,
-                                      hA, h2, h3, h4, h5, h6, h7, h8, h9, h10, hJ, hQ, hK,
-    ])
+    const [deck, setDeck] = useState(deck1)
+    const [activeDeck, setActiveDeck] = useState(deck1)
+    const [activeBack, setActiveBack] = useState(CardBack1)
     const [gameDeck, setGameDeck] = useState([])
     const [stay, setStay] = useState(false)
     const [push, setPush] = useState(false)
@@ -88,10 +24,24 @@ const BlackJack = () => {
     const [playerBust, setPlayerBust] = useState(false)
     const [dealerBust, setDealerBust] = useState(false)
 
+    // Takes imported deck object and turns it into and array of just image paths
+    const flattenDeck = (deckObj) => {
+        const cards = [] // Initialize empty array
+        for (const suit in deckObj) { // Each suit is its own attribute, loop through each
+            console.log('deck object suit: ' + JSON.stringify(deckObj[suit]))
+            for (const rank in deckObj[suit]) { // Path is stored under each rank
+                console.log('deck object rank: ' + JSON.stringify(deckObj[suit][rank]))
+                cards.push(deckObj[suit][rank].default) // Push the image path (stored as 'default' attribute ) for each rank of each suit
+            }
+        }
+        return(cards)
+    }
+
     // Accepts a deck of cards as an array. Returns a randomized copy of that array. 
     const shuffleDeck = (deck) => {
-  
-        const shuffledDeck = [...deck];
+        
+        const flatDeck = flattenDeck(deck)
+        const shuffledDeck = [...flatDeck];
         let q;
         // Loop through deck. Hardcoded to be one deck, could be implemented similiarly for multiple decks.
         for(let i = 0; i < 52; i++) {
@@ -141,9 +91,13 @@ const BlackJack = () => {
         return parseInt(rank); // numbers 2-9
     }
 
-    
-    const handlePlayerBustClick = () => {
-        shuffleDeck(deck)
+    const handleDeckSelectClick = (deckName) => {
+        setDeck(deckName)
+        if(deckName === deck1) {
+            setActiveBack(CardBack1)
+        } else if(deckName === deck2) {
+            setActiveBack(CardBack2)
+        }
     }
 
     // Cleanup and reset
@@ -198,7 +152,7 @@ const BlackJack = () => {
                 // Delay dealer hit to look natural
                 const timer = setTimeout(() => {
                     hitDealer();
-                }, 1000); // 1 second delay for realism
+                }, 4000); // 1 second delay for realism
                 return () => clearTimeout(timer);
             } else if (dealerScore > 21) {
                 setDealerBust(true);
@@ -229,10 +183,24 @@ const BlackJack = () => {
         }
     }, [playerScore])
 
+    useEffect(() => {
+        shuffleDeck(deck)
+    }, [deck])
+
 
 
     return (
         <div className = "casino-container"> 
+            <div className = 'card-select'>
+                <div className = 'card-option' onClick = {() => handleDeckSelectClick(deck1)}>
+                    <img className = "card-preview" src = {deck1.spades.A.default} alt="Playing Card"></img>
+                    <img className = "card-preview" src = {CardBack1} alt="Playing Card"></img>
+                </div>
+                <div className = 'card-option' onClick = {() => handleDeckSelectClick(deck2)}>
+                    <img className = "card-preview" src = {deck2.spades.A.default} alt="Playing Card"></img>
+                    <img className = "card-preview" src = {CardBack2} alt="Playing Card"></img>
+                </div>
+            </div>
             <div className = "dealer">
                 {dealerBust === true && 
                 <button className = "bust" onClick = {resetGame}>BUST</button>}
@@ -242,9 +210,11 @@ const BlackJack = () => {
                 <div className = "push">PUSH</div>}
                 <img className = "card-back" src = {dealerCards[0]} alt="Playing Card"></img>
                 {(stay === false) ? 
-                (<img className = "card-back" src = {CardBack1} alt="Playing Card"></img>) :
+                (<img className = "card-back" src = {activeBack} alt="Playing Card"></img>) :
                 (dealerCards.slice(1).map((card, index) => (
-                    <img key={index} className = "card-back" src = {card} alt = "Playing Card"/>
+                    <img key={index} className = "card-back" src = {card} alt = "Playing Card" style = {{ 
+                        marginLeft: `-100px`
+                    }}/>
                 )))
                 }
             </div>
@@ -265,14 +235,20 @@ const BlackJack = () => {
                 {push ===  true && 
                 <div className = "push">PUSH</div>}
                 {playerCards &&
-                    playerCards.map((_, index) => (
-                    <img 
-                        key={index} 
-                        className="card-back" 
-                        src={playerCards[index]} 
-                        alt="Playing Card" 
-                    />
-                    ))
+                    <img src = {playerCards[0]} ></img> &&
+                    playerCards.map((card, index) => {
+                        return (
+                            <img 
+                                key={index} 
+                                className="playing-card" 
+                                src={card} 
+                                alt="Playing Card" 
+                                style={{
+                                    marginLeft: `-100px`
+                                }}
+                            />
+                        );
+                    })
                 }
             </div>
         </div>

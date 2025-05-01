@@ -9,7 +9,6 @@
 
 .player {
     position: relative;
-    background-color: white;
     justify-content: center;
     align-items: center;
     max-width: 1020px;
@@ -26,6 +25,10 @@
 
 .card-back:hover {
     transform: scale(1.05);
+}
+
+.playing-card {
+    
 }
 
 .score-card {
@@ -106,4 +109,33 @@ align-items: center;
     height: 40%;
     border: rgb(173, 172, 87) 8px solid;
     z-index: 10;
+}
+
+.card-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 92%;
+    background-color: green;
+    width: 250px;
+}
+
+.card-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.card-option:hover {
+    cursor: pointer;
+    transform: scale(1.5) translateX(100px);
+}
+
+.card-preview {
+    height: 140px;
+    width: 100px;
 }
