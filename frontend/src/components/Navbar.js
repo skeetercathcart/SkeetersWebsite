@@ -12,6 +12,9 @@ const Navbar = () => {
                 <Link to="/runescapecalc">
                     <button className = 'navbar-btn'>Runescape Calc</button>
                 </Link>
+                <Link to="/blackjack">
+                    <button className = 'navbar-btn'>Blackjack</button>
+                </Link>
             </div>
         </div>
         

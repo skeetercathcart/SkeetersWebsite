@@ -1,0 +1,246 @@
+
+
+.casino-container {
+    display: flex;
+    flex-direction: row;
+    height: 92vh;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.play-container {
+    width: 40vw;
+}
+
+.player {
+    display: flex;
+    padding-left: 100px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    max-width: 1020px;
+    margin-top: auto;
+}
+
+.dealer {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    max-width: 1020px;
+    margin-top: auto;
+}
+
+.card-back {
+}
+
+
+.card-back:hover {
+    transform: scale(1.05);
+}
+
+.playing-card {
+    
+}
+
+.score-card {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 12vh;
+
+}
+
+.player-score-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-bottom: black solid 2px;
+    border-top: black dashed 1px;
+    border-left: black dashed 1px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    font-size: large;
+    font-weight: bold;
+}
+
+.dealer-score-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-top: black dashed 1px;
+    border-right: black dashed 1px;
+    grid-column-start: 9;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    border-bottom: black 2px solid;
+    font-size: large;
+    font-weight: bold;
+}
+
+.player-score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-left: black dashed 1px;
+    border-bottom: black dashed 1px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 7;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.dealer-score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-right: black dashed 1px;
+    border-bottom: black dashed 1px;
+    grid-column-start: 9;
+    grid-column-end: 11;
+    grid-row-start: 3;
+    grid-row-end: 7;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.stay-btn {
+    cursor: pointer;
+    height: 100%;
+    grid-column-start: 3;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 7;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.hit-btn {
+    cursor: pointer;
+    height: 100%;
+    grid-column-start:6;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 7;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.bust {
+    position: absolute;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: yellow;
+    background-color: rgba(255, 0, 0, 0.6);
+    bottom: 30%;
+    left: 30%; 
+    transform: rotate(-30deg);
+    align-content: center;
+    width: 40%;
+    height: 40%;
+    border: red 8px solid;
+    z-index: 10;
+}
+
+.bust:hover {
+    cursor: pointer;
+}
+
+.win {
+    position: absolute;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: yellow;
+    background-color: rgba(77, 255, 115, 0.6);
+    bottom: 30%;
+    left: 30%; 
+    transform: rotate(-30deg);
+    align-content: center;
+    width: 40%;
+    height: 40%;
+    border: green 8px solid;
+    z-index: 10;
+
+}
+
+.push {
+    position: absolute;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: yellow;
+    background-color: rgba(117, 77, 25, 0.6);
+    bottom: 30%;
+    left: 30%; 
+    transform: rotate(-30deg);
+    align-content: center;
+    width: 40%;
+    height: 40%;
+    border: rgb(173, 172, 87) 8px solid;
+    z-index: 10;
+}
+
+.card-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    height: 100%;
+}
+
+.card-option {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.card-option:hover {
+    cursor: pointer;
+    transform: scale(1.5) translateX(50px);
+}
+
+.card-preview {
+    height: 140px;
+    width: 100px;
+    box-shadow: black 5 0 0;
+}
+
+.card-style-header {
+    width: 100%;
+    font-weight: bold;
+    border-bottom: black 2px solid;
+    padding: 3px;
+    text-align: center; 
+}
+
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 15%;
+}
+
+li {
+    padding-top: 4px;
+}
