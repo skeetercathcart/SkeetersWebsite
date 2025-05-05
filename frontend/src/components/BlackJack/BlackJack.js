@@ -98,6 +98,7 @@ const BlackJack = () => {
         } else if(deckName === deck2) {
             setActiveBack(CardBack2)
         }
+        resetGame()
     }
 
     // Cleanup and reset
@@ -219,13 +220,15 @@ const BlackJack = () => {
                 }
             </div>
             <div className = "score-card">
-                <div className = "score"> {dealerScore} </div>
+                <div className = "dealer-score-title">Dealer Score</div>
+                <div className = "dealer-score"> {dealerScore} </div>
                 <button className = "hit-btn" onClick = {handlePlayerHitButton}>Hit</button> 
                 {(playerBust === false) && (stay === false) ? 
-                (<button className = "hit-btn" onClick = {handlePlayerStayButton}>Stay</button>) : 
-                (<button className = "hit-btn" onClick = {resetGame}>Reset</button>)
+                (<button className = "stay-btn" onClick = {handlePlayerStayButton}>Stay</button>) : 
+                (<button className = "stay-btn" onClick = {resetGame}>Reset</button>)
                 } 
-                <div className = "score">{playerScore}</div>
+                <div className = "player-score-title">Player Score</div>
+                <div className = "player-score">{playerScore}</div>
             </div>
             <div className = "player">
                 {playerBust === true && 
