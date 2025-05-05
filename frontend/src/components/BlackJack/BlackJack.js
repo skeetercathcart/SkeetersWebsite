@@ -198,6 +198,7 @@ const BlackJack = () => {
     return (
         <div className = "casino-container"> 
             <div className = 'card-select'>
+                <h className = "card-style-header">Select Card Style</h>
                 <div className = 'card-option' onClick = {() => handleDeckSelectClick(deck1)}>
                     <img className = "card-preview" src = {deck1.spades.A.default} alt="Playing Card"></img>
                     <img className = "card-preview" src = {CardBack1} alt="Playing Card"></img>
@@ -207,57 +208,79 @@ const BlackJack = () => {
                     <img className = "card-preview" src = {CardBack2} alt="Playing Card"></img>
                 </div>
             </div>
-            <div className = "dealer">
-                {dealerBust === true && 
-                <button className = "bust" onClick = {resetGame}>BUST</button>}
-                {dealerWin ===  true && 
-                <div className = "win">WIN</div>}
-                {push ===  true && 
-                <div className = "push">PUSH</div>}
-                <img className = "card-back" src = {dealerCards[0]} alt="Playing Card"></img>
-                {(stay === false) ? 
-                (<img className = "card-back" src = {activeBack} alt="Playing Card"></img>) :
-                (dealerCards.slice(1).map((card, index) => (
-                    <img key={index} className = "card-back" src = {card} alt = "Playing Card" style = {{ 
-                        marginLeft: `-100px`
-                    }}/>
-                )))
-                }
+            <div className = "play-container">
+                <div className = "dealer">
+                    {dealerBust === true && 
+                    <button className = "bust" onClick = {resetGame}>BUST</button>}
+                    {dealerWin ===  true && 
+                    <div className = "win">WIN</div>}
+                    {push ===  true && 
+                    <div className = "push">PUSH</div>}
+                    <img className = "card-back" src = {dealerCards[0]} alt="Playing Card"></img>
+                    {(stay === false) ? 
+                    (<img className = "card-back" src = {activeBack} alt="Playing Card"></img>) :
+                    (dealerCards.slice(1).map((card, index) => (
+                        <img key={index} className = "card-back" src = {card} alt = "Playing Card" style = {{ 
+                            marginLeft: `-100px`
+                        }}/>
+                    )))
+                    }
+                </div>
+                <div className = "score-card">
+                    <div className = "dealer-score-title">Dealer Score</div>
+                    <div className = "dealer-score"> {dealerScore} </div>
+                    <button className = "hit-btn" onClick = {handlePlayerHitButton}>Hit</button> 
+                    {(playerBust === false) && (stay === false) ? 
+                    (<button className = "stay-btn" onClick = {handlePlayerStayButton}>Stay</button>) : 
+                    (<button className = "stay-btn" onClick = {resetGame}>Reset</button>)
+                    } 
+                    <div className = "player-score-title">Player Score</div>
+                    <div className = "player-score">{playerScore}</div>
+                </div>
+                <div className = "player">
+                    {playerBust === true && 
+                    <div className = "bust">BUST</div>}
+                    {playerWin ===  true && 
+                    <div className = "win">WIN</div>}
+                    {push ===  true && 
+                    <div className = "push">PUSH</div>}
+                    {playerCards &&
+                        <img src = {playerCards[0]} ></img> &&
+                        playerCards.map((card, index) => {
+                            return (
+                                <img 
+                                    key={index} 
+                                    className="playing-card" 
+                                    src={card} 
+                                    alt="Playing Card" 
+                                    style={{
+                                        marginLeft: `-100px`
+                                    }}
+                                />
+                            );
+                        })
+                    }
+                </div>
             </div>
-            <div className = "score-card">
-                <div className = "dealer-score-title">Dealer Score</div>
-                <div className = "dealer-score"> {dealerScore} </div>
-                <button className = "hit-btn" onClick = {handlePlayerHitButton}>Hit</button> 
-                {(playerBust === false) && (stay === false) ? 
-                (<button className = "stay-btn" onClick = {handlePlayerStayButton}>Stay</button>) : 
-                (<button className = "stay-btn" onClick = {resetGame}>Reset</button>)
-                } 
-                <div className = "player-score-title">Player Score</div>
-                <div className = "player-score">{playerScore}</div>
-            </div>
-            <div className = "player">
-                {playerBust === true && 
-                <div className = "bust">BUST</div>}
-                {playerWin ===  true && 
-                <div className = "win">WIN</div>}
-                {push ===  true && 
-                <div className = "push">PUSH</div>}
-                {playerCards &&
-                    <img src = {playerCards[0]} ></img> &&
-                    playerCards.map((card, index) => {
-                        return (
-                            <img 
-                                key={index} 
-                                className="playing-card" 
-                                src={card} 
-                                alt="Playing Card" 
-                                style={{
-                                    marginLeft: `-100px`
-                                }}
-                            />
-                        );
-                    })
-                }
+            <div className = "rules-container"> 
+                <h2>Blackjack Rules</h2>
+                <ul>
+                    <li>The goal is to get as close to <strong>21</strong> as possible without going over.</li>
+                    <li>Each player is dealt 2 cards. The dealer also gets 2 cards (one face down).</li>
+                    <li>Cards 2-10 are worth their face value.</li>
+                    <li>Face cards (J, Q, K) are worth 10 points.</li>
+                    <li>Aces can be worth <strong>1 or 11</strong>, whichever is better for your hand.</li>
+                    <li>If your first two cards total 21 (Ace + 10 or face card), that’s called <strong>Blackjack</strong> and you win — unless the dealer also has Blackjack (a tie).</li>
+                    <li>You can choose to:
+                        <ul>
+                            <li><strong>Hit</strong> (take another card)</li>
+                            <li><strong>Stand</strong> (keep your current hand)</li>
+                        </ul>
+                    </li>
+                    <li>If your total goes over 21, you <strong>bust</strong> and lose the round.</li>
+                    <li>The dealer must hit until they reach at least 17 points.</li>
+                    <li>If you have a higher score than the dealer without busting, you win!</li>
+                </ul>
             </div>
         </div>
     )

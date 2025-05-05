@@ -1,13 +1,21 @@
-.casino-container{
+
+
+.casino-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    height: 92vh;
+    justify-content: space-between;
     align-items: center;
-    min-height:90vh;
 
 }
 
+.play-container {
+    width: 40vw;
+}
+
 .player {
+    display: flex;
+    padding-left: 100px;
     position: relative;
     justify-content: center;
     align-items: center;
@@ -16,7 +24,12 @@
 }
 
 .dealer {
+    display: flex;
     position: relative;
+    justify-content: center;
+    align-items: center;
+    max-width: 1020px;
+    margin-top: auto;
 }
 
 .card-back {
@@ -36,11 +49,10 @@
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(6, 1fr);
     margin: 10px;
-    width: 40vw;
     justify-content: center;
     align-items: center;
     height: 12vh;
-    
+
 }
 
 .player-score-title{
@@ -187,18 +199,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
     left: 0;
     bottom: 0;
-    height: 92%;
-    background-color: green;
-    width: 250px;
+    width: 280px;
+    height: 100%;
 }
 
 .card-option {
     display: flex;
+    margin-top: 10px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
     transition: transform 0.5s ease;
 }
@@ -211,4 +222,25 @@
 .card-preview {
     height: 140px;
     width: 100px;
+    box-shadow: black 5 0 0;
+}
+
+.card-style-header {
+    width: 100%;
+    font-weight: bold;
+    border-bottom: black 2px solid;
+    padding: 3px;
+    text-align: center; 
+}
+
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 15%;
+}
+
+li {
+    padding-top: 4px;
 }
