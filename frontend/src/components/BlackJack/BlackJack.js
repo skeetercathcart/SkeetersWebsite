@@ -76,6 +76,11 @@ const BlackJack = () => {
             }
         })
 
+        while(tempScore > 21 && aceCount > 0) {
+            tempScore = tempScore - 10
+            aceCount -= 1
+        }
+
         return ( tempScore )
 
     }
