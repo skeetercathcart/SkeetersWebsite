@@ -24,8 +24,6 @@ body {
   width: 50%;
   min-width: 460px;
   margin-right: 10px;
-  align-items: center;
-  justify-content: center;
 }
 
 .photo-container {
@@ -50,7 +48,7 @@ body {
 } */
 
 .socials-container {
-  width: 70%;
+  width: 100%;
   margin-top: auto;
   margin-left: 10px;
   border-bottom: 5px black solid;
@@ -58,4 +56,8 @@ body {
 
 .socials-link {
   margin-right: 20px;
+}
+
+.intro-text {
+  font-size: x-large;
 }
