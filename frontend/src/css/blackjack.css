@@ -15,7 +15,6 @@
 
 .player {
     display: flex;
-    padding-left: 100px;
     position: relative;
     justify-content: center;
     align-items: center;
@@ -243,4 +242,23 @@
 
 li {
     padding-top: 4px;
+}
+
+@media screen and (max-height: 900px) {
+    .playing-card {
+        height: 140px;
+        width: 100px;
+    }
+    .card-select {
+        display: none;
+    }
+    .rules-container {
+        display: none;
+    }
+    .casino-container {
+        justify-content: center;
+    }
+    .play-container {
+        min-width: 600px;
+    }
 }
