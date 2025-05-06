@@ -13,7 +13,7 @@ const LandingPage = () => {
                     <li>Welcome to my website portfolio!</li>
                     <li>I created this using a MERN stack and hosted with Render.</li>
                     <br></br>
-                    <li>Note: The backend spins up on-demand, so thing like Runescape Calc may take a moment to load.</li>
+                    <li>Note: The backend spins up on-demand, so things like Runescape Calc may take a moment to load.</li>
                 </ul>
                 <div className = "socials-container">
                     <a href = "https://github.com/skeetercathcart">
