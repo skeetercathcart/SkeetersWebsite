@@ -216,13 +216,11 @@ const BlackJack = () => {
                     <div className = "win">WIN</div>}
                     {push ===  true && 
                     <div className = "push">PUSH</div>}
-                    <img className = "card-back" src = {dealerCards[0]} alt="Playing Card"></img>
+                    <img className = "playing-card" src = {dealerCards[0]} alt="Playing Card"></img>
                     {(stay === false) ? 
-                    (<img className = "card-back" src = {activeBack} alt="Playing Card"></img>) :
+                    (<img className = "playing-card" src = {activeBack} alt="Playing Card"></img>) :
                     (dealerCards.slice(1).map((card, index) => (
-                        <img key={index} className = "card-back" src = {card} alt = "Playing Card" style = {{ 
-                            marginLeft: `-100px`
-                        }}/>
+                        <img key={index} className = "playing-card" src = {card} alt = "Playing Card" />
                     )))
                     }
                 </div>
@@ -245,17 +243,13 @@ const BlackJack = () => {
                     {push ===  true && 
                     <div className = "push">PUSH</div>}
                     {playerCards &&
-                        <img src = {playerCards[0]} ></img> &&
                         playerCards.map((card, index) => {
                             return (
                                 <img 
                                     key={index} 
                                     className="playing-card" 
                                     src={card} 
-                                    alt="Playing Card" 
-                                    style={{
-                                        marginLeft: `-100px`
-                                    }}
+                                    alt="Playing Card"
                                 />
                             );
                         })
