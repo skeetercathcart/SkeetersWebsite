@@ -28,9 +28,7 @@ const BlackJack = () => {
     const flattenDeck = (deckObj) => {
         const cards = [] // Initialize empty array
         for (const suit in deckObj) { // Each suit is its own attribute, loop through each
-            console.log('deck object suit: ' + JSON.stringify(deckObj[suit]))
             for (const rank in deckObj[suit]) { // Path is stored under each rank
-                console.log('deck object rank: ' + JSON.stringify(deckObj[suit][rank]))
                 cards.push(deckObj[suit][rank].default) // Push the image path (stored as 'default' attribute ) for each rank of each suit
             }
         }
@@ -40,9 +38,11 @@ const BlackJack = () => {
     // Accepts a deck of cards as an array. Returns a randomized copy of that array. 
     const shuffleDeck = (deck) => {
         
+        // Convert deck from Object to Array
         const flatDeck = flattenDeck(deck)
+        // Create a copy of the deck to shuffle
         const shuffledDeck = [...flatDeck];
-        let q;
+        let q; // Counter for progression through the deck
         // Loop through deck. Hardcoded to be one deck, could be implemented similiarly for multiple decks.
         for(let i = 0; i < 52; i++) {
             // 52 - i ensures index range is only between current card and the remainder of the deck. Math.random then gives pseudo-random selection. Ok if card "swaps" with itself. 
@@ -53,21 +53,25 @@ const BlackJack = () => {
              
         }
 
+        // Use the shuffled deck and "deal" cards to the dealer and the player. Dealer gets one card because the other is "hidden"
         setGameDeck(shuffledDeck)
         const newDealerCards = [shuffledDeck[0]]
         const newPlayerCards = [shuffledDeck[1], shuffledDeck[2]]
         setDealerCards(newDealerCards)
         setPlayerCards(newPlayerCards)
+        // Calc initial scores
         const freshPlayerScore = calculateScore(playerCards)
         setPlayerScore(freshPlayerScore)
         const freshDealerScore = calculateScore(dealerCards)
         setDealerScore(freshDealerScore)
     }
 
+    // Function to calculate the score of an individual hand
     const calculateScore = (hand) => {
         let tempScore = 0;
-        let aceCount = 0;
+        let aceCount = 0; // Keep track of aces in order to adjust score if hand goes over 21
 
+        // Standard score counting
         hand.forEach(card => {
             const cardValue = getCardValue(card);
             tempScore += cardValue
@@ -76,6 +80,7 @@ const BlackJack = () => {
             }
         })
 
+        // If score is over 21, remove 10 for each ace, until under 21 again 
         while(tempScore > 21 && aceCount > 0) {
             tempScore = tempScore - 10
             aceCount -= 1
@@ -85,17 +90,21 @@ const BlackJack = () => {
 
     }
 
+    // Function to get the value of a card. 
     const getCardValue = (card) => {
-        // Elements in the array are url links, they are not string of the variable names (i.e. s2, s3, s4 etc...)
+        // Elements in the array are paths to a card image, they are not string of the variable names (i.e. s2, s3, s4 etc...)
         // Extract the part like "Diamonds_9" or "Spades_K"
-        const match = card.match(/\/([A-Za-z]+)_(\d+|A|J|Q|K)\./);
+        const match = card.match(/\/([A-Za-z]+)_(\d+|A|J|Q|K)\./); 
+        // Extract rank, since suit doesn't matter
         const rank = match ? match[2] : '';
 
+        // Scoring for each rank. Aces will be handled as 1 as needed when totalling the hand.
         if (rank === 'A') return 11;
         if (['K', 'Q', 'J', '10'].includes(rank)) return 10;
         return parseInt(rank); // numbers 2-9
     }
 
+    // Function to change the deck art when selected from sidebar
     const handleDeckSelectClick = (deckName) => {
         setDeck(deckName)
         if(deckName === deck1) {
@@ -118,33 +127,40 @@ const BlackJack = () => {
         shuffleDeck(deck);
     };
 
+    // Function to deal the player a new card
     const handlePlayerHitButton = () => {
-        // Use a hit counter to properly deal new cards
+        // Next card is taken as the next unused element from the deck array
         const nextCard = gameDeck[playerCards.length + dealerCards.length]
+        // Set player's new hand
         setPlayerCards([...playerCards, nextCard])
-        setPlayerScore(calculateScore(playerCards))
     }
 
+    // Function to deal the dealer a new card
     const hitDealer = () => {
+        // Next card is taken as the next unused element from the deck array
         const nextCard = gameDeck[playerCards.length + dealerCards.length];
+        // Set dealer's new hand
         setDealerCards((prev) => [...prev, nextCard]);
     };
 
+    // Function for when the player stays
     const handlePlayerStayButton = () => {
         setStay(true)
     }
 
+    // On initial load, shuffle the deck and deal
     useEffect(() => {
             shuffleDeck(deck)
     }, [])
 
+    // When the player stays, hit the dealer. If the dealer is under 17, hit until dealer is above 17
     useEffect(() => {
         if (stay && dealerScore < 17) {
             hitDealer();
         }
     }, [stay, dealerScore]);
     
-
+    // Calculate the dealer score whenever the dealer gets cards
     useEffect(() => {
         if (dealerCards.length > 0) {
             const score = calculateScore(dealerCards);
@@ -165,10 +181,8 @@ const BlackJack = () => {
             } else {
                 // Dealer stays automatically if 17-21
                 if (dealerScore > playerScore) {
-                    console.log("Dealer wins");
                     setDealerWin(true)
                 }  else if (playerScore > dealerScore) { 
-                    console.log("Player wins")
                     setPlayerWin(true)
                 } else if (playerScore === dealerScore) {
                     setPush(true)
@@ -177,18 +191,21 @@ const BlackJack = () => {
         }
     }, [dealerScore, stay]);
 
+    // Calc the player score whenever they get a new card
     useEffect(() => {
         if(playerCards){
             setPlayerScore(calculateScore(playerCards));
         }
     }, [playerCards]);
 
+    // Show player bust if they exceed 21
     useEffect(() => {
         if(playerScore > 21) {
             setPlayerBust(true)
         }
     }, [playerScore])
 
+    // Shuffle the deck / reset the game when a new deck is selected
     useEffect(() => {
         shuffleDeck(deck)
     }, [deck])
