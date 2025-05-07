@@ -1,4 +1,4 @@
-import '../../css/runescapecalc.css'
+import '../../css/devtools.css'
 
 
 
