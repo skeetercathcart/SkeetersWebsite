@@ -1,4 +1,4 @@
-import '../css/runescapecalc.css'
+import '../../css/runescapecalc.css'
 import EquipmentSelect from './EquipmentSelect'
 import MonsterSelect from './OsrsMonsterSelect';
 import OsrsDpsResults from './OsrsDpsResults';

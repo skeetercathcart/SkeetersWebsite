@@ -2,7 +2,7 @@ import useTitle from './hooks/useTitle';
 import { Routes, Route } from 'react-router-dom';
 import GlobalLayout from './components/GlobalLayout';
 import LandingPage from './components/LandingPage';
-import RunescapeCalc from './components/RunescapeCalc';
+import RunescapeCalc from './components/RunescapeCalc/RunescapeCalc';
 import NotFound from './components/NotFound'
 import BlackJack from './components/BlackJack/BlackJack';
 

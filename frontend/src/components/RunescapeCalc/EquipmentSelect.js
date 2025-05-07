@@ -1,4 +1,4 @@
-import '../css/runescapecalc.css'
+import '../../css/runescapecalc.css'
 import OsrsTotalBonus from './OsrsTotalBonus'
 import OsrsStyleSelect from './OsrsStyleSelect';
 import { useState, useEffect } from 'react'

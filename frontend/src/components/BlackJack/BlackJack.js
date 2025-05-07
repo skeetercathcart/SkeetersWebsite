@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import CardBack1 from '../../assets/cardBacks/CardBack1.svg'
 import CardBack2 from '../../assets/cardBacks/CardBack2.svg'
 
-
+// Random note: Hit button is not disabled when someone wins so the player can see what the outcome would have been in different scenarios
 const BlackJack = () => {
 
     const [deck, setDeck] = useState(deck1)
