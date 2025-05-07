@@ -303,10 +303,6 @@ async function createOsrsMonster (req, res) {
         console.log('Failed to create new OSRS Monster  ' + error.message)
         return res.status(500).json({error: "An error occurred while creating a new OSRS monster"})
     }
-
-
-
-
 }
 
 async function getAllOsrsMonsters (req, res) {

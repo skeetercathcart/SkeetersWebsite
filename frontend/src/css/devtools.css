@@ -156,12 +156,13 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 50px;
+    width: 56px;
 }
 
 
 .osrs-item-table-row:hover {
     background-color: rgb(113, 113, 138);
+    font-weight: bold;
 }
 
 .osrs-items-table-container {
@@ -204,4 +205,29 @@
     background-color: red;
     width: 50vw;
     height: 50vh;
+}
+
+/* DevTools Monster Table */ 
+
+.osrs-monster-table-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cb {
+    background-color: rgb(255, 255, 248);
+}
+
+.cb:hover {
+    font-weight: bold;
+}
+
+.atk {
+    background-color: rgb(234, 255, 230);
+}
+
+.def {
+    background-color: rgb(248, 221, 242);
 }
