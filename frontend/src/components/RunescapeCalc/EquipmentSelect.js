@@ -190,7 +190,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                     case 'Head': setHead(itemData); break;
                     case 'Cape': setCape(itemData); break;
                     case 'Neck': setNeck(itemData); break;
-                    case 'Ammunition': setAmmunition(itemData); break;
+                    case 'Ammo': setAmmunition(itemData); break;
                     case 'Weapon': setWeapon(itemData); break;
                     case 'Body': setBody(itemData); break;
                     case 'Shield': setShield(itemData); break;

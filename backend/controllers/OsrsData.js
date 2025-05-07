@@ -12,6 +12,8 @@ async function createOsrsWeapon (req, res) {
 
     const { name, attackStyles, bonuses, isTwoHanded, imageURL} = req.body;
 
+    console.log("bonuses: " + JSON.stringify(bonuses))
+
     try {
 
         const weapon = new Weapon({

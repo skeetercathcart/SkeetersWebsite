@@ -10,8 +10,6 @@ async function weaponPageScrape(url, page) {
         throw new Error(`Timeout or navigation failed for ${url}`);
     }
 
-    console.log('finding styles')
-
     const manualEnter = await page.$('.rsw-synced-switch') // table class that signifies an item has different values based on item status
 
     let styleData = []
@@ -31,14 +29,11 @@ async function weaponPageScrape(url, page) {
             )
         })
     }
-    console.log('styles found')
-
 
     // Grabs the image from what is used in-game
     const imageURL = await page.$eval(".infobox-image img", images => {
         return images.src 
     })
-    console.log('image found')
 
     /*const wepName = await page.$eval(".mw-page-title-main", name => {
         console.log('name found')
@@ -48,7 +43,6 @@ async function weaponPageScrape(url, page) {
     const bonusData = await page.$$eval(".infobox-bonuses td.infobox-nested", bonuses => {
         return bonuses.map(bonus => bonus.innerText)
     })
-    console.log('bonuses found')
 
     const cleanBonus = bonusData.flat()
                     .filter((item => item.trim() !== '')) //remove any empty cells (usually from cells with images)
@@ -61,15 +55,15 @@ async function weaponPageScrape(url, page) {
             stab: cleanBonus[0],
             slash: cleanBonus[1],
             crush: cleanBonus[2],
-            range: cleanBonus[3],
-            magic: cleanBonus[4] 
+            magic: cleanBonus[3],
+            range: cleanBonus[4] 
         },
         defense: {
             stab: cleanBonus[5],
             slash: cleanBonus[6],
             crush: cleanBonus[7],
-            range: cleanBonus[8],
-            magic: cleanBonus[9] 
+            magic: cleanBonus[8],
+            range: cleanBonus[9] 
         },
         strength: cleanBonus[10],
         rangeStrength: cleanBonus[11],
@@ -101,8 +95,6 @@ async function gearPageScrape(url, page) {
 
     console.log('Going to URL: ' + url);
     await page.goto(url, {timeout: 1200000}); 
-    
-
 
     const slot  = await page.$$eval(".infobox-bonuses tr:nth-last-child(-n+3) th:last-child img", slots =>  {
         return slots.map(slot => slot.alt)
@@ -130,15 +122,15 @@ async function gearPageScrape(url, page) {
             slash: cleanBonus[0],
             stab: cleanBonus[1],
             crush: cleanBonus[2],
-            range: cleanBonus[3],
-            magic: cleanBonus[4] 
+            magic: cleanBonus[3],
+            range: cleanBonus[4] 
         },
         defense: {
             slash: cleanBonus[5],
             stab: cleanBonus[6],
             crush: cleanBonus[7],
-            range: cleanBonus[8],
-            magic: cleanBonus[9] 
+            magic: cleanBonus[8],
+            range: cleanBonus[9] 
         },
         strength: cleanBonus[10],
         rangeStrength: cleanBonus[11],
@@ -149,8 +141,6 @@ async function gearPageScrape(url, page) {
     const gearData = {bonuses: bonuses, imageURL: imageURL, slot: slotString}
         
     return ( gearData )
-
-    
 }
 
 // Function to go through a list of items, given a particular item slot and return item names of all corresponding items
@@ -161,8 +151,7 @@ async function tableScrape(table) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setUserAgent('Practice Scraper for Making Personal OSRS Tool (Coding Adventure)')
-    await page.goto(url, {timeout: 90000}); 
-
+    await page.goto(url, {timeout: 9000000}); 
 
     const data = await page.$$eval("table.wikitable.jquery-tablesorter tr td:nth-child(-n+2):nth-child(-n+3)", rows => {
         return rows.slice(1).map(row => row.innerText)
@@ -175,10 +164,12 @@ async function tableScrape(table) {
                     .split(',') // Turn into array
 
 
- 
+    let indexCounter = 0;
     if(table === 'Weapon') {
 
-        for (const index of cleanData) {
+        for (const index of cleanData.slice(710)) {
+            console.log("current search index: " + indexCounter)
+            indexCounter += 1;
             let wepUrl = 'https://oldschool.runescape.wiki/w/' + index;
         
             let wepData;
@@ -218,7 +209,7 @@ async function tableScrape(table) {
         }       
     } else {
         console.log('scraping gear');
-        for (const index of cleanData.slice(500)) {
+        for (const index of cleanData) {
             let gearUrl = 'https://oldschool.runescape.wiki/w/' + index;
             let gearData = await gearPageScrape(gearUrl, page);
             let reqBody = {
@@ -250,8 +241,6 @@ async function tableScrape(table) {
 
     
 }
-
-//tableScrape('Ammunition')
 
 async function gearTestScrape(url) {
 
@@ -322,6 +311,27 @@ async function gearTestScrape(url) {
     
 }
 
+tableScrape('Weapon')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------- MONSTERS ---------------- //
+
+
 
 // function that takes a bestiary page url, scrapes all individual monster pages from the list, then adds monster to database
 async function monsterFullScrape(url) {
@@ -352,7 +362,6 @@ async function monsterFullScrape(url) {
     return ( "complete" )
 
 }
-
 
 // Function to scrape an individual monster page to return size, attack style, attack speed, and attribute(s)
 async function monsterPageScrape(url, page) {
@@ -476,7 +485,7 @@ async function monsterPageScrape(url, page) {
 
 }
 
-
+// Function to experiment with scraping monsters
 async function monsterTestScrape(url) {
 
     console.log('url: ' + url);
@@ -528,4 +537,6 @@ async function monsterTestScrape(url) {
 }
 
 
-monsterTestScrape("https://oldschool.runescape.wiki/w/Bestiary/Slayer_assignments_(T_to_Z)")
+
+
+//monsterTestScrape("https://oldschool.runescape.wiki/w/Bestiary/Slayer_assignments_(T_to_Z)")
