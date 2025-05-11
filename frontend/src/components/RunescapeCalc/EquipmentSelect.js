@@ -130,21 +130,12 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
         const handleItemSelect = async (event) => {
 
             let itemData = null;
-            console.log('current search term: ' + searchTerm);
             handleSearchTermChange(event.target.value);
-            console.log('updated search term: ' + searchTerm)
-            console.log("event value: " + event.target.value)
-            const itemName = event.target.value
-
-            console.log('finding selected item: ' + itemName)
+            const itemName = event.target.value;
             const selectedItem = itemList.find(item => item.name === itemName);
             if (selectedItem) {
 
-            
-            const itemId = selectedItem._id;
-
-            console.log("item slot: " + !selectedItem.slot)
-
+                const itemId = selectedItem._id;
            
             if (!itemId) {
                 return;
@@ -152,11 +143,8 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
 
             try {
 
-
                 if (!selectedItem.slot) {
 
-                console.log('Fetching a weapon')
-                
                 const weaponSelect = await fetch(`http://localhost:3500/api/getWeapon/${itemId}`, 
                     {
                         method: 'GET',
@@ -168,9 +156,12 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
 
                 itemData = await weaponSelect.json();
                 console.log('Weapon Data: ' + JSON.stringify(itemData))
+                if(itemData.isTwoHanded === true) {
+                    setShield(null)
+                }
                 setWeapon(itemData); 
                 setStyles(itemData.attackStyles);
-                console.log('current weapon styles: ' + JSON.stringify(styles))
+                
                 } else {
 
                     console.log('Fetching non-weapon')
@@ -185,7 +176,6 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                     }
     
                     itemData = await gearSelect.json();
-                    console.log('Weapon Data: ' + JSON.stringify(itemData))
                 switch (itemData.slot) {
                     case 'Head': setHead(itemData); break;
                     case 'Cape': setCape(itemData); break;
@@ -193,7 +183,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                     case 'Ammo': setAmmunition(itemData); break;
                     case 'Weapon': setWeapon(itemData); break;
                     case 'Body': setBody(itemData); break;
-                    case 'Shield': setShield(itemData); break;
+                    case 'Shield': if(weapon.isTwoHanded === true) {setWeapon(null)}; setShield(itemData); break;
                     case 'Legs': setLegs(itemData); break;
                     case 'Hands': setHands(itemData); break;
                     case 'Feet': setFeet(itemData); break;
