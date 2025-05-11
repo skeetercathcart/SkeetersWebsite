@@ -20,7 +20,6 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                     throw new Error("Failed to fetch monsters")
                 }
                 const monsterData = await allMonsters.json();
-                console.log('monsterData: ' + JSON.stringify(monsterData));
                 setMonsterList(monsterData)
                 setSelectedMonster(monsterData[0])
             }
@@ -34,14 +33,8 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
     const handleItemSelect = async (event) => {
 
         let monsterData = null;
-        console.log('current search term: ' + searchTerm);
         handleSearchTermChange(event.target.value);
-        console.log('updated search term: ' + searchTerm)
-        console.log("event value: " + event.target.value)
         const monsterName = event.target.value
-        
-
-        console.log('finding selected item: ' + monsterName)
         const selectedMonster = monsterList.find(monster => monster.name === monsterName);
         if (selectedMonster) {
             setSelectedMonster(selectedMonster);

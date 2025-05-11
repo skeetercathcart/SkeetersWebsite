@@ -78,7 +78,6 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                         throw new Error("Failed to fetch items")
                     }
                     const itemData = await allItems.json();
-                    console.log('itemData: ' + JSON.stringify(itemData));
                     setItemList(itemData)
                 }
                 getWeaponList();
@@ -90,8 +89,6 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
         }
 
         const updateTotalBonuses = () => {
-
-            console.log("entering updateTotalBonuses")
             const allItems = [head, cape, neck, ammunition, weapon, body, shield, legs, hands, feet, ring];
 
             const newBonuses = {
@@ -130,22 +127,13 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
         const handleItemSelect = async (event) => {
 
             let itemData = null;
-            console.log('current search term: ' + searchTerm);
             handleSearchTermChange(event.target.value);
-            console.log('updated search term: ' + searchTerm)
-            console.log("event value: " + event.target.value)
             const itemName = event.target.value
-
-            console.log('finding selected item: ' + itemName)
             const selectedItem = itemList.find(item => item.name === itemName);
             if (selectedItem) {
-
             
-            const itemId = selectedItem._id;
-
-            console.log("item slot: " + !selectedItem.slot)
-
-           
+                const itemId = selectedItem._id;
+                
             if (!itemId) {
                 return;
             }
@@ -154,26 +142,24 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
 
 
                 if (!selectedItem.slot) {
-
-                console.log('Fetching a weapon')
-                
-                const weaponSelect = await fetch(`https://skeeterswebsite.onrender.com/api/getWeapon/${itemId}`, 
-                    {
-                        method: 'GET',
-                        headers: {'Content-Type': 'application/json',},
-                    });
+             
+                    const weaponSelect = await fetch(`https://skeeterswebsite.onrender.com/api/getWeapon/${itemId}`, 
+                        {
+                            method: 'GET',
+                            headers: {'Content-Type': 'application/json',},
+                        });
                 if(!weaponSelect) {
                     throw new Error ("Failed to fetch weapon details")
                 }
 
-                itemData = await weaponSelect.json();
-                console.log('Weapon Data: ' + JSON.stringify(itemData))
-                setWeapon(itemData); 
-                setStyles(itemData.attackStyles);
-                console.log('current weapon styles: ' + JSON.stringify(styles))
-                } else {
+                    itemData = await weaponSelect.json();
+                    if(itemData.isTwoHanded === true) {
+                        setShield(null)
+                    }
+                    setWeapon(itemData); 
+                    setStyles(itemData.attackStyles);
 
-                    console.log('Fetching non-weapon')
+                } else {
 
                     const gearSelect = await fetch(`https://skeeterswebsite.onrender.com/api/getOsrsGear/${itemId}`, 
                         {
@@ -185,7 +171,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                     }
     
                     itemData = await gearSelect.json();
-                    console.log('Weapon Data: ' + JSON.stringify(itemData))
+
                 switch (itemData.slot) {
                     case 'Head': setHead(itemData); break;
                     case 'Cape': setCape(itemData); break;
@@ -193,7 +179,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                     case 'Ammunition': setAmmunition(itemData); break;
                     case 'Weapon': setWeapon(itemData); break;
                     case 'Body': setBody(itemData); break;
-                    case 'Shield': setShield(itemData); break;
+                    case 'Shield': if(weapon.isTwoHanded === true) {setWeapon(null)} setShield(itemData); break;
                     case 'Legs': setLegs(itemData); break;
                     case 'Hands': setHands(itemData); break;
                     case 'Feet': setFeet(itemData); break;
@@ -214,8 +200,6 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
             return
         }
         }
-
-        console.log("weapon: " + JSON.stringify(weapon))
     
     return (
         <div className = "player-container">
