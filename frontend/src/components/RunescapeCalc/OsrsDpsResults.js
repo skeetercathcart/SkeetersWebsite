@@ -63,7 +63,7 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
         }
     } 
     // Calculation for Ranged
-    else if(attackType === "heavy" || attackType === "medium" || attackType === "light") { 
+    else if(attackType === "heavy" || attackType === "standard" || attackType === "light") { 
         // Gear Damage Mults
         // TODO (void, salve, slayer helm, etc...)
 
@@ -83,8 +83,11 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
         const playerMaxRan = Math.floor(playerEffRan * (totalBonuses.attack.range + 64) * gearMult)
         playerAttRoll = playerMaxRan;
 
-        if(attackType) {
+        // Lazy fix for database model not matching the ranged defense changes to monsters
+        if(attackType === "heavy" || attackType == "light") {
             attackType += 'Ranged'
+        } else if(attackType === "standard") {
+            attackType = "mediumRanged"
         }
         // Calculate monster defense roll (effective defense only matters for player calc)
         monsterMaxDef = selectedMonster ? (parseInt(selectedMonster.combatStats.defense) + 9) * (parseInt(selectedMonster.defenceBonuses[attackType]) + 64) : 0

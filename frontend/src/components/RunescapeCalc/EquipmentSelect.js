@@ -164,8 +164,6 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 
                 } else {
 
-                    console.log('Fetching non-weapon')
-
                     const gearSelect = await fetch(`http://localhost:3500/api/getOsrsGear/${itemId}`, 
                         {
                             method: 'GET',
@@ -204,8 +202,6 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
             return
         }
         }
-
-        console.log("weapon: " + JSON.stringify(weapon))
     
     return (
         <div className = "player-container">
