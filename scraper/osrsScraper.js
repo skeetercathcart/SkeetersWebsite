@@ -83,7 +83,7 @@ async function weaponPageScrape(url, page) {
         };
     });
     
-    const weaponData = {attackStyles: attackStyles, bonuses: bonuses, isTwoHanded: false, imageURL: imageURL} 
+    const weaponData = {attackStyles: attackStyles, bonuses: bonuses, isTwoHanded: true, imageURL: imageURL} 
     return ( weaponData )
 
     
@@ -165,9 +165,9 @@ async function tableScrape(table) {
 
 
     let indexCounter = 0;
-    if(table === 'Weapon') {
+    if(table === 'Weapon' || table === "Two-handed") {
 
-        for (const index of cleanData.slice(710)) {
+        for (const index of cleanData.slice(275)) {
             console.log("current search index: " + indexCounter)
             indexCounter += 1;
             let wepUrl = 'https://oldschool.runescape.wiki/w/' + index;
@@ -264,12 +264,10 @@ async function gearTestScrape(url) {
     const imageURL = await page.$eval(".infobox-image img", images => {
         return images.src 
     })
-    console.log('image found: ' + imageURL)
 
     const bonusData = await page.$$eval(".infobox-bonuses td.infobox-nested", bonuses => {
         return bonuses.map(bonus => bonus.innerText)
     })
-    console.log('bonuses found')
 
     const cleanBonus = bonusData.flat()
                     .filter((item => item.trim() !== '')) //remove any empty cells (usually from cells with images)
@@ -298,9 +296,6 @@ async function gearTestScrape(url) {
         mageStrength: cleanBonus[12],
         prayer: cleanBonus[13] 
     }
-        
-
-    console.log('bonuses: ' + JSON.stringify(bonuses))
     
     await page.close();
     console.log('page closed');
@@ -311,7 +306,7 @@ async function gearTestScrape(url) {
     
 }
 
-tableScrape('Weapon')
+tableScrape('Two-handed')
 
 
 
