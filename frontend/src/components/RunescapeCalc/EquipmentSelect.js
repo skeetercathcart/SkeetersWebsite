@@ -3,6 +3,7 @@ import OsrsTotalBonus from './OsrsTotalBonus'
 import OsrsStyleSelect from './OsrsStyleSelect';
 import { useState, useEffect } from 'react'
 
+
 const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle }) => {
 
     const unarmed = {
@@ -69,7 +70,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
         useEffect(() => { 
             updateTotalBonuses()
             const getWeaponList = async() => {
-                    const allItems = await fetch('https://skeeterswebsite.onrender.com/api/getAllOsrsItems', 
+                    const allItems = await fetch(process.env.REACT_APP_API_URI + '/api/getAllOsrsItems', 
                         {
                             method: 'GET',
                             headers: {'Content-Type': 'application/json',},
@@ -143,7 +144,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
 
                 if (!selectedItem.slot) {
              
-                    const weaponSelect = await fetch(`https://skeeterswebsite.onrender.com/api/getWeapon/${itemId}`, 
+                    const weaponSelect = await fetch(process.env.REACT_APP_API_URI  + `/api/getWeapon/${itemId}`, 
                         {
                             method: 'GET',
                             headers: {'Content-Type': 'application/json',},
@@ -161,7 +162,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
 
                 } else {
 
-                    const gearSelect = await fetch(`https://skeeterswebsite.onrender.com/api/getOsrsGear/${itemId}`, 
+                    const gearSelect = await fetch(process.env.REACT_APP_API_URI  + `/api/getOsrsGear/${itemId}`, 
                         {
                             method: 'GET',
                             headers: {'Content-Type': 'application/json',},

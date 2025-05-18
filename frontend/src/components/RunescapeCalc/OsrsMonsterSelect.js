@@ -2,16 +2,17 @@ import '../../css/runescapecalc.css'
 import { useState, useEffect } from "react"
 
 
+
 const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
 
     const [searchTerm, setSearchTerm] = useState('')
     const [monsterList, setMonsterList] = useState([]);
-    
 
     useEffect(() => { 
+        console.log('API URI: ' + process.env.REACT_APP_API_URI )
         
         const getMonsterList = async() => {
-                const allMonsters = await fetch('https://skeeterswebsite.onrender.com/api/getAllOsrsMonsters', 
+                const allMonsters = await fetch(process.env.REACT_APP_API_URI  + '/api/getAllOsrsMonsters', 
                     {
                         method: 'GET',
                         headers: {'Content-Type': 'application/json',},

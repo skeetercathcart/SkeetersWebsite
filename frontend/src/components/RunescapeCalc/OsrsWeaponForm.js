@@ -5,8 +5,8 @@ import OsrsCombatStyleSelect from './RunescapeWeaponStyle';
 import OsrsItemStats from './OsrsItemStats';
 
 
-const OsrsWeaponForm = () => {
 
+const OsrsWeaponForm = () => {
 
     const [showForm, setFormVisible] = useState(false);
     const [weaponName, setWeaponName] = useState('');
@@ -102,7 +102,7 @@ const OsrsWeaponForm = () => {
         console.log("REEEEEEEEEEEEEE" + JSON.stringify(reqBody))
 
         try {
-            const response = await fetch('https://skeeterswebsite.onrender.com.com/api/addWeapon', {
+            const response = await fetch(process.env.REACT_APP_API_URI + '/api/addWeapon', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
