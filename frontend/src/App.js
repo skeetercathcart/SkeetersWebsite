@@ -5,6 +5,7 @@ import LandingPage from './components/LandingPage';
 import RunescapeCalc from './components/RunescapeCalc/RunescapeCalc';
 import NotFound from './components/NotFound'
 import BlackJack from './components/BlackJack/BlackJack';
+import DevTools from './components/DevTools/DevTools'
 
 function App() {
   useTitle('Skeeter Cathcart')
@@ -14,6 +15,7 @@ function App() {
       <Route path = "/" element={<GlobalLayout/>}>
         <Route index element={<LandingPage/>}></Route>
         <Route path="runescapecalc" element={<RunescapeCalc/>}/>
+        <Route path="devtools" element={<DevTools/>}/>
         <Route path="blackjack" element = {<BlackJack/>}/>
         <Route path = '*' element = {<NotFound/>}/>
       </Route>
