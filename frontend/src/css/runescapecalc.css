@@ -360,6 +360,12 @@ select {
     outline: black 2px solid;
   }
 
+  .spell-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   /* DPS Results */
 
   .results-container {

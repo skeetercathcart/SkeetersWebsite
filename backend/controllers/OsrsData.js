@@ -357,7 +357,21 @@ async function createOsrsSpell (req, res) {
 
 }
 
+async function getAllOsrsSpells (req, res) {
+    console.log("Entering getAllOsrsSpells")
+
+    try {
+        const allSpells = await OsrsSpell.find()
+        return res.status(200).json(allSpells)
+
+
+    } catch (error) {
+        console.log('Error fetching all OSRS spells: ' + error.message)
+        return res.status(500).json({message: "Error trying to fetch all OSRS spells"})
+    }
+}
+
 
 module.exports = { createOsrsWeapon, getOsrsWeapon, getOsrsWeaponNames, getOsrsWeaponById, getPaginatedOsrsCollection, createOsrsGear, 
                    deleteOsrsItem, getPaginatedOsrsItems, getAllOsrsItems, getOsrsGearById, updateOsrsItemName,
-                   createOsrsMonster, getAllOsrsMonsters, createOsrsSpell }
+                   createOsrsMonster, getAllOsrsMonsters, createOsrsSpell, getAllOsrsSpells }

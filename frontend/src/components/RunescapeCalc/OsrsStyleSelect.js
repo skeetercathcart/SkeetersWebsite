@@ -1,8 +1,30 @@
 import '../../css/runescapecalc.css'
+import { useState, useEffect } from 'react'
 
 
 
 const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle}) => {
+
+
+    const [allSpells, setAllSpells] = useState([]);
+
+    useEffect(() => {
+
+        const getSpellsList = async() => {  
+            const allSpells = await fetch(process.env.REACT_APP_API_URI + '/api/getAllOsrsSpells',
+                {
+                    method: 'GET',
+                    headers: {'Content-Type' : 'application/json',},
+                }
+            );
+            if(!allSpells.ok) {
+                throw new Error("Failed to Fetch Spell Data")
+            }
+            const spellData = await allSpells.json();
+            setAllSpells(spellData)
+        }
+        getSpellsList()
+    }, [])
 
     const handleStyleChange = (event) => {
         setActiveStyle(event.currentTarget.value)
@@ -46,6 +68,17 @@ const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle}) => {
                 <p>{styles.style5.attackType}, {styles.style5.weaponStyle}</p>
             </button>
             </>) }
+            {styles[activeStyle].combatStyle && styles[activeStyle].combatStyle === "Spell" &&
+                <button className = "spell-select"> Spell:
+                    <select>
+                        {allSpells && 
+                            allSpells.map(spell => (
+                                <option><img src = {spell.imageURL}></img>{spell.name}</option>
+                            ))
+                        }
+                    </select>
+                </button>
+            }
         </div>
     )
 
