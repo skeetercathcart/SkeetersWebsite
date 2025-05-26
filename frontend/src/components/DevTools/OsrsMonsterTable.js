@@ -11,14 +11,9 @@ const OsrsMonsterTable = ({itemList, fetchItems}) => {
     }
 
     const handleNameUpdate = async (itemId, itemName) => {
-
-        console.log("Entering handleNameUpdate with: " + itemId + '   ' + JSON.stringify(itemName))
-
         try {
             const reqBody = {name: itemName}
-
-            console.log("Attempting to fetch with body of: " + JSON.stringify(reqBody))
-
+            
             const response = await fetch(`http://localhost:3500/api/updateOsrsMonsterName/${itemId}`, {
                 method: "PUT",
                 headers: {

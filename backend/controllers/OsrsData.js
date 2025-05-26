@@ -2,9 +2,11 @@ const mongoose = require('mongoose')
 const Weapon = require('../models/osrsWeapon')
 const Gear = require('../models/osrsGear')
 const OsrsMonster = require('../models/osrsMonster')
+const OsrsSpell = require('../models/osrsSpell')
 require('../models/osrsWeapon');
 require('../models/osrsGear');
 require('../models/osrsMonster');
+require('../models/osrsSpell');
 
 
 // OSRS Weapon
@@ -324,7 +326,38 @@ async function getAllOsrsMonsters (req, res) {
 
 }
 
+// ---- OSRS Spells ---- // 
+
+async function createOsrsSpell (req, res) {
+    console.log('Entering createOsrsSpell')
+    const { name, requiredLevel, imageURL, maxHit, spellClass, spellbook, element } = req.body;
+    console.log("spell name: " + name)
+    console.log("required level: " + requiredLevel)
+
+    try {
+
+        const newSpell = new OsrsSpell({
+            name: name,
+            requiredLevel: requiredLevel,
+            imageURL: imageURL,
+            maxHit: maxHit,
+            spellClass: spellClass,
+            spellbook: spellbook,
+            element: element
+        });
+
+        await newSpell.save();
+
+        console.log(`New Spell ${name} Created`)
+        res.status(201).json({"Great Success!" : `New Spell ${name} Created`})
+    } catch (error) {
+        console.log('Failed to create new OSRS Spell  ' + error.message)
+        return res.status(500).json({error: "An error occurred while creating a new OSRS spell"})
+    }
+
+}
+
 
 module.exports = { createOsrsWeapon, getOsrsWeapon, getOsrsWeaponNames, getOsrsWeaponById, getPaginatedOsrsCollection, createOsrsGear, 
                    deleteOsrsItem, getPaginatedOsrsItems, getAllOsrsItems, getOsrsGearById, updateOsrsItemName,
-                   createOsrsMonster, getAllOsrsMonsters }
+                   createOsrsMonster, getAllOsrsMonsters, createOsrsSpell }

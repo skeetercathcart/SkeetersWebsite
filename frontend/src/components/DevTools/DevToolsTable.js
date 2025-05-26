@@ -33,7 +33,6 @@ const DevToolsTable = ( { filter, setFilter }) => {
                 throw new Error("Failed to fetch data");
             } 
             const data = await response.json();
-            console.log("response: " + JSON.stringify(data))
             setItemList(data.items);
             setTotalPages(Math.ceil(data.total / limit))
         } catch (err) {

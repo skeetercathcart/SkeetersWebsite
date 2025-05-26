@@ -197,6 +197,7 @@
     height: 80%;
     width: 10%;
     color: white;
+    min-width: 200px;
 }
 
 .test {
@@ -230,4 +231,18 @@
 
 .def {
     background-color: rgb(248, 221, 242);
+}
+
+/* Spell Add Form */
+
+.spell-form-container {
+    border: black 2px solid;
+    background: white;
+}
+
+.spell-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

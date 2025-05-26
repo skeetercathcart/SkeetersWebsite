@@ -16,6 +16,7 @@ router.post('/getPaginatedOsrsCollection', osrsController.getPaginatedOsrsCollec
 router.post('/addWeapon', osrsController.createOsrsWeapon)
 router.post('/addGear', osrsController.createOsrsGear)
 router.post('/addMonster', osrsController.createOsrsMonster)
+router.post('/addOsrsSpell', osrsController.createOsrsSpell)
 
 router.put('/updateOsrsItemName/:id', osrsController.updateOsrsItemName)
 

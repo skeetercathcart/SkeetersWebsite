@@ -8,8 +8,9 @@ const osrsSpellSchema = new Schema({
     requiredLevel: { type: String, required: true },
     imageURL: { type: String, required: true },
     maxHit: { type: String, required: true },
-    class: { type: String, required: true },
+    spellClass: { type: String, default: "None" },
     spellbook: { type: String, required: true },
+    element: { type: String, default: "None" }
 
 })
 
