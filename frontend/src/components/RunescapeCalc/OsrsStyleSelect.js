@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 
 
-const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle}) => {
+const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle, setActiveSpell}) => {
 
 
     const [allSpells, setAllSpells] = useState([]);
@@ -28,6 +28,12 @@ const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle}) => {
 
     const handleStyleChange = (event) => {
         setActiveStyle(event.currentTarget.value)
+    }
+
+    const handleSpellChange = (event) => {
+        const newActiveSpell = event.target.value;
+        const selectedSpell = allSpells.find(spell => spell.name === newActiveSpell);
+        setActiveSpell(selectedSpell);
     }
 
     return (
@@ -70,10 +76,10 @@ const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle}) => {
             </>) }
             {styles[activeStyle].combatStyle && styles[activeStyle].combatStyle === "Spell" &&
                 <button className = "spell-select"> Spell:
-                    <select>
+                    <select onChange = {handleSpellChange}>
                         {allSpells && 
                             allSpells.map(spell => (
-                                <option><img src = {spell.imageURL}></img>{spell.name}</option>
+                                <option key = {spell._id} value = {spell.name}><img src = {spell.imageURL}></img>{spell.name}</option>
                             ))
                         }
                     </select>

@@ -3,12 +3,13 @@ import EquipmentSelect from './EquipmentSelect'
 import MonsterSelect from './OsrsMonsterSelect';
 import OsrsDpsResults from './OsrsDpsResults';
 
-import { useState } from 'react'
+import { act, useState } from 'react'
 
 
 
 const RunescapeCalc = () => {
     
+    const [activeSpell, setActiveSpell] = useState(null)
     const [selectedMonster, setSelectedMonster] = useState(null)
     const [activeStyle, setActiveStyle] = useState('style1')
     const [styles, setStyles] = useState({
@@ -69,9 +70,9 @@ const RunescapeCalc = () => {
     return (
         
         <div className = "calc-container">
-            <EquipmentSelect totalBonuses = {totalBonuses} setTotalBonuses = {setTotalBonuses} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} styles = {styles} setStyles = {setStyles}/>
+            <EquipmentSelect totalBonuses = {totalBonuses} setTotalBonuses = {setTotalBonuses} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} styles = {styles} setStyles = {setStyles} setActiveSpell = {setActiveSpell}/>
             <MonsterSelect selectedMonster = {selectedMonster} setSelectedMonster = {setSelectedMonster}/>
-            <OsrsDpsResults totalBonuses = {totalBonuses} selectedMonster = {selectedMonster} activeStyle = {activeStyle} styles = {styles}/>
+            <OsrsDpsResults totalBonuses = {totalBonuses} selectedMonster = {selectedMonster} activeStyle = {activeStyle} styles = {styles} activeSpell = {activeSpell}/>
         </div>
         
     )

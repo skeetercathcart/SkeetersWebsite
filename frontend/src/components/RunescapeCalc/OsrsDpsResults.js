@@ -3,7 +3,7 @@ import '../../css/runescapecalc.css'
 
 
 
-const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) => {
+const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle, activeSpell}) => {
 
     
     // TODO: Add input for player to adjust their level

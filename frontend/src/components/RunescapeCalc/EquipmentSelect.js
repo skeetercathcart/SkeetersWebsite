@@ -4,7 +4,7 @@ import OsrsStyleSelect from './OsrsStyleSelect';
 import { useState, useEffect } from 'react'
 
 
-const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle }) => {
+const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle, setActiveSpell }) => {
 
     const unarmed = {
         name: "unarmed",
@@ -347,7 +347,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
             </div>
             <div>
                 <OsrsTotalBonus bonuses = {totalBonuses} attackSpeed = {attackSpeed}/>
-                <OsrsStyleSelect styles = {styles} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle}/>
+                <OsrsStyleSelect styles = {styles} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} setActiveSpell = {setActiveSpell}/>
             </div>
         </div>  
     )
