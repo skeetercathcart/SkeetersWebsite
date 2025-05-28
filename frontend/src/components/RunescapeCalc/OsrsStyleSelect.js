@@ -22,8 +22,13 @@ const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle, setActiveSpell}) 
             }
             const spellData = await allSpells.json();
             setAllSpells(spellData)
+            const defaultSpell = spellData[0]
+            setActiveSpell(defaultSpell)
+         
         }
         getSpellsList()
+        
+        
     }, [])
 
     const handleStyleChange = (event) => {
