@@ -410,5 +410,36 @@ select {
     height: 40px;
   }
   
+.select-icons {
+  display: flex;
+  height: 50px;
+  width: 80%;
+  min-width: 260px;
+  background-color: rgb(154, 154, 168);
+  align-items: center;
+  justify-content: center;
+}
 
+.icon-option {
+  display: flex;
+  background-color: rgb(206, 206, 206);
+  border: black 1px solid;
+  padding: 10px;
+  margin-left: 2px;
+  height: 48px;
+  width: 48px;
+}
+
+.icon-option:hover {
+  cursor: pointer;
+  background-color: rgb(255, 254, 196); 
+}
+
+.view-select-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 

@@ -4,66 +4,57 @@ import OsrsStyleSelect from './OsrsStyleSelect';
 import { useState, useEffect } from 'react'
 
 
-const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle, setActiveSpell }) => {
+const EquipmentSelect = ( { totalBonuses, equipment, setEquipment, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle, setActiveSpell }) => {
+
 
     const unarmed = {
-        name: "unarmed",
-        bonuses: {
-            attack: { stab: 0, slash: 0, crush: 0, magic: 0, range: 0 },
-            defense: { stab: 0, slash: 0, crush: 0, magic: 0, range: 0 },
-            strength: 0, 
-            mageStrength: 0, 
-            rangeStrength: 0, 
-            prayer: 0
-        },
-        isTwoHanded: false,
-        imageURL: 'https://oldschool.runescape.wiki/images/Weapon_slot.png?ffed1',
-        attackStyles: {
-            style1: {
-                combatStyle: 'Punch',
-                attackType: 'Crush',
-                weaponStyle: 'Accurate',
-                attackSpeed: "4",
-            },
-            style2: {
-                combatStyle: 'Kick',
-                attackType: 'Crush',
-                weaponStyle: 'Aggressive',
-                attackSpeed: "4",
-            },
-            style3: {
-                combatStyle: 'Block',
-                attackType: 'Crush',
-                weaponStyle: 'Defensive',
-                attackSpeed: "4",
-            },
-            style4: {
-                combatStyle: '',
-                attackType: '',
-                weaponStyle: '',
-                attackSpeed: '',
-            },
-            style5: {
-                combatStyle: '',
-                attackType: '',
-                weaponStyle: '',
-                attackSpeed: '',
-            }
-        }
-    }
-    const [head, setHead] = useState(null)
-    const [searchTerm, setSearchTerm] = useState('')
-    const [cape, setCape] = useState(null)
-    const [neck, setNeck] = useState(null)
-    const [ammunition, setAmmunition] = useState(null)
-    const [weapon, setWeapon] = useState(unarmed)
-    const [body, setBody] = useState(null)
-    const [shield, setShield] = useState(null)
-    const [legs, setLegs] = useState(null)
-    const [hands, setHands] = useState(null)
-    const [feet, setFeet] = useState(null)
-    const [ring, setRing] = useState(null)
+                    name: "unarmed",
+                    bonuses: {
+                        attack: { stab: 0, slash: 0, crush: 0, magic: 0, range: 0 },
+                        defense: { stab: 0, slash: 0, crush: 0, magic: 0, range: 0 },
+                        strength: 0, 
+                        mageStrength: 0, 
+                        rangeStrength: 0, 
+                        prayer: 0
+                    },
+                    isTwoHanded: false,
+                    imageURL: 'https://oldschool.runescape.wiki/images/Weapon_slot.png?ffed1',
+                    attackStyles: {
+                        style1: {
+                            combatStyle: 'Punch',
+                            attackType: 'Crush',
+                            weaponStyle: 'Accurate',
+                            attackSpeed: "4",
+                        },
+                        style2: {
+                            combatStyle: 'Kick',
+                            attackType: 'Crush',
+                            weaponStyle: 'Aggressive',
+                            attackSpeed: "4",
+                        },
+                        style3: {
+                            combatStyle: 'Block',
+                            attackType: 'Crush',
+                            weaponStyle: 'Defensive',
+                            attackSpeed: "4",
+                        },
+                        style4: {
+                            combatStyle: '',
+                            attackType: '',
+                            weaponStyle: '',
+                            attackSpeed: '',
+                        },
+                        style5: {
+                            combatStyle: '',
+                            attackType: '',
+                            weaponStyle: '',
+                            attackSpeed: '',
+                        }
+                    }
+                }
+
     const [itemList, setItemList] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const attackSpeed = styles[activeStyle].attackSpeed || 0;
     
 
@@ -82,7 +73,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                     setItemList(itemData)
                 }
                 getWeaponList();
-        },  [head, cape, neck, ammunition, weapon, body, shield, legs, hands, feet, ring]);
+        },  [equipment]);
 
         
         const handleSearchTermChange = async (e) => {
@@ -90,7 +81,6 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
         }
 
         const updateTotalBonuses = () => {
-            const allItems = [head, cape, neck, ammunition, weapon, body, shield, legs, hands, feet, ring];
 
             const newBonuses = {
                 attack: { stab: 0, slash: 0, crush: 0, magic: 0, range: 0 },
@@ -98,7 +88,7 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 other: { strength: 0, mageStrength: 0, rangeStrength: 0, prayer: 0 }
             };
 
-            allItems.forEach(item => {
+            Object.values(equipment).forEach(item => {
                 if (item) {
                     const bonuses = item.bonuses || {};
         
@@ -155,9 +145,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
 
                     itemData = await weaponSelect.json();
                     if(itemData.isTwoHanded === true) {
-                        setShield(null)
+                        setEquipment(prev => ({...prev, shield: null}))
                     }
-                    setWeapon(itemData); 
+                    setEquipment(prev => ({...prev, weapon: itemData}))
                     setStyles(itemData.attackStyles);
 
                 } else {
@@ -174,17 +164,17 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                     itemData = await gearSelect.json();
 
                 switch (itemData.slot) {
-                    case 'Head': setHead(itemData); break;
-                    case 'Cape': setCape(itemData); break;
-                    case 'Neck': setNeck(itemData); break;
-                    case 'Ammunition': setAmmunition(itemData); break;
-                    case 'Weapon': setWeapon(itemData); break;
-                    case 'Body': setBody(itemData); break;
-                    case 'Shield': if(weapon.isTwoHanded === true) {setWeapon(null)} setShield(itemData); break;
-                    case 'Legs': setLegs(itemData); break;
-                    case 'Hands': setHands(itemData); break;
-                    case 'Feet': setFeet(itemData); break;
-                    case 'Ring': setRing(itemData); break;
+                    case 'Head': setEquipment(prev => ({...prev, head: itemData})); break;
+                    case 'Cape': setEquipment(prev => ({...prev, cape: itemData})); break;
+                    case 'Neck': setEquipment(prev => ({...prev, neck: itemData})); break;
+                    case 'Ammunition': setEquipment(prev => ({...prev, ammunition: itemData})); break;
+                    case 'Weapon': setEquipment(prev => ({...prev, weapon: itemData})); break;
+                    case 'Body': setEquipment(prev => ({...prev, body: itemData})); break;
+                    case 'Shield': if(equipment.weapon.isTwoHanded === true) {setEquipment(prev => ({...prev, weapon: unarmed}))} setEquipment(prev => ({...prev, shield: itemData})); break;
+                    case 'Legs': setEquipment(prev => ({...prev, legs: itemData})); break;
+                    case 'Hands': setEquipment(prev => ({...prev, hands: itemData})); break;
+                    case 'Feet': setEquipment(prev => ({...prev, feet: itemData})); break;
+                    case 'Ring': setEquipment(prev => ({...prev, ring: itemData})); break;
                     default: console.warn('Unknown slot:',itemData.slot);
                 }
             }
@@ -207,9 +197,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
             <div className = "equip-select"> 
                 <div className = "item-display">
                 <div className = "item-square head" id = "Head">
-                    { head ? (
-                        <div className = "active-item" onClick={() => setHead(null)}>
-                            <img alt = "head image" src = {head.imageURL}></img>
+                    { equipment.head ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, head: null}))}>
+                            <img alt = "head image" src = {equipment.head.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -218,9 +208,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square cape" id = "Cape">
-                    { cape ? (
-                        <div className = "active-item" onClick={() => setCape(null)}>
-                            <img alt = "cape image" src = {cape.imageURL}></img>
+                    { equipment.cape ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, cape: null}))}>
+                            <img alt = "cape image" src = {equipment.cape.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -229,9 +219,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square neck" id = "Neck">
-                    { neck ? (
-                        <div className = "active-item" onClick={() => setNeck(null)}>
-                            <img alt = "neck image" src = {neck.imageURL}></img>
+                    { equipment.neck ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, neck: null}))}>
+                            <img alt = "neck image" src = {equipment.neck.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -240,9 +230,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square ammunition" id = "Ammunition">
-                    { ammunition ? (
-                        <div className = "active-item" onClick={() => setAmmunition(null)}>
-                            <img alt = "ammunition image" src = {ammunition.imageURL}></img>
+                    { equipment.ammunition ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, aummunition: null}))}>
+                            <img alt = "ammunition image" src = {equipment.ammunition.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -251,9 +241,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square weapon" id = "Weapon">
-                    { weapon ? (
-                        <div className = "active-item" onClick={() => {setWeapon(unarmed); setStyles(unarmed.attackStyles); setActiveStyle('style1')}}>
-                            <img alt = "weapon image" src = {weapon.imageURL}></img>
+                    { equipment.weapon ? (
+                        <div className = "active-item" onClick={() => {setEquipment(prev => ({...prev, weapon: unarmed})); setStyles(unarmed.attackStyles); setActiveStyle('style1')}}>
+                            <img alt = "weapon image" src = {equipment.weapon.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -262,9 +252,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square body" id = "Body">
-                    { body ? (
-                        <div className = "active-item" onClick={() => setBody(null)}>
-                            <img alt = "body image" src = {body.imageURL}></img>
+                    { equipment.body ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, body: null}))}>
+                            <img alt = "body image" src = {equipment.body.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -273,9 +263,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square shield" id = "Shield">
-                    { shield ? (
-                        <div className = "active-item" onClick={() => setShield(null)}>
-                            <img alt = "shield image" src = {shield.imageURL}></img>
+                    { equipment.shield ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, shield: null}))}>
+                            <img alt = "shield image" src = {equipment.shield.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -284,9 +274,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square legs" id = "Legs">
-                    { legs ? (
-                        <div className = "active-item" onClick={() => setLegs(null)}>
-                            <img alt = "legs image" src = {legs.imageURL}></img>
+                    { equipment.legs ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, legs: null}))}>
+                            <img alt = "legs image" src = {equipment.legs.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -295,9 +285,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square hands" id = "Hands">
-                    { hands ? (
-                        <div className = "active-item" onClick={() => setHands(null)}>
-                            <img alt = "Hands image" src = {hands.imageURL}></img>
+                    { equipment.hands ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, hands: null}))}>
+                            <img alt = "Hands image" src = {equipment.hands.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -306,9 +296,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square feet" id = "Feet">
-                    { feet ? (
-                        <div className = "active-item" onClick={() => setFeet(null)}>
-                            <img alt = "feet image" src = {feet.imageURL}></img>
+                    { equipment.feet ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, feet: null}))}>
+                            <img alt = "feet image" src = {equipment.feet.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -317,9 +307,9 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
                 )} 
                 </div>
                 <div className = "item-square ring" id = "Ring">
-                    { ring ? (
-                        <div className = "active-item" onClick={() => setRing(null)}>
-                            <img alt = "ring image" src = {ring.imageURL}></img>
+                    { equipment.ring ? (
+                        <div className = "active-item" onClick={() => setEquipment(prev => ({...prev, ring: null}))}>
+                            <img alt = "ring image" src = {equipment.ring.imageURL}></img>
                         </div> )
                 : (
                     <div>
@@ -347,7 +337,6 @@ const EquipmentSelect = ( { totalBonuses, setTotalBonuses, styles, setStyles, ac
             </div>
             <div>
                 <OsrsTotalBonus bonuses = {totalBonuses} attackSpeed = {attackSpeed}/>
-                <OsrsStyleSelect styles = {styles} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} setActiveSpell = {setActiveSpell}/>
             </div>
         </div>  
     )
