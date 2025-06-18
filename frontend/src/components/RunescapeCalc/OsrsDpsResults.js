@@ -3,7 +3,7 @@ import '../../css/runescapecalc.css'
 
 
 
-const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) => {
+const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle, activeSpell}) => {
 
     
     // TODO: Add input for player to adjust their level
@@ -25,7 +25,7 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
     const attackStyle = styles[activeStyle].weaponStyle
     
     let hitChance = 0;
-    let playerMaxHit = 0;
+    let playerMaxHit = 1;
     let playerAttRoll = 0;
     let monsterMaxDef = 0;
     let gearMult = 1;
@@ -99,6 +99,26 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
             hitChance = Math.round((playerMaxRan) / (2 * (monsterMaxDef + 1)) * 10000, 4) / 100
         }
 
+    } else if(attackType === "magic") {
+        // TODO: Void bonuses and powered staves get invisible level boost 
+        const playerEffMage = Math.floor(((playerLevels.magic + potionBoost.magic) * prayerBonus.magic)) + 9
+
+        if(activeSpell) {
+            playerMaxHit = Math.floor(activeSpell.maxHit * (1 + (totalBonuses.other.mageStrength / 100)))
+        }
+
+        const playerMaxMage = Math.floor(playerEffMage * (totalBonuses.attack.magic + 64))
+        playerAttRoll = playerMaxMage;
+
+        // Calculate monster defense roll (effective defense only matters for player calc)
+        monsterMaxDef = selectedMonster ? (parseInt(selectedMonster.combatStats.magic) + 9) * (parseInt(selectedMonster.defenceBonuses.magic) + 64) : 0
+
+        // Calculation for hit chance
+        if (playerMaxMage > monsterMaxDef) {
+            hitChance = Math.round((1 - ((monsterMaxDef + 2) / (2 * (playerMaxMage + 1)))) * 10000, 4) / 100
+        } else {
+            hitChance = Math.round((playerMaxMage) / (2 * (monsterMaxDef + 1)) * 10000, 4) / 100
+        }
     }
 
     // Calculation for expected hit
@@ -107,7 +127,7 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
     // Calculation for DPS (probably dogshit idk)
     const damPerSec = Math.round((1 / (parseInt(styles[activeStyle].attackSpeed) * 0.6) * expectedHit) * 1000, 4) / 1000
 
-    // Calulation for TTK
+    // Calulation for TTK (Does not match wiki calc idk why)
     const avgTimeToKill = selectedMonster ? Math.round((parseInt(selectedMonster.combatStats.hitpoints) / damPerSec) * 100 , 4) / 100 : '0'
 
     return (
@@ -134,7 +154,7 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle}) =
                 </tr>
                 <tr className = "results-row">
                     <td className = "results-cat-cell"> Accuracy </td>
-                    <td className = "results-cell"> {hitChance} </td>
+                    <td className = "results-cell"> {hitChance}% </td>
                 </tr>
                 <th colspan = '2' className = "results-header">
                     Rolls
