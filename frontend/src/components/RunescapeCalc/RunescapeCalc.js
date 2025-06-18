@@ -128,12 +128,24 @@ const RunescapeCalc = () => {
                 ring: null,
             });
 
+            const [stats, setStats] = useState({
+                attack: 99,
+                strength: 99,
+                defense: 99,
+                hitpoints: 99,
+                ranged: 99,
+                magic: 99,
+                prayer: 99,
+                mining: 99,
+                herblore: 99,
+            })
+
     return (
         
         <div className = "calc-container">
-            <OsrsViewSelect equipment = {equipment} setEquipment = {setEquipment} totalBonuses = {totalBonuses} setTotalBonuses = {setTotalBonuses} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} styles = {styles} setStyles = {setStyles} setActiveSpell = {setActiveSpell}/>
+            <OsrsViewSelect stats = {stats} setStats = {setStats} equipment = {equipment} setEquipment = {setEquipment} totalBonuses = {totalBonuses} setTotalBonuses = {setTotalBonuses} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} styles = {styles} setStyles = {setStyles} setActiveSpell = {setActiveSpell}/>
             <MonsterSelect selectedMonster = {selectedMonster} setSelectedMonster = {setSelectedMonster}/>
-            <OsrsDpsResults totalBonuses = {totalBonuses} selectedMonster = {selectedMonster} activeStyle = {activeStyle} styles = {styles} activeSpell = {activeSpell}/>
+            <OsrsDpsResults stats = {stats} totalBonuses = {totalBonuses} selectedMonster = {selectedMonster} activeStyle = {activeStyle} styles = {styles} activeSpell = {activeSpell}/>
         </div>
         
     )

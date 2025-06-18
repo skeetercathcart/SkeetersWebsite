@@ -1,10 +1,11 @@
 import '../../css/runescapecalc.css'
 import EquipmentSelect from './EquipmentSelect'
+import OsrsStatSelect from './OsrsStatSelect'
 import OsrsStyleSelect from './OsrsStyleSelect'
 
 import { useState, useEffect } from 'react'
 
-const OsrsViewSelect = ( { equipment, setEquipment, totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle, setActiveSpell } ) => {
+const OsrsViewSelect = ( { stats, setStats, equipment, setEquipment, totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle, setActiveSpell } ) => {
 
     const [activeView, setActiveView] = useState('None')
 
@@ -28,6 +29,9 @@ const OsrsViewSelect = ( { equipment, setEquipment, totalBonuses, setTotalBonuse
             }
             { activeView === "Combat" && 
                 <OsrsStyleSelect styles = {styles} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} setActiveSpell = {setActiveSpell}/>
+            }
+            { activeView === "Stats" &&
+                <OsrsStatSelect stats = {stats} setStats = {setStats}/>
             }
         </div>
     )

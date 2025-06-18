@@ -436,10 +436,33 @@ select {
 }
 
 .view-select-container {
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
+.stat-container {
+  display: flex;
+  width: 100%;
+  height: 256px;
+  border: black 2px solid;
+  width: 80%;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 2fr 5fr 2fr 5fr
+}
+
+.stat-input {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2px;
+  font-size: 14px;
+}
+
+.stat-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
