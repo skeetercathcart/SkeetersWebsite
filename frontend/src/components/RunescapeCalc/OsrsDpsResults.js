@@ -104,10 +104,10 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle, ac
         const playerEffMage = Math.floor(((playerLevels.magic + potionBoost.magic) * prayerBonus.magic)) + 9
 
         if(activeSpell) {
-            playerMaxHit = activeSpell.maxHit
+            playerMaxHit = Math.floor(activeSpell.maxHit * (1 + (totalBonuses.other.mageStrength / 100)))
         }
 
-        const playerMaxMage = Math.floor(playerEffMage * (totalBonuses.attack.magic))
+        const playerMaxMage = Math.floor(playerEffMage * (totalBonuses.attack.magic + 64))
         playerAttRoll = playerMaxMage;
 
         // Calculate monster defense roll (effective defense only matters for player calc)
@@ -132,6 +132,8 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle, ac
 
     return (
         <div className = 'results-container'> 
+        {totalBonuses && 
+        <div>{totalBonuses.other.mageStrength}</div>}
             <table className = 'results-table'>
                 <th colspan = '2' className = "results-header">
                     Results
@@ -168,8 +170,6 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle, ac
                     <td className = "results-cell"> {monsterMaxDef} </td>
                 </tr>
             </table>
-            {activeSpell && 
-            <p>{activeSpell.name}</p>}
         </div>
     )
 }

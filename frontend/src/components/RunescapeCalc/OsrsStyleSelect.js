@@ -24,7 +24,6 @@ const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle, setActiveSpell}) 
             setAllSpells(spellData)
             const defaultSpell = spellData[0]
             setActiveSpell(defaultSpell)
-         
         }
         getSpellsList()
         
