@@ -132,8 +132,6 @@ const OsrsDpsResults = ({ totalBonuses, selectedMonster, styles, activeStyle, ac
 
     return (
         <div className = 'results-container'> 
-        {totalBonuses && 
-        <div>{totalBonuses.other.mageStrength}</div>}
             <table className = 'results-table'>
                 <th colspan = '2' className = "results-header">
                     Results
