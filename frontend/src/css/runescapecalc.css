@@ -443,14 +443,15 @@ select {
 
 .stat-container {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 256px;
   border: black 2px solid;
   width: 80%;
 }
 
 .stat-grid {
   display: grid;
+  height: 256px;
   grid-template-columns: 2fr 5fr 2fr 5fr
 }
 
@@ -465,4 +466,54 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.stat-boost-container {
+  display: flex;
+  height: 360px;
+  background-color: aliceblue;
+  justify-content: center;
+}
+
+.potion-list {
+  display: flex;
+  flex-direction: column;
+  border: black 1px solid;
+  width: 90%;
+}
+
+.potion-cell {
+  display: flex;
+  height: 28px;
+  width: 100%;
+  padding: 2px;
+  margin: 1px;
+  align-items: center;
+  border: 1px black solid;
+}
+
+.potion-cell:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.right {
+  display: none;
+  
+  margin-left: auto;
+}
+
+.potion-cell:hover .right {
+  display: initial;
+  font-weight: bolder;
+}
+
+.potion-img {
+  height: 24px;
+  margin-right: 4px;
+}
+
+.potion-cell.selected {
+  background-color: #cdeffc;
+  border: 2px solid #4dabf7;
 }

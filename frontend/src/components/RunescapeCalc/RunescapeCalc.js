@@ -140,12 +140,25 @@ const RunescapeCalc = () => {
                 herblore: 99,
             })
 
+            const [potionBoost, setPotionBoost] = useState({ 
+                attack: { x: 1.0,
+                          f: 0 }, 
+                strength: { x: 1.0,
+                          f: 0 }, 
+                magic: { x: 1.0,
+                          f: 0 }, 
+                ranged: { x: 1.0,
+                          f: 0 }, 
+                defense: { x: 1.0,
+                          f: 0 },
+            })
+
     return (
         
         <div className = "calc-container">
-            <OsrsViewSelect stats = {stats} setStats = {setStats} equipment = {equipment} setEquipment = {setEquipment} totalBonuses = {totalBonuses} setTotalBonuses = {setTotalBonuses} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} styles = {styles} setStyles = {setStyles} setActiveSpell = {setActiveSpell}/>
+            <OsrsViewSelect potionBoost = {potionBoost} setPotionBoost = {setPotionBoost} stats = {stats} setStats = {setStats} equipment = {equipment} setEquipment = {setEquipment} totalBonuses = {totalBonuses} setTotalBonuses = {setTotalBonuses} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} styles = {styles} setStyles = {setStyles} setActiveSpell = {setActiveSpell}/>
             <MonsterSelect selectedMonster = {selectedMonster} setSelectedMonster = {setSelectedMonster}/>
-            <OsrsDpsResults stats = {stats} totalBonuses = {totalBonuses} selectedMonster = {selectedMonster} activeStyle = {activeStyle} styles = {styles} activeSpell = {activeSpell}/>
+            <OsrsDpsResults potionBoost = {potionBoost} stats = {stats} totalBonuses = {totalBonuses} selectedMonster = {selectedMonster} activeStyle = {activeStyle} styles = {styles} activeSpell = {activeSpell}/>
         </div>
         
     )

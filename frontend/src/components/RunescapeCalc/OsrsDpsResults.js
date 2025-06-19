@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 
 
 
-const OsrsDpsResults = ({ stats, totalBonuses, selectedMonster, styles, activeStyle, activeSpell}) => {
+const OsrsDpsResults = ({ potionBoost, stats, totalBonuses, selectedMonster, styles, activeStyle, activeSpell}) => {
 
     const {
         playerMaxHit,
@@ -15,14 +15,9 @@ const OsrsDpsResults = ({ stats, totalBonuses, selectedMonster, styles, activeSt
         playerAttRoll,
         monsterMaxDef
     } = useMemo(() => {
-        // TODO: Add input for player to adjust their level
-        const playerLevels = { attack: 99, strength: 99, magic: 99, ranged: 99, defence: 99 }
 
         //TODO: Add prayer selection
-        const prayerBonus = { attack: 1, strength: 1, magic: 1, ranged: 1, defence: 1 };
-
-        // TODO: Add potion selection 
-        const potionBoost = { attack: 0, strength: 0, magic: 0, ranged: 0, defence: 0 }
+        const prayerBonus = { attack: 1, strength: 1, magic: 1, ranged: 1, defence: 1 }; 
 
         // TODO: Add other bonus detection or option(s)
         const otherBonus = { slayerHelm: 1.15, voidSet: 1.1, salveAmulet: 1.2 }
@@ -49,7 +44,7 @@ const OsrsDpsResults = ({ stats, totalBonuses, selectedMonster, styles, activeSt
             const strengthStyleBonus = {Aggressive: 3, Controlled: 1, Accurate: 0, Defensive: 0}
 
             // Player's effective attack level. Used to calculate attack roll
-            const playerEffAtt = Math.floor( (stats.attack + potionBoost.attack) * prayerBonus.attack + 8 + attackStyleBonus[attackStyle])
+            const playerEffAtt = Math.floor( (stats.attack * potionBoost.attack.x + potionBoost.attack.f) * prayerBonus.attack + 8 + attackStyleBonus[attackStyle])
 
             // Calculation of players maximum attack roll
             const playerMaxAtt = playerEffAtt * (totalBonuses.attack[attackType] + 64)
@@ -59,7 +54,7 @@ const OsrsDpsResults = ({ stats, totalBonuses, selectedMonster, styles, activeSt
             monsterMaxDef = selectedMonster ? (parseInt(selectedMonster.combatStats.defense) + 9) * (parseInt(selectedMonster.defenceBonuses[attackType]) + 64) : 0
 
             // Player's effective strength level. Used to calculate player's maximum hit
-            const playerEffStr = Math.floor((stats.strength + potionBoost.strength) * prayerBonus.strength) + (strengthStyleBonus[attackStyle]) + 8
+            const playerEffStr = Math.floor((stats.strength * potionBoost.strength.x + potionBoost.strength.f) * prayerBonus.strength) + (strengthStyleBonus[attackStyle]) + 8
 
             // Calculation for player's maximum melee hit 
             playerMaxHit = Math.floor(((playerEffStr * (totalBonuses.other.strength + 64)) + 320) / 640)
@@ -80,13 +75,13 @@ const OsrsDpsResults = ({ stats, totalBonuses, selectedMonster, styles, activeSt
             const attackStyleBonus = { Accurate: 3, Rapid: 0, Longrange: 0}
 
             // Player's effective ranged strength. Used to calculate player's maximum hit
-            const playerEffStr = Math.floor((playerLevels.ranged + potionBoost.ranged) * prayerBonus.ranged) + (attackStyleBonus[attackStyle]) + 8
+            const playerEffStr = Math.floor((stats.ranged * potionBoost.ranged.x + potionBoost.ranged.f) * prayerBonus.ranged) + (attackStyleBonus[attackStyle]) + 8
 
             // Calculation for player's maximum melee hit 
             playerMaxHit = Math.floor(Math.floor( 0.5 + ((playerEffStr * (totalBonuses.other.rangeStrength + 64))) / 640) * gearMult)
 
             // Player's effective ranged level. Used to calculate attack roll
-            const playerEffRan = Math.floor( Math.floor((playerLevels.ranged + potionBoost.ranged) * prayerBonus.ranged + 8) + attackStyleBonus[attackStyle])
+            const playerEffRan = Math.floor( Math.floor((stats.ranged * potionBoost.ranged.x + potionBoost.ranged.f) * prayerBonus.ranged + 8) + attackStyleBonus[attackStyle])
 
             // Calculation of players maximum attack roll
             const playerMaxRan = Math.floor(playerEffRan * (totalBonuses.attack.range + 64) * gearMult)
@@ -110,7 +105,7 @@ const OsrsDpsResults = ({ stats, totalBonuses, selectedMonster, styles, activeSt
 
         } else if(attackType === "magic") {
             // TODO: Void bonuses and powered staves get invisible level boost 
-            const playerEffMage = Math.floor(((playerLevels.magic + potionBoost.magic) * prayerBonus.magic)) + 9
+            const playerEffMage = Math.floor(((stats.magic * potionBoost.magic) * prayerBonus.magic)) + 9
 
             if(activeSpell) {
                 playerMaxHit = Math.floor(activeSpell.maxHit * (1 + (totalBonuses.other.mageStrength / 100)))
@@ -150,9 +145,7 @@ const OsrsDpsResults = ({ stats, totalBonuses, selectedMonster, styles, activeSt
     }, [stats, totalBonuses, selectedMonster, styles, activeStyle, activeSpell]);
 
     return (
-        <div className = 'results-container'>
-            {stats && 
-            stats.strength} 
+        <div className = 'results-container'> 
             <table className = 'results-table'>
                 <th colspan = '2' className = "results-header">
                     Results

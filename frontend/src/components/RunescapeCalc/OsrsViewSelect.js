@@ -5,7 +5,7 @@ import OsrsStyleSelect from './OsrsStyleSelect'
 
 import { useState, useEffect } from 'react'
 
-const OsrsViewSelect = ( { stats, setStats, equipment, setEquipment, totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle, setActiveSpell } ) => {
+const OsrsViewSelect = ( { potionBoost, setPotionBoost, stats, setStats, equipment, setEquipment, totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle, setActiveSpell } ) => {
 
     const [activeView, setActiveView] = useState('None')
 
@@ -31,7 +31,7 @@ const OsrsViewSelect = ( { stats, setStats, equipment, setEquipment, totalBonuse
                 <OsrsStyleSelect styles = {styles} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} setActiveSpell = {setActiveSpell}/>
             }
             { activeView === "Stats" &&
-                <OsrsStatSelect stats = {stats} setStats = {setStats}/>
+                <OsrsStatSelect potionBoost = {potionBoost} setPotionBoost = {setPotionBoost} stats = {stats} setStats = {setStats}/>
             }
         </div>
     )
