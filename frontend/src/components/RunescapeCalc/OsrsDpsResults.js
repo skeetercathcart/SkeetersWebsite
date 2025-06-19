@@ -105,7 +105,7 @@ const OsrsDpsResults = ({ potionBoost, stats, totalBonuses, selectedMonster, sty
 
         } else if(attackType === "magic") {
             // TODO: Void bonuses and powered staves get invisible level boost 
-            const playerEffMage = Math.floor(((stats.magic * potionBoost.magic) * prayerBonus.magic)) + 9
+            const playerEffMage = Math.floor(((stats.magic * potionBoost.magic.x + potionBoost.magic.f) * prayerBonus.magic)) + 9
 
             if(activeSpell) {
                 playerMaxHit = Math.floor(activeSpell.maxHit * (1 + (totalBonuses.other.mageStrength / 100)))

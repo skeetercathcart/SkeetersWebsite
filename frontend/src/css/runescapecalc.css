@@ -336,11 +336,10 @@ select {
   }
 
   .style-select-container {
-    display: grid;
-    width: 24vw;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    margin: 2px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-width: 240px;
   }
 
   .style-option {
@@ -352,6 +351,7 @@ select {
     border: black 1px solid;
     margin: 1px;
     padding: 1px;
+    height: 48px;
   }
 
   .active-style {
@@ -439,6 +439,7 @@ select {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 30%;
 }
 
 .stat-container {
