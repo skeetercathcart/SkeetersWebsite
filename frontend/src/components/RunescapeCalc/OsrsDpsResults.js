@@ -142,7 +142,7 @@ const OsrsDpsResults = ({ potionBoost, stats, totalBonuses, selectedMonster, sty
         playerAttRoll,
         monsterMaxDef
     };
-    }, [stats, totalBonuses, selectedMonster, styles, activeStyle, activeSpell]);
+    }, [stats, totalBonuses, selectedMonster, styles, activeStyle, activeSpell, potionBoost]);
 
     return (
         <div className = 'results-container'> 
