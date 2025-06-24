@@ -476,6 +476,8 @@ select {
   justify-content: center;
 }
 
+/* ------- Potion Select --------- */
+
 .potion-list {
   display: flex;
   flex-direction: column;
@@ -517,4 +519,38 @@ select {
 .potion-cell.selected {
   background-color: #cdeffc;
   border: 2px solid #4dabf7;
+}
+
+/* ---------- Prayer Select  ---------- */
+
+.prayer-select-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  background-color:rgb(219, 219, 221);
+}
+
+.prayer-select-grid {
+  display: grid;
+  border: black 2px black;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.prayer-select-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prayer-select-cell:hover {
+  cursor: pointer;
+}
+
+.prayer-select-cell.active {
+    border: 2px solid gold;
+    background-color: rgba(255, 215, 0, 0.2);
 }

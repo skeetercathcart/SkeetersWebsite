@@ -1,9 +1,8 @@
 import '../../css/runescapecalc.css'
-import EquipmentSelect from './EquipmentSelect'
 import MonsterSelect from './OsrsMonsterSelect';
 import OsrsDpsResults from './OsrsDpsResults';
 import OsrsViewSelect from './OsrsViewSelect';
-import { act, useState } from 'react'
+import { useState } from 'react'
 
 
 
@@ -11,6 +10,7 @@ import { act, useState } from 'react'
 const RunescapeCalc = () => {
     
     const [activeSpell, setActiveSpell] = useState(null)
+    const [activePrayers, setActivePrayers] = useState([]);
     const [selectedMonster, setSelectedMonster] = useState(null)
     const [activeStyle, setActiveStyle] = useState('style1')
     const [styles, setStyles] = useState({
@@ -153,12 +153,25 @@ const RunescapeCalc = () => {
                           f: 0 },
             })
 
+            const [prayerBonus, setPrayerBonus] = useState({
+                 melee: { attack: 1.0, 
+                          strength: 1.0,
+                          defense: 1.0 }, 
+                 magic: { attack: 1.0,
+                          defense: 1.0,
+                          strength: 1.0}, 
+                 ranged: { attack: 1.0,
+                          strength: 1.0}, 
+                })
+
+                
+
     return (
         
         <div className = "calc-container">
-            <OsrsViewSelect potionBoost = {potionBoost} setPotionBoost = {setPotionBoost} stats = {stats} setStats = {setStats} equipment = {equipment} setEquipment = {setEquipment} totalBonuses = {totalBonuses} setTotalBonuses = {setTotalBonuses} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} styles = {styles} setStyles = {setStyles} setActiveSpell = {setActiveSpell}/>
+            <OsrsViewSelect activePrayers = {activePrayers} setActivePrayers = {setActivePrayers} prayerBonus = {prayerBonus} setPrayerBonus = {setPrayerBonus} potionBoost = {potionBoost} setPotionBoost = {setPotionBoost} stats = {stats} setStats = {setStats} equipment = {equipment} setEquipment = {setEquipment} totalBonuses = {totalBonuses} setTotalBonuses = {setTotalBonuses} activeStyle = {activeStyle} setActiveStyle = {setActiveStyle} styles = {styles} setStyles = {setStyles} setActiveSpell = {setActiveSpell}/>
             <MonsterSelect selectedMonster = {selectedMonster} setSelectedMonster = {setSelectedMonster}/>
-            <OsrsDpsResults potionBoost = {potionBoost} stats = {stats} totalBonuses = {totalBonuses} selectedMonster = {selectedMonster} activeStyle = {activeStyle} styles = {styles} activeSpell = {activeSpell}/>
+            <OsrsDpsResults prayerBonus = {prayerBonus} potionBoost = {potionBoost} stats = {stats} totalBonuses = {totalBonuses} selectedMonster = {selectedMonster} activeStyle = {activeStyle} styles = {styles} activeSpell = {activeSpell}/>
         </div>
         
     )

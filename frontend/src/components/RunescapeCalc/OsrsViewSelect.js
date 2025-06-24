@@ -2,12 +2,13 @@ import '../../css/runescapecalc.css'
 import EquipmentSelect from './EquipmentSelect'
 import OsrsStatSelect from './OsrsStatSelect'
 import OsrsStyleSelect from './OsrsStyleSelect'
+import OsrsPrayerSelect from './OsrsPrayerSelect'
 
 import { useState, useEffect } from 'react'
 
-const OsrsViewSelect = ( { potionBoost, setPotionBoost, stats, setStats, equipment, setEquipment, totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle, setActiveSpell } ) => {
+const OsrsViewSelect = ( { activePrayers, setActivePrayers, prayerBonus, setPrayerBonus, potionBoost, setPotionBoost, stats, setStats, equipment, setEquipment, totalBonuses, setTotalBonuses, styles, setStyles, activeStyle, setActiveStyle, setActiveSpell } ) => {
 
-    const [activeView, setActiveView] = useState('None')
+    const [activeView, setActiveView] = useState('Equipment')
 
     const handleViewChange = (view) => {
         const updatedView = view;
@@ -32,6 +33,9 @@ const OsrsViewSelect = ( { potionBoost, setPotionBoost, stats, setStats, equipme
             }
             { activeView === "Stats" &&
                 <OsrsStatSelect potionBoost = {potionBoost} setPotionBoost = {setPotionBoost} stats = {stats} setStats = {setStats}/>
+            }
+            { activeView === "Prayer" &&
+                <OsrsPrayerSelect activePrayers = {activePrayers} setActivePrayers = {setActivePrayers} prayerBonus = {prayerBonus} setPrayerBonus = {setPrayerBonus}/>
             }
         </div>
     )
