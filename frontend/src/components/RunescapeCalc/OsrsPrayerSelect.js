@@ -50,7 +50,7 @@ const OsrsPrayerSelect = ( { activePrayers, setActivePrayers, prayerBonus, setPr
                      defense: 1.0 }, 
             magic: { attack: 1.0,
                      defense: 1.0,
-                     strength: 1.0}, 
+                     strength: 0.0}, 
             ranged: { attack: 1.0,
                       strength: 1.0}, 
             }
@@ -90,7 +90,7 @@ const OsrsPrayerSelect = ( { activePrayers, setActivePrayers, prayerBonus, setPr
                         </div>
                     );
                 })}
-            </div> 
+            </div>           
         </div>
     )
 

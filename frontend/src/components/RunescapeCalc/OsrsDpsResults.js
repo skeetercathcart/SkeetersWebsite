@@ -177,6 +177,7 @@ const OsrsDpsResults = ({ prayerBonus, potionBoost, stats, totalBonuses, selecte
                 <tr className = "results-row">
                     <td className = "results-cat-cell"> NPC Def Roll </td>
                     <td className = "results-cell"> {monsterMaxDef} </td>
+                    <td className = "result-cell">{totalBonuses.other.mageStrength}</td>
                 </tr>
             </table>
         </div>

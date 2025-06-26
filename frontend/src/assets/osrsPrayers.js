@@ -121,7 +121,7 @@ const prayers = [
     {
       id: 'piety',
       label: 'Piety',
-      boosts: { attack: 1.20, strength: 1.23, melee: {defense: 1.25 } },
+      boosts: { melee: { attack: 1.20, strength: 1.23, defense: 1.25 } },
       icon: 'https://oldschool.runescape.wiki/images/Piety.png?58239',
       level: 70,
     },

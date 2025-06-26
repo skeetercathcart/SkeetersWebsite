@@ -544,6 +544,7 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1px;
 }
 
 .prayer-select-cell:hover {
@@ -551,6 +552,6 @@ select {
 }
 
 .prayer-select-cell.active {
-    border: 2px solid gold;
-    background-color: rgba(255, 215, 0, 0.2);
+    outline: 2px solid rgb(98, 204, 116);
+    background-color: rgba(162, 253, 169, 0.2);
 }
