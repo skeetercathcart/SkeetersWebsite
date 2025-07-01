@@ -77,7 +77,9 @@ const MonsterSelect = ({ selectedMonster, setSelectedMonster }) => {
                     <th colSpan = "3" className = 'monster-stats-header'>
                         {selectedMonster.name} ({selectedMonster.combatLevel})
                     </th>
+                    
                 </tr>
+                <tr>{selectedMonster.attribute}</tr>
                 <tr className = 'monster-stats-row'>
                     <th className = 'monster-stats-cell'>Stats</th>
                     <th className = 'monster-stats-cell'>Attack</th>
