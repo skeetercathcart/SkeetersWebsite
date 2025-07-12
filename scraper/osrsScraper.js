@@ -361,6 +361,7 @@ async function monsterPageScrape(url, page) {
 
     await page.goto(url, {timeout: 90000})
 
+
     // To find Attack Speed
     let attackSpeed = ''
     const attackSpeedHeader = await page.$('a[title ="Monster attack speed"]'); // Find the <a> with the corresponding title
@@ -486,18 +487,20 @@ async function monsterTestScrape(url) {
     await page.goto(url, {timeout: 90000}); 
 
     // Gets href for each monster in an array
-    const hrefData = await page.$$eval(".wikitable tr td a", tables => {
-        return tables.map(table => table.href).filter(item => item !== "https://oldschool.runescape.wiki/w/Members").filter(f2p => f2p !== "https://oldschool.runescape.wiki/w/Free-to-play")
+    const hrefData = await page.$$eval(".wikitable tr td:nth-child(2) a", tables => {
+        return tables.map(table => table.href)
     });
 
     for(index in hrefData) {
 
-        let monsterData = await monsterPageScrape(hrefData[index], page)
+        // Create sub-page to force loading of proper data given the URI anchor (i.e. different level/variants)
+        const subPage = await browser.newPage() 
+        let monsterData = await monsterPageScrape(hrefData[index], subPage)
         let reqBody = {}
         try {
             reqBody = {
-                name: hrefData[index].replace("https://oldschool.runescape.wiki/w/", "").replace(/_/g, " "),
-                ...monsterData.monster
+                name: hrefData[index].replace("https://oldschool.runescape.wiki/w/", "").replace(/_/g, " "), // Name taken from URI minus wiki and underscore(s)
+                ...monsterData.monster // Rest of monster data comes from scraped page
             }
     
             console.log("reqBody: " + JSON.stringify(reqBody))
@@ -514,7 +517,7 @@ async function monsterTestScrape(url) {
             } catch (error) {
                 console.error('Error:', error.message);
             } 
-
+            await subPage.close()
     }
     
  
