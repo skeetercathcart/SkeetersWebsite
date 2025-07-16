@@ -1,11 +1,43 @@
 import '../../css/runescapecalc.css'
+import { useState, useEffect } from 'react'
 
 
 
-const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle}) => {
+const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle, setActiveSpell}) => {
+
+
+    const [allSpells, setAllSpells] = useState([]);
+
+    useEffect(() => {
+
+        const getSpellsList = async() => {  
+            const allSpells = await fetch(process.env.REACT_APP_API_URI + '/api/getAllOsrsSpells',
+                {
+                    method: 'GET',
+                    headers: {'Content-Type' : 'application/json',},
+                }
+            );
+            if(!allSpells.ok) {
+                throw new Error("Failed to Fetch Spell Data")
+            }
+            const spellData = await allSpells.json();
+            setAllSpells(spellData)
+            const defaultSpell = spellData[0]
+            setActiveSpell(defaultSpell)
+        }
+        getSpellsList()
+        
+        
+    }, [])
 
     const handleStyleChange = (event) => {
         setActiveStyle(event.currentTarget.value)
+    }
+
+    const handleSpellChange = (event) => {
+        const newActiveSpell = event.target.value;
+        const selectedSpell = allSpells.find(spell => spell.name === newActiveSpell);
+        setActiveSpell(selectedSpell);
     }
 
     return (
@@ -46,6 +78,17 @@ const OsrsStyleSelect = ({styles, activeStyle, setActiveStyle}) => {
                 <p>{styles.style5.attackType}, {styles.style5.weaponStyle}</p>
             </button>
             </>) }
+            {styles[activeStyle].combatStyle && styles[activeStyle].combatStyle === "Spell" &&
+                <button className = "spell-select"> Spell:
+                    <select onChange = {handleSpellChange}>
+                        {allSpells && 
+                            allSpells.map(spell => (
+                                <option key = {spell._id} value = {spell.name}><img src = {spell.imageURL}></img>{spell.name}</option>
+                            ))
+                        }
+                    </select>
+                </button>
+            }
         </div>
     )
 
