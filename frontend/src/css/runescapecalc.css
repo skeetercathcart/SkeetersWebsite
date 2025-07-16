@@ -194,7 +194,6 @@ select {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 500px;
     width: 24vw;
     border: 2px black solid;
   }
@@ -336,11 +335,10 @@ select {
   }
 
   .style-select-container {
-    display: grid;
-    width: 24vw;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    margin: 2px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-width: 240px;
   }
 
   .style-option {
@@ -352,12 +350,19 @@ select {
     border: black 1px solid;
     margin: 1px;
     padding: 1px;
+    height: 48px;
   }
 
   .active-style {
     font-weight: bold;
     border: none;
     outline: black 2px solid;
+  }
+
+  .spell-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   /* DPS Results */
@@ -404,5 +409,148 @@ select {
     height: 40px;
   }
   
+.select-icons {
+  display: flex;
+  height: 50px;
+  width: 80%;
+  min-width: 260px;
+  background-color: rgb(154, 154, 168);
+  align-items: center;
+  justify-content: center;
+}
 
+.icon-option {
+  display: flex;
+  background-color: rgb(206, 206, 206);
+  border: black 1px solid;
+  padding: 10px;
+  margin-left: 2px;
+  height: 48px;
+  width: 48px;
+}
 
+.icon-option:hover {
+  cursor: pointer;
+  background-color: rgb(255, 254, 196); 
+}
+
+.view-select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.stat-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: black 2px solid;
+  width: 80%;
+}
+
+.stat-grid {
+  display: grid;
+  height: 256px;
+  grid-template-columns: 2fr 5fr 2fr 5fr
+}
+
+.stat-input {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2px;
+  font-size: 14px;
+}
+
+.stat-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-boost-container {
+  display: flex;
+  height: 360px;
+  background-color: aliceblue;
+  justify-content: center;
+}
+
+/* ------- Potion Select --------- */
+
+.potion-list {
+  display: flex;
+  flex-direction: column;
+  border: black 1px solid;
+  width: 90%;
+}
+
+.potion-cell {
+  display: flex;
+  height: 28px;
+  width: 100%;
+  padding: 2px;
+  margin: 1px;
+  align-items: center;
+  border: 1px black solid;
+}
+
+.potion-cell:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.right {
+  display: none;
+  
+  margin-left: auto;
+}
+
+.potion-cell:hover .right {
+  display: initial;
+  font-weight: bolder;
+}
+
+.potion-img {
+  height: 24px;
+  margin-right: 4px;
+}
+
+.potion-cell.selected {
+  background-color: #cdeffc;
+  border: 2px solid #4dabf7;
+}
+
+/* ---------- Prayer Select  ---------- */
+
+.prayer-select-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  background-color:rgb(219, 219, 221);
+}
+
+.prayer-select-grid {
+  display: grid;
+  border: black 2px black;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.prayer-select-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+}
+
+.prayer-select-cell:hover {
+  cursor: pointer;
+}
+
+.prayer-select-cell.active {
+    outline: 2px solid rgb(98, 204, 116);
+    background-color: rgba(162, 253, 169, 0.2);
+}
