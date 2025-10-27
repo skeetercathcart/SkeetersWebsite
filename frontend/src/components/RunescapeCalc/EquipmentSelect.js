@@ -55,6 +55,7 @@ const EquipmentSelect = ( { totalBonuses, equipment, setEquipment, setTotalBonus
 
     const [itemList, setItemList] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [showDropdown, setShowDropdown] = useState(false);
     const attackSpeed = styles[activeStyle].attackSpeed || 0;
     
 
@@ -320,19 +321,26 @@ const EquipmentSelect = ( { totalBonuses, equipment, setEquipment, setTotalBonus
             </div>
         
             <div>
-            <input className = "item-search"
-                type="text"
-                placeholder="Search for an item..."
-                list = "items"
-                value = {searchTerm}
-                onChange={handleItemSelect}
-            />
+                <input className = "item-search"
+                    type="text"
+                    placeholder="Search for an item..."
+                    list = "items"
+                    value = {searchTerm}
+                    onChange = {handleItemSelect}
+                    onFocus={() => setShowDropdown(true)}
+                    onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
+                />
 
-            <datalist id="items">
-                {itemList.map(item => (
-                    <option key={item._id} value={item.name} />
-                ))}
-            </datalist>
+                {showDropdown && 
+                <ul className = "item-dropdown">
+                    {itemList.map(item => (
+                        <li className = "dropdown-entry" key={item._id}>
+                        <img className = "dropdown-image" src = {item.imageURL}></img>
+                        <span className = "dropdown-span">{item.name}</span>
+                        </li>
+                    ))}
+                </ul>
+                }
             </div>
             </div>
             <div>

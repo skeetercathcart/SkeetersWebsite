@@ -218,7 +218,7 @@ async function getAllOsrsItems (req, res) {
     try {
         const allItems = await Gear.aggregate([
             { $unionWith: { coll: "osrsweapons" } },
-            { $project: { _id: 1, name: 1, slot: 1 } }
+            { $project: { _id: 1, name: 1, slot: 1, imageURL: 1 } }
         ]);
         return res.status(200).json(allItems)
 
