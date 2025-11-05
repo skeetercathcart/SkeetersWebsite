@@ -4,7 +4,7 @@ import '../css/navbar.css'
 
 const Navbar = () => {
     return (
-        <div>
+        <div className = "no-print">
             <div className = 'background'>
                 <Link to="/">
                     <button className = 'navbar-btn'>Home</button>

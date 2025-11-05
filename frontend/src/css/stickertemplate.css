@@ -1,0 +1,60 @@
+.sticker-container {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.sticker {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 5px;
+    margin: 10px;
+    height: 25vh;
+    border: black 2px solid;
+}
+
+.img-box {
+    border: black 2px dashed;
+    height: 150px; 
+    width: 150px;
+    
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    border: red 2px solid;
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+}
+
+.add-box {
+    border: 2px solid orange;
+    width: 75%;
+    height: 50%;
+    resize: none;
+}
+
+.prod-box {
+    border: 2px solid green;
+    width: 75%;
+    height: 20%;
+    font-size: x-large;
+}
+
+@media print {
+    .sticker {
+        width: 1000px;
+        height: 200px;
+    }
+
+    .img-box {
+        height: 150px; 
+        width: 150px;
+    }
+}
