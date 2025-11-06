@@ -43,15 +43,14 @@
     align-items: center;
     height: 50vh;
     width: 100vw;
-    border: 2px solid red;
 }
 .sticker-sheet {
     display: none;
     height: auto;
-    margin-top: 0.84375in;
-    margin-bottom: 0.84375in;
-    margin-left: 0.15625in;
-    margin-right: 0.15625in;
+    margin-top: 2cm;
+    margin-bottom: 2cm;
+    margin-left: 4mm;
+    
     grid-template-columns: repeat(2, 4in);
     grid-template-rows: repeat(7, 1.34in);
     column-gap: .1875in;
