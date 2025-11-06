@@ -1,6 +1,7 @@
 import '../../css/stickertemplate.css'
 import { useState, useEffect } from 'react'
 import Sticker from './Sticker'
+import DesignSticker from './DesignSticker'
 
 
 
@@ -11,6 +12,10 @@ const StickerPage = () => {
 
     return (
         <div className = "sticker-container">
+            <div className = "sticker-design">
+                <DesignSticker prodText = {prodText} setProdText = {setProdText} addText = {addText} setAddText = {setAddText}></DesignSticker>
+            </div>
+            <div className = "sticker-sheet">
             <Sticker prodText = {prodText} setProdText = {setProdText} addText = {addText} setAddText = {setAddText}></Sticker>
             <Sticker prodText = {prodText} setProdText = {setProdText} addText = {addText} setAddText = {setAddText}></Sticker>
             <Sticker prodText = {prodText} setProdText = {setProdText} addText = {addText} setAddText = {setAddText}></Sticker>
@@ -25,8 +30,7 @@ const StickerPage = () => {
             <Sticker prodText = {prodText} setProdText = {setProdText} addText = {addText} setAddText = {setAddText}></Sticker>
             <Sticker prodText = {prodText} setProdText = {setProdText} addText = {addText} setAddText = {setAddText}></Sticker>
             <Sticker prodText = {prodText} setProdText = {setProdText} addText = {addText} setAddText = {setAddText}></Sticker>
-            <Sticker prodText = {prodText} setProdText = {setProdText} addText = {addText} setAddText = {setAddText}></Sticker>
-            <Sticker prodText = {prodText} setProdText = {setProdText} addText = {addText} setAddText = {setAddText}></Sticker>
+            </div>
         </div>
     )
     

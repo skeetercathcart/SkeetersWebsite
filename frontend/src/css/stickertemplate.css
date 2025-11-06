@@ -1,25 +1,84 @@
-.sticker-container {
-    display: grid;
-    padding: 20px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+@media print {
+    @page {
+        size: letter portrait;
+    }
+
+    .sticker-design{
+        display: none !important;
+    }
+
+    .design-sticker {
+        display: none !important;
+    }
+
+    .sticker-sheet {
+        display: grid !important;
+    }
+
+    .sticker {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 4in;
+        height: 1.34in;
+        background: white;
+        box-sizing: border-box;
+        page-break-inside: avoid;
+    }
+
+    body {
+        min-height: 0vh;
+        margin: 0;
+        padding: 0;
+    }
 }
 
+.sticker-container {
+    
+}
+
+.sticker-design {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 100vw;
+    border: 2px solid red;
+}
+.sticker-sheet {
+    display: none;
+    height: auto;
+    margin-top: 0.84375in;
+    margin-bottom: 0.84375in;
+    margin-left: 0.15625in;
+    margin-right: 0.15625in;
+    grid-template-columns: repeat(2, 4in);
+    grid-template-rows: repeat(7, 1.34in);
+    column-gap: .1875in;
+    row-gap: 0in;
+}
+
+.design-sticker {
+    padding-left: 5px;
+    border-radius: 5px;
+    display: flex;
+    height: 1.35in;
+    width: 4in;
+    background: white;
+    align-items: center;
+}
 .sticker {
+    border-radius: 5px;
+    outline: black 1px solid;
     display: flex;
     align-items: center;
     background: white;
-    padding: 5px;
-    margin: 10px;
-    height: 25vh;
-    border: black 2px solid;
 }
 
 .img-box {
-    border: black 2px dashed;
-    height: 150px; 
-    width: 150px;
-    
+    margin-left: 5px;
+    height: 100px; 
+    width: 100px;
 }
 
 .info-box {
@@ -27,34 +86,28 @@
     flex-direction: column; 
     justify-content: center;
     align-items: center;
-    border: red 2px solid;
-    width: 100%;
-    height: 100%;
-    margin: 5px;
+    width: 90%;
+    height: 90%;
 }
 
 .add-box {
-    border: 2px solid orange;
-    width: 75%;
+    border: none;
+    width: 90%;
     height: 50%;
     resize: none;
+    margin-bottom: 2px;
+    padding-top: 5px;
 }
 
 .prod-box {
-    border: 2px solid green;
-    width: 75%;
-    height: 20%;
+    border: none;
+    width: 90%;
+    height: auto;
     font-size: x-large;
+    font-weight: 600;
+    resize: none; /* prevent manual resizing if you want fixed size */
+    overflow-wrap: break-word;
+    white-space: pre-wrap; /* preserve line breaks */
+    word-wrap: break-word;
 }
 
-@media print {
-    .sticker {
-        width: 1000px;
-        height: 200px;
-    }
-
-    .img-box {
-        height: 150px; 
-        width: 150px;
-    }
-}
