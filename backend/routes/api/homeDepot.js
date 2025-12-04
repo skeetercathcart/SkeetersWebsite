@@ -4,6 +4,7 @@ const router = express.Router()
 const path = require('path')
 
 router.get('/getPaginatedDesigns', homeDepotController.getPaginatedDesigns)
+router.get('/getAllStickerDesigns', homeDepotController.getAllStickerDesigns)
 
 router.post('/addDesign', homeDepotController.createSavedDesign)
 

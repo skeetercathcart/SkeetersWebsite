@@ -10,33 +10,60 @@ const StickerPage = () => {
 
     const [addText, setAddText] = useState("Store #2828 \n4550 Pheasant Ridge Dr NE \n(763)-717-0316")
     const [prodText, setProdText] = useState("Name \nSku")
-    const [savedStickers, setSavedStickers] = useState([]);
+    const [allStickers, setAllStickers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('')
+    const [page, setPage] = useState(1)
+    const pageSize = 8;
 
+    // Filters saved designs based on search term. Matches name or sku
+    const filteredStickers = allStickers.filter(design =>
+    design.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    design.sku.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const maxPages = Math.ceil(filteredStickers.length / pageSize);
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+
+    
     // Fetch saved designs on page load
     useEffect(() => {
-        fetchSavedStickers();
-    }, []);
+        fetchAllStickers();
+    }, [])
 
-    const fetchSavedStickers = async () => {
+    // Sets the page to 1 when search bar is used so the saved designs don't go blank if you start a search in the middle of the paginated results
+    useEffect(() => {
+        setPage(1)
+    }, [searchTerm])
+
+    // Handles search bar query
+    const handleSearchTermChange = async (e) => {
+            setSearchTerm(searchTerm.slice(searchTerm.length) + e.target.value)
+    }
+
+
+
+    // Gets all sticker from the database 
+    const fetchAllStickers = async () => {
         try {
-            const res = await fetch("http://localhost:3500/api/getPaginatedDesigns");
-            if (!res.ok) throw new Error("Failed to load designs");
+            const res = await fetch(`http://localhost:3500/api/getAllStickerDesigns`);
+            if (!res.ok) throw new Error("Failed to load all designs");
 
             const data = await res.json();
 
-            setSavedStickers(data.designs || []);
+            setAllStickers(data|| []);
         } catch (error) {
-            console.error("Error fetching saved designs:", error);
-            alert("Failed to fetch saved designs");
+            console.error("Error fetching saved all designs:", error);
+            alert("Failed to fetch all saved designs");
         }
     };
 
+
+    // Saves design to the database
     const handleSubmit = async(e) => {
         e.preventDefault();
 
         const [name, sku] = prodText.split('\n').map(x => x.trim());
-        console.log("name: " + name)
-        console.log("sku: " + sku)
         
        try {
             const reqBody = {
@@ -58,6 +85,17 @@ const StickerPage = () => {
         }
     }
 
+    const handleNextPage = () => {
+        if (page < maxPages) {
+            setPage(page + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (page > 1) {
+            setPage(page - 1);
+        }
+    };
 
     return (
         <div className = "sticker-container">
@@ -71,23 +109,32 @@ const StickerPage = () => {
                 ))}    
             </div>
             <div className = "sticker-search">
-                <p>Saved Stickers</p> 
-                <input></input>    
+                <p className = "sticker-title">Saved Stickers</p> 
+                <input className = "item-search"
+                    type="text"
+                    placeholder="Search for a design"
+                    list = "items"
+                    value = {searchTerm}
+                    onChange = {handleSearchTermChange}
+                />    
             </div>
             <div className = "next-btns">
-                <button> [- </button>
+                <button className = "page-btn" onClick = {handlePrevPage}> 🢀 </button>
                 <div className="sticker-select">
-                    {savedStickers.length === 0 && <p>No saved stickers found.</p>}
-
-                    {savedStickers.map((design) => (
-                        <SavedSticker 
-                            key={design._id}
-                            prodText={`${design.name}\n${design.sku}`}
-                            addText={addText}
-                        />
+                
+                    {filteredStickers.slice(startIndex, endIndex).map(design => (
+                        <div className="sticker-cell" key={design._id}>
+                            <SavedSticker 
+                                prodText={`${design.name}\n${design.sku}`}
+                                setProdText={setProdText}
+                                addText={addText}
+                                setAddText={setAddText}
+                            />
+                        </div>
                     ))}
+
                 </div>
-                <button> -] </button>
+                <button className = "page-btn" onClick = {handleNextPage}> 🢂 </button>
             </div>
 
         </div>

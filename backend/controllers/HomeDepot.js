@@ -23,13 +23,30 @@ async function createSavedDesign (req, res) {
     }
 }
 
+async function getAllStickerDesigns (req, res) {
+
+    console.log('Entering getAllStickerDesigns')
+
+    try {
+        const allDesigns = await stickerLabel.find().sort({ name: 1 })
+        return res.status(200).json(allDesigns)
+
+
+    } catch (error) {
+        console.log('Error fetching all sticker designs: ' + error.message)
+        return res.status(500).json({message: "Error trying to fetch all sticker designs"})
+    }
+
+
+}
+
 async function getPaginatedDesigns (req, res) {
     console.log('Entering getPaginatedDesigns')
 
     try {
-        // read ?page=1&limit=20 (defaults)
+        
         const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 20;
+        const limit = parseInt(req.query.limit) || 8;
 
         const skip = (page - 1) * limit;
 
@@ -54,4 +71,4 @@ async function getPaginatedDesigns (req, res) {
 
 }
 
-module.exports = { createSavedDesign, getPaginatedDesigns }
+module.exports = { createSavedDesign, getAllStickerDesigns, getPaginatedDesigns }
