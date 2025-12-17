@@ -46,7 +46,7 @@ const StickerPage = () => {
     // Gets all sticker from the database 
     const fetchAllStickers = async () => {
         try {
-            const res = await fetch(`http://localhost:3500/api/getAllStickerDesigns`);
+            const res = await fetch(process.env.REACT_APP_API_URI + '/api/getAllStickerDesigns');
             if (!res.ok) throw new Error("Failed to load all designs");
 
             const data = await res.json();
