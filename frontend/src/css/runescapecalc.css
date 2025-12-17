@@ -285,6 +285,45 @@ select {
     border: none;
   }
 
+  .item-dropdown {
+    position: absolute;
+    background-color: black;
+    border: black 1px solid;
+    overflow-y: auto;
+    max-height: 200px;
+    width: 160px;
+  }
+
+  .dropdown-image {
+    height: 18px;
+    width: 18px;
+    object-fit: contain;
+    margin: 2px;
+  }
+
+  .dropdown-entry {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 2px;
+    background-color: white;
+  }
+
+  .dropdown-entry:hover {
+    background-color:burlywood;
+  }
+
+  .dropdown-span {
+    display: flex;
+    font-size: medium;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 
   /* Total Bonus Display */
 

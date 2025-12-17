@@ -26,7 +26,9 @@ app.use((req, res, next) => {
 
 app.use('/', express.static(path.join(__dirname, '..', 'frontend', 'build')));
 
+// API Routes
 app.use('/api', require('./routes/api/osrsData'));
+app.use('/api', require('./routes/api/homeDepot')); 
 
 app.use('/', require('./routes/root'));
 

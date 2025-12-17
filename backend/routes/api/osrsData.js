@@ -11,11 +11,13 @@ router.get('/getPaginatedItems', osrsController.getPaginatedOsrsItems)
 router.get('/getAllOsrsItems', osrsController.getAllOsrsItems)
 router.get('/getOsrsGear/:id', osrsController.getOsrsGearById)
 router.get('/getAllOsrsMonsters', osrsController.getAllOsrsMonsters)
+router.get('/getAllOsrsSpells', osrsController.getAllOsrsSpells)
 
 router.post('/getPaginatedOsrsCollection', osrsController.getPaginatedOsrsCollection)
 router.post('/addWeapon', osrsController.createOsrsWeapon)
 router.post('/addGear', osrsController.createOsrsGear)
 router.post('/addMonster', osrsController.createOsrsMonster)
+router.post('/addOsrsSpell', osrsController.createOsrsSpell)
 
 router.put('/updateOsrsItemName/:id', osrsController.updateOsrsItemName)
 
